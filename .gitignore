@@ -28,6 +28,9 @@ xcuserdata/
 ehthumbs.db
 Thumbs.db
 *~
+*.swp
+*~.nib
+*.lock
 
 
 ## Obj-C/Swift specific
