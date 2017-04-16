@@ -10,6 +10,18 @@
 		1E3AB13C1E95B61F00D04C04 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3AB13B1E95B61F00D04C04 /* AppDelegate.swift */; };
 		1E3AB13E1E95B61F00D04C04 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3AB13D1E95B61F00D04C04 /* ViewController.swift */; };
 		1E3AB1431E95B61F00D04C04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E3AB1421E95B61F00D04C04 /* Assets.xcassets */; };
+		1E3AB1511E95CEA000D04C04 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3AB1501E95CEA000D04C04 /* GameView.swift */; };
+		1E3AB1531E96694600D04C04 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3AB1521E96694600D04C04 /* Game.swift */; };
+		1E3AB1551E975BED00D04C04 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3AB1541E975BED00D04C04 /* Board.swift */; };
+		1E3AB1571E99F7C400D04C04 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3AB1561E99F7C400D04C04 /* Tile.swift */; };
+		1E3AB1591E99F8E700D04C04 /* TitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3AB1581E99F8E700D04C04 /* TitleViewController.swift */; };
+		1E3AB15B1E99F90B00D04C04 /* TitleScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3AB15A1E99F90B00D04C04 /* TitleScreenView.swift */; };
+		1E3AB15D1E99F94000D04C04 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3AB15C1E99F94000D04C04 /* TutorialViewController.swift */; };
+		1E3AB1621EA3490400D04C04 /* TitleVertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 1E3AB1611EA3490400D04C04 /* TitleVertex.glsl */; };
+		1E3AB1641EA3493E00D04C04 /* TitleFragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 1E3AB1631EA3493E00D04C04 /* TitleFragment.glsl */; };
+		1E4AE4421EA3544E00691D71 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E4AE4411EA3544E00691D71 /* Default-568h@2x.png */; };
+		1E4AE4441EA3554100691D71 /* CreditsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4AE4431EA3554100691D71 /* CreditsViewController.swift */; };
+		1E4AE4461EA3853400691D71 /* ayy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1E4AE4451EA3853400691D71 /* ayy.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,6 +30,18 @@
 		1E3AB13D1E95B61F00D04C04 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1E3AB1421E95B61F00D04C04 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1E3AB1471E95B61F00D04C04 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1E3AB1501E95CEA000D04C04 /* GameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		1E3AB1521E96694600D04C04 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		1E3AB1541E975BED00D04C04 /* Board.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
+		1E3AB1561E99F7C400D04C04 /* Tile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
+		1E3AB1581E99F8E700D04C04 /* TitleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleViewController.swift; sourceTree = "<group>"; };
+		1E3AB15A1E99F90B00D04C04 /* TitleScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleScreenView.swift; sourceTree = "<group>"; };
+		1E3AB15C1E99F94000D04C04 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		1E3AB1611EA3490400D04C04 /* TitleVertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TitleVertex.glsl; sourceTree = "<group>"; };
+		1E3AB1631EA3493E00D04C04 /* TitleFragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TitleFragment.glsl; sourceTree = "<group>"; };
+		1E4AE4411EA3544E00691D71 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		1E4AE4431EA3554100691D71 /* CreditsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditsViewController.swift; sourceTree = "<group>"; };
+		1E4AE4451EA3853400691D71 /* ayy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ayy.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,11 +75,55 @@
 			isa = PBXGroup;
 			children = (
 				1E3AB13B1E95B61F00D04C04 /* AppDelegate.swift */,
+				1E3AB14F1E95BEDE00D04C04 /* Controllers */,
+				1E3AB14E1E95BED900D04C04 /* Views */,
+				1E3AB14D1E95BED100D04C04 /* Model */,
+				1E3AB15E1EA348AB00D04C04 /* GLSources */,
 				1E3AB13D1E95B61F00D04C04 /* ViewController.swift */,
 				1E3AB1421E95B61F00D04C04 /* Assets.xcassets */,
 				1E3AB1471E95B61F00D04C04 /* Info.plist */,
+				1E4AE4451EA3853400691D71 /* ayy.jpg */,
+				1E4AE4411EA3544E00691D71 /* Default-568h@2x.png */,
 			);
 			path = Panello;
+			sourceTree = "<group>";
+		};
+		1E3AB14D1E95BED100D04C04 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1E3AB1521E96694600D04C04 /* Game.swift */,
+				1E3AB1541E975BED00D04C04 /* Board.swift */,
+				1E3AB1561E99F7C400D04C04 /* Tile.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		1E3AB14E1E95BED900D04C04 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1E3AB1501E95CEA000D04C04 /* GameView.swift */,
+				1E3AB15A1E99F90B00D04C04 /* TitleScreenView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		1E3AB14F1E95BEDE00D04C04 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1E3AB1581E99F8E700D04C04 /* TitleViewController.swift */,
+				1E3AB15C1E99F94000D04C04 /* TutorialViewController.swift */,
+				1E4AE4431EA3554100691D71 /* CreditsViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		1E3AB15E1EA348AB00D04C04 /* GLSources */ = {
+			isa = PBXGroup;
+			children = (
+				1E3AB1611EA3490400D04C04 /* TitleVertex.glsl */,
+				1E3AB1631EA3493E00D04C04 /* TitleFragment.glsl */,
+			);
+			name = GLSources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -117,6 +185,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E4AE4461EA3853400691D71 /* ayy.jpg in Resources */,
+				1E3AB1641EA3493E00D04C04 /* TitleFragment.glsl in Resources */,
+				1E4AE4421EA3544E00691D71 /* Default-568h@2x.png in Resources */,
+				1E3AB1621EA3490400D04C04 /* TitleVertex.glsl in Resources */,
 				1E3AB1431E95B61F00D04C04 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -128,8 +200,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E3AB1591E99F8E700D04C04 /* TitleViewController.swift in Sources */,
+				1E3AB15D1E99F94000D04C04 /* TutorialViewController.swift in Sources */,
+				1E3AB15B1E99F90B00D04C04 /* TitleScreenView.swift in Sources */,
 				1E3AB13E1E95B61F00D04C04 /* ViewController.swift in Sources */,
+				1E3AB1511E95CEA000D04C04 /* GameView.swift in Sources */,
+				1E3AB1551E975BED00D04C04 /* Board.swift in Sources */,
+				1E3AB1571E99F7C400D04C04 /* Tile.swift in Sources */,
 				1E3AB13C1E95B61F00D04C04 /* AppDelegate.swift in Sources */,
+				1E3AB1531E96694600D04C04 /* Game.swift in Sources */,
+				1E4AE4441EA3554100691D71 /* CreditsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +352,7 @@
 				1E3AB14C1E95B61F00D04C04 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
