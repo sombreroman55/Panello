@@ -9,11 +9,5 @@
 import GLKit
 
 class GameView: GLKView {
-//    init(withStage stage: Board) {
-//        
-//    }
-//    
-//    init(withPuzzle puzzle: Board) {
-//        
-//    }
+
 }
