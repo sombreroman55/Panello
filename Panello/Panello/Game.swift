@@ -33,6 +33,7 @@ class Game {
         case NONE
     }
     
+    var score: Int
     private let _state: GameState
     private let _type: GameType
     private let _difficulty: GameDifficulty
@@ -43,6 +44,7 @@ class Game {
     
     /* Endless game constructor */
     init() {
+        score = 0
         _state = .RUNNING
         _type = .ENDLESS
         _difficulty = .EASY

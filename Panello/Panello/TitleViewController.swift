@@ -13,12 +13,9 @@ class TitleViewController: GLKViewController {
     // --------------------------------------------------------------------
     // MARK: - Instance data
     // --------------------------------------------------------------------
-    
-    //private var time: Float = 0.0
     private var translateX: Float = 0.0
     private var translateY: Float = 0.0
     private var program: GLuint = 0
-    //private var background: Background!
     private var ayy: Panel!
 
     // --------------------------------------------------------------------
@@ -33,7 +30,6 @@ class TitleViewController: GLKViewController {
         EAGLContext.setCurrent(context)
         
         ayy = Panel(image: UIImage(named: "ayy.jpg")!)
-        //background = Background()
         let pause: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(pauseGame))
         pause.numberOfTapsRequired = 2
         glkView.addGestureRecognizer(pause)
@@ -70,7 +66,6 @@ class TitleViewController: GLKViewController {
         ayy.positionX = translateX
         ayy.positionY = translateY
         
-        //background.draw()
         ayy.draw()
     }
     

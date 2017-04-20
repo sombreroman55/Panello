@@ -61,6 +61,8 @@ class Panel {
     var rotation: Float = 0.0 // radians
     let image: UIImage
     
+    private var _falling: Bool // Is this block falling? Cannot match during falling?
+    private var _chain: Bool // Is this block part of a chain?
     private var _color: PanelColor
     private var _state: PanelState
     private var texture: GLKTextureInfo?
