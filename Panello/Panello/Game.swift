@@ -19,24 +19,12 @@ class Game {
         case GAME_OVER
     }
     
-    enum GameType {
-        case TIME_TRIAL
-        case ENDLESS
-        case STAGE
-        case PUZZLE
-    }
-    
-    enum GameDifficulty {
-        case EASY
-        case MEDIUM
-        case HARD
-        case NONE
-    }
-    
-    var score: Int
-    private let _state: GameState
-    private let _type: GameType
-    private let _difficulty: GameDifficulty
+    //var risingSpeed: Int
+    var _framesRun: Int
+    private var _state: GameState
+    private var _panicked: Bool
+    private var _startTime: Double
+
     
     // --------------------------------------------------------------------
     // MARK: - Constructors
@@ -44,25 +32,34 @@ class Game {
     
     /* Endless game constructor */
     init() {
-        score = 0
+        _framesRun = 0
         _state = .RUNNING
-        _type = .ENDLESS
-        _difficulty = .EASY
+        _panicked = false
+        _startTime = CACurrentMediaTime()
     }
-    
-//    /* Stage clear game constructor */
-//    init() {
-//        
-//    }
-//    
-//    /* Puzzle game constructor */
-//    init() {
-//        
-//    }
     
     // --------------------------------------------------------------------
     // MARK: - Custom methods
     // --------------------------------------------------------------------
     
+    /* Game logic loop */
+    func tick(timePassed: TimeInterval) {
+        
+    }
     
+    func isPaused() -> Bool {
+        return _state == .PAUSED
+    }
+    
+    func isPanicked() -> Bool {
+        return _panic
+    }
+    
+    func getState() -> GameState {
+        return _state
+    }
+    
+    func getStartTime() -> Double {
+        return _startTime
+    }
 }

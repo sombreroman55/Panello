@@ -13,6 +13,7 @@ class Panel {
     // -------------------------------------------------------------------
     // MARK: - Static members
     // -------------------------------------------------------------------
+    // Panel's color
     enum PanelColor {
         case RED
         case YELLOW
@@ -22,6 +23,7 @@ class Panel {
         case PURPLE
     }
     
+    // State of panel
     enum PanelState {
         case NORMAL
         case FLOATING
@@ -31,56 +33,22 @@ class Panel {
         case SWAP_LEFT
     }
 
+    // OpenGL program
     private static var program: GLuint = 0
+    // Vertex coordinates
     private static let quad: [Float] =
         [
-            0.0, 0.0,           // Vertex Coordinate
-            1.0, 0.0, 0.0, 1.0, // Color data (RGBA)
-            0.0, 1.0,           // Texture data (x, y); invert the y values to be right side up
-            
-            1.0, 0.0,
-            0.0, 1.0, 0.0, 1.0,
-            1.0, 1.0,
-            
-            0.0, 1.0,
-            0.0, 0.0, 1.0, 1.0,
-            0.0, 0.0,
-            
-            1.0, 1.0,
-            1.0, 0.5, 0.0, 1.0,
-            1.0, 0.0
+            -0.1, -0.1,
+            -0.1, 0.1,
+            0.1, -0.1,
+            0.1, 0.1,
         ]
     
     // -------------------------------------------------------------------
-    // MARK: - Instance data
-    // -------------------------------------------------------------------
-    var positionX: Float = 0.0
-    var positionY: Float = 0.0
-    var scaleX: Float = 1.0
-    var scaleY: Float = 1.0
-    var rotation: Float = 0.0 // radians
-    let image: UIImage
-    
-    private var _falling: Bool // Is this block falling? Cannot match during falling?
-    private var _chain: Bool // Is this block part of a chain?
-    private var _color: PanelColor
-    private var _state: PanelState
-    private var texture: GLKTextureInfo?
-    
-    // --------------------------------------------------------------------
-    // MARK: - Constructors
-    // --------------------------------------------------------------------
-    init(image: UIImage) {
-        self.image = image
-        _color = .RED // TODO: dynamically assign PanelColor
-        texture = try? GLKTextureLoader.texture(with: self.image.cgImage!, options: nil)
-        _state = .NORMAL
-        Panel.setup()
-    }
-        
-    // -------------------------------------------------------------------
     // MARK: - Static functions
     // -------------------------------------------------------------------
+    
+    /* Setup the OpenGL program if necessary. Compiles and links vertex and fragment shaders. */
     private static func setup() {
         
         if (program != 0) {
@@ -94,7 +62,6 @@ class Panel {
         
         let panelVertexShader: GLuint = glCreateShader(GLenum(GL_VERTEX_SHADER))
         
-        // why is nil allowed??
         glShaderSource(panelVertexShader, 1, &panelVertexShaderData, nil)
         glCompileShader(panelVertexShader)
         
@@ -150,8 +117,7 @@ class Panel {
         glAttachShader(program, panelVertexShader)
         glAttachShader(program, panelFragmentShader)
         glBindAttribLocation(program, 0, "position")
-        glBindAttribLocation(program, 1, "color")
-        glBindAttribLocation(program, 2, "texture")
+        glBindAttribLocation(program, 1, "texture")
         glLinkProgram(program)
         
         
@@ -166,32 +132,10 @@ class Panel {
             print(logString)
             fatalError("Error. Linking failed.")
         }
-        
-        glUseProgram(program)
-        glEnableVertexAttribArray(0)
-        glEnableVertexAttribArray(1)
-        glEnableVertexAttribArray(2)
-        
     }
     
-    func draw() {
-        // Send Geometry (attributes)
-        // Send any other info (uniforms)
-        // Draw
-        
-        glVertexAttribPointer(0, 2, GLenum(GL_FLOAT), GLboolean(GL_FALSE), 32, Panel.quad)
-        glVertexAttribPointer(1, 4, GLenum(GL_FLOAT), GLboolean(GL_FALSE), 32, UnsafePointer(Panel.quad) + 2)
-        glVertexAttribPointer(2, 2, GLenum(GL_FLOAT), GLboolean(GL_FALSE), 32, UnsafePointer(Panel.quad) + 6)
-        glUniform2f(glGetUniformLocation(Panel.program, "translation"), positionX, positionY)
-        if let tex = texture {
-            print("Binding texture...")
-            glBindTexture(GLenum(GL_TEXTURE_2D), tex.name)
-        }
-        print("X: \(positionX), Y: \(positionY)")
-        glDrawArrays(GLenum(GL_TRIANGLE_STRIP), 0, 4)
-    }
-    
-    func getRandomColor() -> PanelColor {
+    /* Randomly generate a color for a panel */
+    class func getRandomColor() -> PanelColor {
         let choice: Int = 1 + Int(arc4random_uniform(UInt32(6 - 1 + 1)))
         switch (choice) {
         case 1:
@@ -209,5 +153,90 @@ class Panel {
         default:
             return .RED
         }
+    }
+    
+    // Texture sheet is 116x154
+    // Sprites are 16x16 with 3px padding on all sides
+    // Format is WxH
+    // X is horizontal, Y is vertical going down
+    // Arrays are |TL, BR| |TL, TR| |BL, BR| |BL, TR|
+    //            |-X  +Y| |-X  -Y| |+X  +Y| |+X  -Y|
+    /* Return the coordinates for the given color's sprite on the spritesheet */
+    class func getNormalTexture(forColor color: PanelColor) -> [Float] {
+        switch (color) {
+        case .PURPLE:
+            return [ (3/116), (19/154), (3/116), (3/154),
+                     (19/116), (19/154), (19/116), (3/154),]
+        case .BLUE:
+            return [ (22/116), (19/154), (22/116), (3/154),
+                     (38/116), (19/154), (38/116), (3/154),]
+        case .RED:
+            return [ (41/116), (19/154), (41/116), (3/154),
+                     (57/116), (19/154), (57/116), (3/154),]
+        case .CYAN:
+            return [ (60/116), (19/154), (60/116), (3/154),
+                     (76/116), (19/154), (76/116), (3/154),]
+        case .YELLOW:
+            return [ (79/116), (19/154), (79/116), (3/154),
+                     (95/116), (19/154), (95/116), (3/154),]
+        case .GREEN:
+            return [ (98/116), (19/154), (98/116), (3/154),
+                     (114/116), (19/154), (114/116), (3/154),]
+        }
+    }
+    
+    // -------------------------------------------------------------------
+    // MARK: - Instance data
+    // -------------------------------------------------------------------
+    var positionX: Float = 0.0
+    var positionY: Float = 0.0
+    let image: UIImage
+    var _color: PanelColor // The color of the block
+    var _state: PanelState // The state of the block
+    var _falling: Bool // Is this block falling? Cannot match during falling?
+    var _chain: Bool // Can this block be chained
+    var _floatTimer: Int
+    var _swapTimer: Int
+    var _explosionOrder: Int
+    var _explosionFrames: Int
+    var _explosionAnimationFrames: Int
+    var _explosionTimer: Int
+    
+    private var texture: GLKTextureInfo? // The texture of the block
+    private var textureCoordinates: [Float] // The coordinates of the texture in the sprite sheet
+    
+    // --------------------------------------------------------------------
+    // MARK: - Constructors
+    // --------------------------------------------------------------------
+    init(image: UIImage) {
+        self.image = image
+        _color = Panel.getRandomColor()
+        texture = try? GLKTextureLoader.texture(with: self.image.cgImage!, options: nil)
+        textureCoordinates = Panel.getNormalTexture(forColor: _color)
+        _state = .NORMAL
+        Panel.setup()
+        _falling = false
+        _chain = false
+    }
+    
+    // --------------------------------------------------------------------
+    // MARK: - Panel methods
+    // --------------------------------------------------------------------
+    
+    /* Draw the panel */
+    func draw() {
+        // Send Geometry (attributes)
+        // Send any other info (uniforms)
+        // Draw
+        glUseProgram(Panel.program)
+        glVertexAttribPointer(0, 2, GLenum(GL_FLOAT), GLboolean(GL_FALSE), 0, Panel.quad)
+        glVertexAttribPointer(1, 2, GLenum(GL_FLOAT), GLboolean(GL_FALSE), 0, textureCoordinates)
+        glUniform2f(glGetUniformLocation(Panel.program, "translation"), positionX, positionY)
+        glEnableVertexAttribArray(0)
+        glEnableVertexAttribArray(1)
+        if let tex = texture {
+            glBindTexture(GLenum(GL_TEXTURE_2D), tex.name)
+        }
+        glDrawArrays(GLenum(GL_TRIANGLE_STRIP), 0, 4)
     }
 }

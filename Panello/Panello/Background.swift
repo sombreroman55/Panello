@@ -120,15 +120,6 @@ class Background {
             print(logString)
             fatalError("Error. Linking failed.")
         }
-        
-        glUseProgram(Background.program)
-        glEnableVertexAttribArray(0)
-        glEnableVertexAttribArray(1)
-        
-        glVertexAttribPointer(0, 2, GLenum(GL_FLOAT), GLboolean(GL_FALSE), 24, Background.quad)
-        glVertexAttribPointer(1, 4, GLenum(GL_FLOAT), GLboolean(GL_FALSE), 24, UnsafePointer(Background.quad) + 2)
-        
-        glDrawArrays(GLenum(GL_TRIANGLE_STRIP), 0, 4)
     }
     
     func draw() {
@@ -136,9 +127,11 @@ class Background {
         // Send any other info (uniforms)
         // Draw
         
+        glUseProgram(Background.program)
         glVertexAttribPointer(0, 2, GLenum(GL_FLOAT), GLboolean(GL_FALSE), 24, Background.quad)
         glVertexAttribPointer(1, 4, GLenum(GL_FLOAT), GLboolean(GL_FALSE), 24, UnsafePointer(Background.quad) + 2)
-        
+        glEnableVertexAttribArray(0)
+        glEnableVertexAttribArray(1)
         glDrawArrays(GLenum(GL_TRIANGLE_STRIP), 0, 4)
     }
 }

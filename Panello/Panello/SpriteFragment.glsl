@@ -1,4 +1,3 @@
-varying highp vec4 colorInterp;
 varying highp vec2 texturePosInterp;
 uniform sampler2D textureUnit;
 

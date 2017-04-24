@@ -13,6 +13,7 @@ Panello, being a clone, functions in just the same way, just with controls geare
 |----------------------------|--------------------------------------:|
 |Swap with block to the left |Place finger on a block and swipe left |
 |Swap with block to the right|Place finger on a block and swipe right|
+|Force raise one row         |During game, swipe down anywhere       |
 |Pause game                  |During game, double tap anywhere       |
 |Select an option            |Tap the option (revolutionary!)        |
 

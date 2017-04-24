@@ -1,14 +1,14 @@
 //
-//  TitleViewController.swift
+//  GameViewController.swift
 //  Panello
 //
-//  Created by Andrew Roberts on 4/8/17.
+//  Created by Andrew Roberts on 4/20/17.
 //  Copyright © 2017 Andrew Roberts. All rights reserved.
 //
 
 import GLKit
 
-class TitleViewController: GLKViewController {
+class GameViewController: GLKViewController {
     
     // --------------------------------------------------------------------
     // MARK: - Instance data
@@ -18,7 +18,8 @@ class TitleViewController: GLKViewController {
     private var program: GLuint = 0
     private var ayy: Panel!
     private var background: Background!
-
+    //private var game: Game
+    
     // --------------------------------------------------------------------
     // MARK: - GLKViewController overrides
     // --------------------------------------------------------------------
@@ -30,7 +31,7 @@ class TitleViewController: GLKViewController {
         glkView.context = context!
         EAGLContext.setCurrent(context)
         
-        ayy = Panel(image: UIImage(named: "blocks.png")!)
+        ayy = Panel(image: UIImage(named: "ayy.jpg")!)
         background = Background()
         let pause: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(pauseGame))
         pause.numberOfTapsRequired = 2
@@ -54,8 +55,7 @@ class TitleViewController: GLKViewController {
     /* Display loop */
     // Update is the game loop?
     func update() {
-        //self.timeSinceLastUpdate // get time since last display update
-        //time += 0.005
+        //game.tick()
     }
     
     /* Draw the view */
@@ -69,10 +69,6 @@ class TitleViewController: GLKViewController {
         
         ayy.positionX = translateX
         ayy.positionY = translateY
-        
-        //let aspectRatio: Float = Float(glkView.drawableWidth) / Float(glkView.drawableHeight)
-        
-        //glViewport(0, 0, GLsizei(glkView.drawableWidth), GLsizei(glkView.drawableHeight * aspectRatio))
         
         background.draw()
         ayy.draw()
