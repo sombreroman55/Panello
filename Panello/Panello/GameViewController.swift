@@ -31,7 +31,7 @@ class GameViewController: GLKViewController {
         glkView.context = context!
         EAGLContext.setCurrent(context)
         
-        ayy = Panel(image: UIImage(named: "ayy.jpg")!)
+        ayy = Panel()
         background = Background()
         let pause: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(pauseGame))
         pause.numberOfTapsRequired = 2

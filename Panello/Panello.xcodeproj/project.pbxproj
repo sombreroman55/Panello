@@ -16,6 +16,9 @@
 		1E04CB6A1EADC152004D4F80 /* StageSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E04CB691EADC152004D4F80 /* StageSelectViewController.swift */; };
 		1E04CB6C1EADC160004D4F80 /* PuzzleSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E04CB6B1EADC160004D4F80 /* PuzzleSelectViewController.swift */; };
 		1E04CB6E1EADC176004D4F80 /* HighScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E04CB6D1EADC176004D4F80 /* HighScoreViewController.swift */; };
+		1E04CB701EADC343004D4F80 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E04CB6F1EADC343004D4F80 /* MainMenuViewController.swift */; };
+		1E04CB721EB03CBB004D4F80 /* font.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E04CB711EB03CBB004D4F80 /* font.png */; };
+		1E04CB761EB042EB004D4F80 /* TextFragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 1E04CB751EB042EB004D4F80 /* TextFragment.glsl */; };
 		1E3AB13C1E95B61F00D04C04 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3AB13B1E95B61F00D04C04 /* AppDelegate.swift */; };
 		1E3AB1431E95B61F00D04C04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E3AB1421E95B61F00D04C04 /* Assets.xcassets */; };
 		1E3AB1531E96694600D04C04 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3AB1521E96694600D04C04 /* Game.swift */; };
@@ -23,8 +26,8 @@
 		1E3AB1571E99F7C400D04C04 /* Panel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3AB1561E99F7C400D04C04 /* Panel.swift */; };
 		1E3AB1591E99F8E700D04C04 /* TitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3AB1581E99F8E700D04C04 /* TitleViewController.swift */; };
 		1E3AB15D1E99F94000D04C04 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3AB15C1E99F94000D04C04 /* TutorialViewController.swift */; };
-		1E3AB1621EA3490400D04C04 /* SpriteVertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 1E3AB1611EA3490400D04C04 /* SpriteVertex.glsl */; };
-		1E3AB1641EA3493E00D04C04 /* SpriteFragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 1E3AB1631EA3493E00D04C04 /* SpriteFragment.glsl */; };
+		1E3AB1621EA3490400D04C04 /* PanelVertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 1E3AB1611EA3490400D04C04 /* PanelVertex.glsl */; };
+		1E3AB1641EA3493E00D04C04 /* PanelFragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 1E3AB1631EA3493E00D04C04 /* PanelFragment.glsl */; };
 		1E42D5541EA82982005C08F0 /* TextRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E42D5531EA82982005C08F0 /* TextRenderer.swift */; };
 		1E42D5561EA8CCAD005C08F0 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E42D5551EA8CCAD005C08F0 /* GameViewController.swift */; };
 		1E42D5581EA8CD73005C08F0 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E42D5571EA8CD73005C08F0 /* Animation.swift */; };
@@ -34,6 +37,7 @@
 		1E4AE4481EA6398500691D71 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4AE4471EA6398500691D71 /* Background.swift */; };
 		1E4AE44A1EA68F0A00691D71 /* BackgroundVertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 1E4AE4491EA68F0A00691D71 /* BackgroundVertex.glsl */; };
 		1E4AE44C1EA68F1F00691D71 /* BackgroundFragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 1E4AE44B1EA68F1F00691D71 /* BackgroundFragment.glsl */; };
+		1EA911131EB09F5A008FFD7E /* TextVertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 1EA911121EB09F5A008FFD7E /* TextVertex.glsl */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +50,9 @@
 		1E04CB691EADC152004D4F80 /* StageSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageSelectViewController.swift; sourceTree = "<group>"; };
 		1E04CB6B1EADC160004D4F80 /* PuzzleSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PuzzleSelectViewController.swift; sourceTree = "<group>"; };
 		1E04CB6D1EADC176004D4F80 /* HighScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScoreViewController.swift; sourceTree = "<group>"; };
+		1E04CB6F1EADC343004D4F80 /* MainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
+		1E04CB711EB03CBB004D4F80 /* font.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = font.png; sourceTree = "<group>"; };
+		1E04CB751EB042EB004D4F80 /* TextFragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TextFragment.glsl; sourceTree = "<group>"; };
 		1E3AB1381E95B61F00D04C04 /* Panello.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Panello.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E3AB13B1E95B61F00D04C04 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1E3AB1421E95B61F00D04C04 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -55,8 +62,8 @@
 		1E3AB1561E99F7C400D04C04 /* Panel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Panel.swift; sourceTree = "<group>"; };
 		1E3AB1581E99F8E700D04C04 /* TitleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleViewController.swift; sourceTree = "<group>"; };
 		1E3AB15C1E99F94000D04C04 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
-		1E3AB1611EA3490400D04C04 /* SpriteVertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SpriteVertex.glsl; sourceTree = "<group>"; };
-		1E3AB1631EA3493E00D04C04 /* SpriteFragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SpriteFragment.glsl; sourceTree = "<group>"; };
+		1E3AB1611EA3490400D04C04 /* PanelVertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PanelVertex.glsl; sourceTree = "<group>"; };
+		1E3AB1631EA3493E00D04C04 /* PanelFragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PanelFragment.glsl; sourceTree = "<group>"; };
 		1E42D5531EA82982005C08F0 /* TextRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextRenderer.swift; sourceTree = "<group>"; };
 		1E42D5551EA8CCAD005C08F0 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		1E42D5571EA8CD73005C08F0 /* Animation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
@@ -66,6 +73,7 @@
 		1E4AE4471EA6398500691D71 /* Background.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		1E4AE4491EA68F0A00691D71 /* BackgroundVertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BackgroundVertex.glsl; sourceTree = "<group>"; };
 		1E4AE44B1EA68F1F00691D71 /* BackgroundFragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BackgroundFragment.glsl; sourceTree = "<group>"; };
+		1EA911121EB09F5A008FFD7E /* TextVertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TextVertex.glsl; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +109,7 @@
 				1E3AB13B1E95B61F00D04C04 /* AppDelegate.swift */,
 				1E3AB14F1E95BEDE00D04C04 /* Controllers */,
 				1E3AB14E1E95BED900D04C04 /* Renderers */,
-				1E3AB14D1E95BED100D04C04 /* Model */,
+				1E3AB14D1E95BED100D04C04 /* Models */,
 				1E3AB15E1EA348AB00D04C04 /* GLSources */,
 				1E42D55B1EA8CDD1005C08F0 /* Textures */,
 				1E3AB1421E95B61F00D04C04 /* Assets.xcassets */,
@@ -111,19 +119,19 @@
 			path = Panello;
 			sourceTree = "<group>";
 		};
-		1E3AB14D1E95BED100D04C04 /* Model */ = {
+		1E3AB14D1E95BED100D04C04 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				1E3AB1521E96694600D04C04 /* Game.swift */,
+				1E04CB5F1EADC0F0004D4F80 /* EndlessGame.swift */,
+				1E04CB631EADC105004D4F80 /* TimeTrialGame.swift */,
+				1E04CB651EADC117004D4F80 /* StageGame.swift */,
+				1E04CB611EADC0F9004D4F80 /* PuzzleGame.swift */,
 				1E3AB1541E975BED00D04C04 /* Board.swift */,
 				1E3AB1561E99F7C400D04C04 /* Panel.swift */,
 				1E4AE4471EA6398500691D71 /* Background.swift */,
-				1E04CB5F1EADC0F0004D4F80 /* EndlessGame.swift */,
-				1E04CB611EADC0F9004D4F80 /* PuzzleGame.swift */,
-				1E04CB631EADC105004D4F80 /* TimeTrialGame.swift */,
-				1E04CB651EADC117004D4F80 /* StageGame.swift */,
 			);
-			name = Model;
+			name = Models;
 			sourceTree = "<group>";
 		};
 		1E3AB14E1E95BED900D04C04 /* Renderers */ = {
@@ -140,13 +148,14 @@
 			isa = PBXGroup;
 			children = (
 				1E3AB1581E99F8E700D04C04 /* TitleViewController.swift */,
-				1E3AB15C1E99F94000D04C04 /* TutorialViewController.swift */,
-				1E4AE4431EA3554100691D71 /* CreditsViewController.swift */,
-				1E42D5551EA8CCAD005C08F0 /* GameViewController.swift */,
+				1E04CB6F1EADC343004D4F80 /* MainMenuViewController.swift */,
 				1E04CB671EADC147004D4F80 /* BackgroundSelectViewController.swift */,
 				1E04CB691EADC152004D4F80 /* StageSelectViewController.swift */,
 				1E04CB6B1EADC160004D4F80 /* PuzzleSelectViewController.swift */,
+				1E42D5551EA8CCAD005C08F0 /* GameViewController.swift */,
 				1E04CB6D1EADC176004D4F80 /* HighScoreViewController.swift */,
+				1E3AB15C1E99F94000D04C04 /* TutorialViewController.swift */,
+				1E4AE4431EA3554100691D71 /* CreditsViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -154,10 +163,12 @@
 		1E3AB15E1EA348AB00D04C04 /* GLSources */ = {
 			isa = PBXGroup;
 			children = (
-				1E3AB1611EA3490400D04C04 /* SpriteVertex.glsl */,
-				1E3AB1631EA3493E00D04C04 /* SpriteFragment.glsl */,
 				1E4AE4491EA68F0A00691D71 /* BackgroundVertex.glsl */,
 				1E4AE44B1EA68F1F00691D71 /* BackgroundFragment.glsl */,
+				1E3AB1611EA3490400D04C04 /* PanelVertex.glsl */,
+				1E3AB1631EA3493E00D04C04 /* PanelFragment.glsl */,
+				1EA911121EB09F5A008FFD7E /* TextVertex.glsl */,
+				1E04CB751EB042EB004D4F80 /* TextFragment.glsl */,
 			);
 			name = GLSources;
 			sourceTree = "<group>";
@@ -166,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				1E04CB5D1EAAF58F004D4F80 /* blocks.png */,
+				1E04CB711EB03CBB004D4F80 /* font.png */,
 			);
 			name = Textures;
 			sourceTree = "<group>";
@@ -230,9 +242,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E4AE44A1EA68F0A00691D71 /* BackgroundVertex.glsl in Resources */,
-				1E3AB1641EA3493E00D04C04 /* SpriteFragment.glsl in Resources */,
+				1E04CB761EB042EB004D4F80 /* TextFragment.glsl in Resources */,
+				1E3AB1641EA3493E00D04C04 /* PanelFragment.glsl in Resources */,
 				1E4AE4421EA3544E00691D71 /* Default-568h@2x.png in Resources */,
-				1E3AB1621EA3490400D04C04 /* SpriteVertex.glsl in Resources */,
+				1E3AB1621EA3490400D04C04 /* PanelVertex.glsl in Resources */,
+				1E04CB721EB03CBB004D4F80 /* font.png in Resources */,
+				1EA911131EB09F5A008FFD7E /* TextVertex.glsl in Resources */,
 				1E3AB1431E95B61F00D04C04 /* Assets.xcassets in Resources */,
 				1E04CB5E1EAAF58F004D4F80 /* blocks.png in Resources */,
 				1E4AE44C1EA68F1F00691D71 /* BackgroundFragment.glsl in Resources */,
@@ -264,6 +279,7 @@
 				1E04CB621EADC0F9004D4F80 /* PuzzleGame.swift in Sources */,
 				1E3AB1571E99F7C400D04C04 /* Panel.swift in Sources */,
 				1E3AB13C1E95B61F00D04C04 /* AppDelegate.swift in Sources */,
+				1E04CB701EADC343004D4F80 /* MainMenuViewController.swift in Sources */,
 				1E3AB1531E96694600D04C04 /* Game.swift in Sources */,
 				1E4AE4441EA3554100691D71 /* CreditsViewController.swift in Sources */,
 			);

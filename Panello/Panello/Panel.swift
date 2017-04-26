@@ -33,16 +33,12 @@ class Panel {
         case SWAP_LEFT
     }
 
+    // Panel spritesheet
+    private static let image: UIImage = UIImage(named: "blocks.png")!
     // OpenGL program
     private static var program: GLuint = 0
     // Vertex coordinates
-    private static let quad: [Float] =
-        [
-            -0.1, -0.1,
-            -0.1, 0.1,
-            0.1, -0.1,
-            0.1, 0.1,
-        ]
+    private static let quad: [Float] = [ -0.1, -0.1, -0.1, 0.1, 0.1, -0.1, 0.1, 0.1 ]
     
     // -------------------------------------------------------------------
     // MARK: - Static functions
@@ -56,7 +52,7 @@ class Panel {
         }
         
         // Vertex Shader
-        let panelVertexShaderPath: String = Bundle.main.path(forResource: "SpriteVertex", ofType: "glsl", inDirectory: nil)!
+        let panelVertexShaderPath: String = Bundle.main.path(forResource: "PanelVertex", ofType: "glsl", inDirectory: nil)!
         let panelVertexShaderSource: NSString = try! NSString(contentsOfFile: panelVertexShaderPath, encoding: String.Encoding.utf8.rawValue)
         var panelVertexShaderData = panelVertexShaderSource.cString(using: String.Encoding.utf8.rawValue)
         
@@ -84,7 +80,7 @@ class Panel {
         
         
         // Fragment Shader
-        let panelFragmentShaderPath: String = Bundle.main.path(forResource: "SpriteFragment", ofType: "glsl", inDirectory: nil)!
+        let panelFragmentShaderPath: String = Bundle.main.path(forResource: "PanelFragment", ofType: "glsl", inDirectory: nil)!
         let panelFragmentShaderSource: NSString = try! NSString(contentsOfFile: panelFragmentShaderPath, encoding: String.Encoding.utf8.rawValue)
         var panelFragmentShaderData = panelFragmentShaderSource.cString(using: String.Encoding.utf8.rawValue)
         
@@ -190,17 +186,16 @@ class Panel {
     // -------------------------------------------------------------------
     var positionX: Float = 0.0
     var positionY: Float = 0.0
-    let image: UIImage
     var _color: PanelColor // The color of the block
     var _state: PanelState // The state of the block
     var _falling: Bool // Is this block falling? Cannot match during falling?
     var _chain: Bool // Can this block be chained
-    var _floatTimer: Int
-    var _swapTimer: Int
-    var _explosionOrder: Int
-    var _explosionFrames: Int
-    var _explosionAnimationFrames: Int
-    var _explosionTimer: Int
+    var _floatTimer: Int = 0
+    var _swapTimer: Int = 0
+    var _explosionOrder: Int = 0
+    var _explosionFrames: Int = 0
+    var _explosionAnimationFrames: Int = 0
+    var _explosionTimer: Int = 0
     
     private var texture: GLKTextureInfo? // The texture of the block
     private var textureCoordinates: [Float] // The coordinates of the texture in the sprite sheet
@@ -208,10 +203,9 @@ class Panel {
     // --------------------------------------------------------------------
     // MARK: - Constructors
     // --------------------------------------------------------------------
-    init(image: UIImage) {
-        self.image = image
+    init() {
         _color = Panel.getRandomColor()
-        texture = try? GLKTextureLoader.texture(with: self.image.cgImage!, options: nil)
+        texture = try? GLKTextureLoader.texture(with: Panel.image.cgImage!, options: nil)
         textureCoordinates = Panel.getNormalTexture(forColor: _color)
         _state = .NORMAL
         Panel.setup()

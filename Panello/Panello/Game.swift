@@ -20,10 +20,13 @@ class Game {
     }
     
     //var risingSpeed: Int
-    var _framesRun: Int
     private var _state: GameState
     private var _panicked: Bool
     private var _startTime: Double
+    public var _framesRun: Int
+    public var state: GameState { return _state }
+    public var panicked: Bool { return _panicked }
+    public var startTime: Double { return _startTime }
 
     
     // --------------------------------------------------------------------
@@ -39,7 +42,7 @@ class Game {
     }
     
     // --------------------------------------------------------------------
-    // MARK: - Custom methods
+    // MARK: - Game methods
     // --------------------------------------------------------------------
     
     /* Game logic loop */
@@ -51,15 +54,8 @@ class Game {
         return _state == .PAUSED
     }
     
-    func isPanicked() -> Bool {
-        return _panic
-    }
-    
-    func getState() -> GameState {
-        return _state
-    }
-    
-    func getStartTime() -> Double {
-        return _startTime
-    }
+    // --------------------------------------------------------------------
+    // MARK: - Serialization
+    // --------------------------------------------------------------------
+
 }
