@@ -8,6 +8,13 @@
 
 import GLKit
 
+protocol GameProtocol {
+    func update()
+    func reset()
+    func save() // Serialization
+    func load() // Serialization
+}
+
 class Game {
     
     // -------------------------------------------------------------------
@@ -19,16 +26,14 @@ class Game {
         case GAME_OVER
     }
     
-    //var risingSpeed: Int
-    private var _state: GameState
-    private var _panicked: Bool
-    private var _startTime: Double
-    public var _framesRun: Double
-    public var state: GameState { return _state }
-    public var panicked: Bool { return _panicked }
-    public var startTime: Double { return _startTime }
-    public var framesRun: Double { return _framesRun }
-
+    // -------------------------------------------------------------------
+    // MARK: - Public instance data
+    // -------------------------------------------------------------------
+    
+    public var millisecondsRun: Double
+    public var state: GameState
+    public var panicked: Bool
+    public var startTime: Double
     
     // --------------------------------------------------------------------
     // MARK: - Constructors
@@ -36,27 +41,20 @@ class Game {
     
     /* Endless game constructor */
     init() {
-        _framesRun = 0
-        _state = .RUNNING
-        _panicked = false
-        _startTime = CACurrentMediaTime()
+        millisecondsRun = 0
+        state = .RUNNING
+        panicked = false
+        startTime = CACurrentMediaTime() * 1000 // times 1000 for milliseconds
     }
     
     // --------------------------------------------------------------------
     // MARK: - Game methods
     // --------------------------------------------------------------------
-    
-    /* Game logic loop */
-    func tick() {
-        _framesRun = CACurrentMediaTime() - _startTime
-    }
-    
     func isPaused() -> Bool {
-        return _state == .PAUSED
+        return state == .PAUSED
     }
     
-    // --------------------------------------------------------------------
-    // MARK: - Serialization
-    // --------------------------------------------------------------------
-
+    func getTime() -> Double {
+        return (CACurrentMediaTime() * 1000) - startTime
+    }
 }

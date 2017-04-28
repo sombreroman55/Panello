@@ -20,8 +20,9 @@ class TitleViewController: GLKViewController {
     // private var translateX: Float = 0.0
     // private var translateY: Float = 0.0
     public var dele: TitleViewControllerDelegate? = nil
-    private var game: Game!
-    private var ayy: Panel!
+    private var endless: EndlessGame!
+    private var panel1: Panel!
+    private var panel2: Panel!
     private var border: BorderRenderer!
     private var background: Background!
     private var text: TextRenderer!
@@ -35,22 +36,26 @@ class TitleViewController: GLKViewController {
     /// Overrides viewDidLoad for TitleViewController
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.preferredFramesPerSecond = 60
         
         let context = EAGLContext(api: .openGLES2)
-        glkView.context = context!
+        titleView.context = context!
         EAGLContext.setCurrent(context)
         glEnable(GLenum(GL_BLEND))
         glBlendFunc(GLenum(GL_SRC_ALPHA), GLenum(GL_ONE_MINUS_SRC_ALPHA))
         
-        ayy = Panel()
-        game = Game()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(pause))
+        tap.numberOfTapsRequired = 2
+        titleView.addGestureRecognizer(tap)
+        
+        panel1 = Panel()
+        panel2 = Panel()
+        panel2.positionX = panel1.positionX + 0.2
+        endless = EndlessGame()
         background = Background()
         border = BorderRenderer(startCoordinateX: -1.0, startCoordinateY: 0.7)
         text = TextRenderer(startCoordinateX: 0.0, startCoordinateY: 0.5)
         text2 = TextRenderer(startCoordinateX: 0.0, startCoordinateY: 0.75)
-//        let mtmm: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(moveToMainMenu))
-//        mtmm.numberOfTapsRequired = 1
-//        glkView.addGestureRecognizer(mtmm)
     }
     
     override func didReceiveMemoryWarning() {
@@ -59,7 +64,7 @@ class TitleViewController: GLKViewController {
     }
     
     
-    private var glkView: GLKView {
+    private var titleView: GLKView {
         return view as! GLKView
     }
     
@@ -83,19 +88,44 @@ class TitleViewController: GLKViewController {
         //let aspectRatio: Float = Float(glkView.drawableWidth) / Float(glkView.drawableHeight)
         
         //glViewport(0, 0, GLsizei(glkView.drawableWidth), GLsizei(glkView.drawableHeight * aspectRatio))
-        score += 1
+        if (endless.state == .RUNNING) {
+            score += 1
+        }
         
+        endless.update()
         background.draw()
-        border.renderBorder(border: 6)
-        ayy.draw()
-        game.tick()
+        border.renderBorder(border: 1)
+        panel1.draw()
+        panel2.draw()
         text.renderScore(score: score)
         text2.renderLine(text: "Hello")
-        //print("\(game.framesRun)")
+        //print("\(endless.millisecondsRun)")
     }
     
-    /* Pause the game */
-//    func moveToMainMenu() {
-//        dele?.moveToMainMenu()
-//    }
+    func pause() {
+        if (endless.state == .RUNNING) {
+            endless.state = .PAUSED
+        }
+        else if (endless.state == .PAUSED) {
+            endless.state = .RUNNING
+        }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch: UITouch = touches.first!
+        let touchPoint: CGPoint = touch.location(in: titleView)
+        print("\(touchPoint.x), \(touchPoint.y)")
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch: UITouch = touches.first!
+        let touchPoint: CGPoint = touch.location(in: titleView)
+        print("\(touchPoint.x), \(touchPoint.y)")
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch: UITouch = touches.first!
+        let touchPoint: CGPoint = touch.location(in: titleView)
+        print("\(touchPoint.x), \(touchPoint.y)")
+    }
 }

@@ -20,10 +20,10 @@ class Board {
         case GAME_OVER
     }
     
-    static let normalExplodingFrames: Int = 61
+    static let normalExplodingMilliseconds: Int = 61
     //the total explosion time for a combo is 61 + 9 * n, where n is the  number of blocks
-    static let additionalExplodingFrames: Int = 9
-    static let swapDelayFrames: Int = 3
+    static let additionalExplodingMilliseconds: Int = 9
+    static let swapDelayMilliseconds: Int = 3
     static let boardHeight: Int = 24
     static let boardWidth: Int = 6
     static let topRow: Int = 11
@@ -43,6 +43,7 @@ class Board {
     // -------------------------------------------------------------------
     // MARK: - Private instance data
     // -------------------------------------------------------------------
+    
     //private var _game: Game?
     private var _state: BoardState
     //private var _buffer: [Panel] // Buffering row is 6 panels wide
@@ -97,7 +98,6 @@ class Board {
     // MARK: - Constructors
     // --------------------------------------------------------------------
     
-    /* Endless game board */
     init() {
         //_game = nil
         //_board = Board.fillBoard()
@@ -119,6 +119,11 @@ class Board {
         _panicked = false
         _score = 0
     }
+    
+    /* Init from string */
+//    init (dictionary: NSDictionary) {
+//        
+//    }
     
     // --------------------------------------------------------------------
     // MARK: - Board functions

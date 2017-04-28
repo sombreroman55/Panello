@@ -52,7 +52,7 @@ class Panel {
         }
         
         // Vertex Shader
-        let panelVertexShaderPath: String = Bundle.main.path(forResource: "PanelVertex", ofType: "glsl", inDirectory: nil)!
+        let panelVertexShaderPath: String = Bundle.main.path(forResource: "RendererVertex", ofType: "glsl", inDirectory: nil)!
         let panelVertexShaderSource: NSString = try! NSString(contentsOfFile: panelVertexShaderPath, encoding: String.Encoding.utf8.rawValue)
         var panelVertexShaderData = panelVertexShaderSource.cString(using: String.Encoding.utf8.rawValue)
         
@@ -80,7 +80,7 @@ class Panel {
         
         
         // Fragment Shader
-        let panelFragmentShaderPath: String = Bundle.main.path(forResource: "PanelFragment", ofType: "glsl", inDirectory: nil)!
+        let panelFragmentShaderPath: String = Bundle.main.path(forResource: "RendererFragment", ofType: "glsl", inDirectory: nil)!
         let panelFragmentShaderSource: NSString = try! NSString(contentsOfFile: panelFragmentShaderPath, encoding: String.Encoding.utf8.rawValue)
         var panelFragmentShaderData = panelFragmentShaderSource.cString(using: String.Encoding.utf8.rawValue)
         
@@ -184,18 +184,18 @@ class Panel {
     // -------------------------------------------------------------------
     // MARK: - Instance data
     // -------------------------------------------------------------------
-    var positionX: Float = 0.0
-    var positionY: Float = 0.0
-    var _color: PanelColor // The color of the block
-    var _state: PanelState // The state of the block
-    var _falling: Bool // Is this block falling? Cannot match during falling?
-    var _chain: Bool // Can this block be chained
-    var _floatTimer: Int = 0
-    var _swapTimer: Int = 0
-    var _explosionOrder: Int = 0
-    var _explosionFrames: Int = 0
-    var _explosionAnimationFrames: Int = 0
-    var _explosionTimer: Int = 0
+    public var positionX: Float = 0.0
+    public var positionY: Float = 0.0
+    public var color: PanelColor // The color of the block
+    public var state: PanelState // The state of the block
+    public var falling: Bool // Is this block falling? Cannot match during falling?
+    public var chain: Bool // Can this block be chained
+    public var floatTimer: Int = 0 // Blocks float for a while when swapped
+    public var swapTimer: Int = 0 // Swap animation info
+    public var explosionOrder: Int = 0 // TODO: -if time, do this for sound effects
+    public var explosionMilliseconds: Int = 0 // number of milliseconds block needs to
+    public var explosionAnimationMilliseconds: Int = 0 // number of milliseconds need for animation to complete
+    public var explosionTimer: Int = 0 // increased each millisecond while block is exploding
     
     private var texture: GLKTextureInfo? // The texture of the block
     private var textureCoordinates: [Float] // The coordinates of the texture in the sprite sheet
@@ -203,14 +203,21 @@ class Panel {
     // --------------------------------------------------------------------
     // MARK: - Constructors
     // --------------------------------------------------------------------
-    init(){
-        _color = Panel.getRandomColor()
+    init() {
+        color = Panel.getRandomColor()
+        state = .NORMAL
+        falling = false
+        chain = false
+        floatTimer = 0
+        swapTimer = 0
+        explosionOrder = 0
+        explosionMilliseconds = 0
+        explosionAnimationMilliseconds = 0
+        explosionTimer = 0
+        
         texture = try? GLKTextureLoader.texture(with: Panel.image.cgImage!, options: nil)
-        textureCoordinates = Panel.getNormalTexture(forColor: _color)
-        _state = .NORMAL
+        textureCoordinates = Panel.getNormalTexture(forColor: color)
         Panel.setup()
-        _falling = false
-        _chain = false
     }
     
     // --------------------------------------------------------------------

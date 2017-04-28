@@ -9,7 +9,7 @@ Panel de Pon/Tetris Attack/Planet Puzzle League is a "match 3" type of game wher
 ### Controls
 Panello, being a clone, functions in just the same way, just with controls geared toward a mobile platform. There is no cursor, you just place your finger on the block you want to manipulate. The controls are as follows:
 
-|:Function                  :|:Gesture                                    :|
+|Function                    |Gesture                                      |
 |----------------------------|--------------------------------------------:|
 |Swap with block to the left |Place finger on a block and swipe left       |
 |Swap with block to the right|Place finger on a block and swipe right      |

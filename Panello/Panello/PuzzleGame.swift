@@ -8,29 +8,54 @@
 
 import GLKit
 
-class PuzzleGame {
-//    private var _board: Board
-//    private var _movesLeft: Int
-//    private var _stageClear: Bool
-//    public var board: Board { return _board }
-//    public var movesLeft: Int { return _movesLeft }
-//    public var stageClear: Bool { return _stageClear }
-//    
-//    override init() {
-//        super.init()
-//    }
-//    
-//    func tick() {
-//        if (_movesLeft == 0) {
-//            _stageClear = isStageClear()
-//        }
-//    }
-//    
-//    /* check if stage is clear */
-//    func isStageClear() -> Bool {
-//        if (_blockCount == 0) {
-//            return true
-//        }
-//        return false
-//    }
+class PuzzleGame: Game, GameProtocol {
+    
+    // -------------------------------------------------------------------
+    // MARK: - Private instance data
+    // -------------------------------------------------------------------
+    
+    public var _board: Board
+    public var _highScore: Int
+    
+    // -------------------------------------------------------------------
+    // MARK: - Public instance data
+    // -------------------------------------------------------------------
+    
+    public var board: Board { return _board }
+    public var highScore: Int { return _highScore }
+    
+    
+    // --------------------------------------------------------------------
+    // MARK: - Constructors
+    // --------------------------------------------------------------------
+    
+    override init() {
+        _board = Board()
+        _highScore = 0
+        super.init()
+    }
+    
+    // --------------------------------------------------------------------
+    // MARK: - GameProtocol methods
+    // --------------------------------------------------------------------
+    
+    func update() {
+        
+    }
+    
+    func reset() {
+        
+    }
+    
+    func save() {
+        
+    }
+    
+    func load() {
+        
+    }
+    
+    // --------------------------------------------------------------------
+    // MARK: - PuzzleGame methods
+    // --------------------------------------------------------------------
 }

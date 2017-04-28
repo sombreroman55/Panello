@@ -26,8 +26,6 @@
 		1E3AB1571E99F7C400D04C04 /* Panel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3AB1561E99F7C400D04C04 /* Panel.swift */; };
 		1E3AB1591E99F8E700D04C04 /* TitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3AB1581E99F8E700D04C04 /* TitleViewController.swift */; };
 		1E3AB15D1E99F94000D04C04 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3AB15C1E99F94000D04C04 /* TutorialViewController.swift */; };
-		1E3AB1621EA3490400D04C04 /* PanelVertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 1E3AB1611EA3490400D04C04 /* PanelVertex.glsl */; };
-		1E3AB1641EA3493E00D04C04 /* PanelFragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 1E3AB1631EA3493E00D04C04 /* PanelFragment.glsl */; };
 		1E42D5541EA82982005C08F0 /* TextRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E42D5531EA82982005C08F0 /* TextRenderer.swift */; };
 		1E42D5561EA8CCAD005C08F0 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E42D5551EA8CCAD005C08F0 /* GameViewController.swift */; };
 		1E42D5581EA8CD73005C08F0 /* AnimationRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E42D5571EA8CD73005C08F0 /* AnimationRenderer.swift */; };
@@ -41,6 +39,7 @@
 		1EA911161EB1C41A008FFD7E /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA911151EB1C41A008FFD7E /* MasterViewController.swift */; };
 		1EA911181EB2FE62008FFD7E /* BoardRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA911171EB2FE62008FFD7E /* BoardRenderer.swift */; };
 		1EA9111A1EB30E7A008FFD7E /* borders.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EA911191EB30E7A008FFD7E /* borders.png */; };
+		1EA9111C1EB35FEB008FFD7E /* SpriteEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA9111B1EB35FEB008FFD7E /* SpriteEngine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,8 +64,6 @@
 		1E3AB1561E99F7C400D04C04 /* Panel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Panel.swift; sourceTree = "<group>"; };
 		1E3AB1581E99F8E700D04C04 /* TitleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleViewController.swift; sourceTree = "<group>"; };
 		1E3AB15C1E99F94000D04C04 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
-		1E3AB1611EA3490400D04C04 /* PanelVertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PanelVertex.glsl; sourceTree = "<group>"; };
-		1E3AB1631EA3493E00D04C04 /* PanelFragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PanelFragment.glsl; sourceTree = "<group>"; };
 		1E42D5531EA82982005C08F0 /* TextRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextRenderer.swift; sourceTree = "<group>"; };
 		1E42D5551EA8CCAD005C08F0 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		1E42D5571EA8CD73005C08F0 /* AnimationRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationRenderer.swift; sourceTree = "<group>"; };
@@ -80,6 +77,7 @@
 		1EA911151EB1C41A008FFD7E /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		1EA911171EB2FE62008FFD7E /* BoardRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardRenderer.swift; sourceTree = "<group>"; };
 		1EA911191EB30E7A008FFD7E /* borders.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = borders.png; sourceTree = "<group>"; };
+		1EA9111B1EB35FEB008FFD7E /* SpriteEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteEngine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,7 +135,6 @@
 				1E04CB611EADC0F9004D4F80 /* PuzzleGame.swift */,
 				1E3AB1541E975BED00D04C04 /* Board.swift */,
 				1E3AB1561E99F7C400D04C04 /* Panel.swift */,
-				1E4AE4471EA6398500691D71 /* Background.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -145,10 +142,12 @@
 		1E3AB14E1E95BED900D04C04 /* Renderers */ = {
 			isa = PBXGroup;
 			children = (
-				1E42D5531EA82982005C08F0 /* TextRenderer.swift */,
 				1E42D5571EA8CD73005C08F0 /* AnimationRenderer.swift */,
+				1E4AE4471EA6398500691D71 /* Background.swift */,
 				1E42D5591EA8CD83005C08F0 /* BorderRenderer.swift */,
 				1EA911171EB2FE62008FFD7E /* BoardRenderer.swift */,
+				1E42D5531EA82982005C08F0 /* TextRenderer.swift */,
+				1EA9111B1EB35FEB008FFD7E /* SpriteEngine.swift */,
 			);
 			name = Renderers;
 			sourceTree = "<group>";
@@ -174,8 +173,6 @@
 			children = (
 				1E4AE4491EA68F0A00691D71 /* BackgroundVertex.glsl */,
 				1E4AE44B1EA68F1F00691D71 /* BackgroundFragment.glsl */,
-				1E3AB1611EA3490400D04C04 /* PanelVertex.glsl */,
-				1E3AB1631EA3493E00D04C04 /* PanelFragment.glsl */,
 				1EA911121EB09F5A008FFD7E /* RendererVertex.glsl */,
 				1E04CB751EB042EB004D4F80 /* RendererFragment.glsl */,
 			);
@@ -261,9 +258,7 @@
 				1E4AE44A1EA68F0A00691D71 /* BackgroundVertex.glsl in Resources */,
 				1E04CB761EB042EB004D4F80 /* RendererFragment.glsl in Resources */,
 				1EA9111A1EB30E7A008FFD7E /* borders.png in Resources */,
-				1E3AB1641EA3493E00D04C04 /* PanelFragment.glsl in Resources */,
 				1E4AE4421EA3544E00691D71 /* Default-568h@2x.png in Resources */,
-				1E3AB1621EA3490400D04C04 /* PanelVertex.glsl in Resources */,
 				1E04CB721EB03CBB004D4F80 /* font.png in Resources */,
 				1EA911131EB09F5A008FFD7E /* RendererVertex.glsl in Resources */,
 				1E3AB1431E95B61F00D04C04 /* Assets.xcassets in Resources */,
@@ -281,6 +276,7 @@
 			files = (
 				1E42D55A1EA8CD83005C08F0 /* BorderRenderer.swift in Sources */,
 				1E42D5581EA8CD73005C08F0 /* AnimationRenderer.swift in Sources */,
+				1EA9111C1EB35FEB008FFD7E /* SpriteEngine.swift in Sources */,
 				1EA911161EB1C41A008FFD7E /* MasterViewController.swift in Sources */,
 				1E42D5561EA8CCAD005C08F0 /* GameViewController.swift in Sources */,
 				1E04CB681EADC147004D4F80 /* BackgroundSelectViewController.swift in Sources */,
