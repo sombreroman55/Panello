@@ -5,6 +5,8 @@
 //  Created by Andrew Roberts on 4/18/17.
 //  Copyright © 2017 Andrew Roberts. All rights reserved.
 //
+// TODO: -Add animated background shapes to background?
+//       -Add functionality to select background
 
 import GLKit
 
@@ -14,28 +16,59 @@ class Background {
     // MARK: - Static members
     // -------------------------------------------------------------------
     private static var program: GLuint = 0
-    private static let quad: [Float] =
-        [
-            -1.0, -1.0,           // Vertex Coordinate
-            1.0, 0.0, 0.0, 1.0,   // Color data (RGBA)
-            
-            1.0, -1.0,
-            1.0, 0.0, 0.0, 1.0,
-            
-            -1.0, 1.0,
-            0.0, 0.0, 1.0, 1.0,
-            
-            1.0, 1.0,
-            0.0, 0.0, 1.0, 1.0
-    ]
+    private static let quad: [Float] = [ -1.0, -1.0, 1.0, -1.0, -1.0, 1.0, 1.0, 1.0 ]
+    
+    /* Background designs */
+    
+    // Background 1 - Blue to red horizontal gradient
+    private static let background1: [Float] = [ 0.7, 0.0, 0.0, 1.0,
+                                                0.7, 0.0, 0.0, 1.0,
+                                                0.0, 0.0, 0.7, 1.0,
+                                                0.0, 0.0, 0.7, 1.0 ]
+    
+    // Background 2 - Blue to red "forward slash" diagonal gradient
+    private static let background2: [Float] = [ 1.0, 0.0, 0.0, 1.0,
+                                                1.0, 0.0, 0.0, 1.0,
+                                                0.0, 0.0, 1.0, 1.0,
+                                                0.0, 0.0, 1.0, 1.0 ]
+    
+    // Background 3 - Blue to red vertical gradient
+    private static let background3: [Float] = [ 1.0, 0.0, 0.0, 1.0,
+                                                1.0, 0.0, 0.0, 1.0,
+                                                0.0, 0.0, 1.0, 1.0,
+                                                0.0, 0.0, 1.0, 1.0 ]
+    
+    // Background 1 - Blue to red vertical gradient
+    private static let background4: [Float] = [ 1.0, 0.0, 0.0, 1.0,
+                                                1.0, 0.0, 0.0, 1.0,
+                                                0.0, 0.0, 1.0, 1.0,
+                                                0.0, 0.0, 1.0, 1.0 ]
+    
+    // Background 1 - Blue to red "back slash" diagonal gradient
+    private static let background5: [Float] = [ 1.0, 0.0, 0.0, 1.0,
+                                                1.0, 0.0, 0.0, 1.0,
+                                                0.0, 0.0, 1.0, 1.0,
+                                                0.0, 0.0, 1.0, 1.0 ]
+    
+    // Background 1 - Blue to red vertical gradient
+    private static let background6: [Float] = [ 1.0, 0.0, 0.0, 1.0,
+                                                1.0, 0.0, 0.0, 1.0,
+                                                0.0, 0.0, 1.0, 1.0,
+                                                0.0, 0.0, 1.0, 1.0 ]
+
+    private var _background: [Float]
+    
     
     init() {
+        _background = Background.background1
         Background.setup()
     }
     
     // -------------------------------------------------------------------
     // MARK: - Static functions
     // -------------------------------------------------------------------
+    
+    /* Set up the OpenGL program if necessary */
     private static func setup() {
         
         if (Background.program != 0) {
@@ -122,14 +155,11 @@ class Background {
         }
     }
     
+    /* Draw the background */
     func draw() {
-        // Send Geometry (attributes)
-        // Send any other info (uniforms)
-        // Draw
-        
         glUseProgram(Background.program)
-        glVertexAttribPointer(0, 2, GLenum(GL_FLOAT), GLboolean(GL_FALSE), 24, Background.quad)
-        glVertexAttribPointer(1, 4, GLenum(GL_FLOAT), GLboolean(GL_FALSE), 24, UnsafePointer(Background.quad) + 2)
+        glVertexAttribPointer(0, 2, GLenum(GL_FLOAT), GLboolean(GL_FALSE), 0, Background.quad)
+        glVertexAttribPointer(1, 4, GLenum(GL_FLOAT), GLboolean(GL_FALSE), 0, _background)
         glEnableVertexAttribArray(0)
         glEnableVertexAttribArray(1)
         glDrawArrays(GLenum(GL_TRIANGLE_STRIP), 0, 4)

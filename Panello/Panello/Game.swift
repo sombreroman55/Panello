@@ -23,10 +23,11 @@ class Game {
     private var _state: GameState
     private var _panicked: Bool
     private var _startTime: Double
-    public var _framesRun: Int
+    public var _framesRun: Double
     public var state: GameState { return _state }
     public var panicked: Bool { return _panicked }
     public var startTime: Double { return _startTime }
+    public var framesRun: Double { return _framesRun }
 
     
     // --------------------------------------------------------------------
@@ -46,8 +47,8 @@ class Game {
     // --------------------------------------------------------------------
     
     /* Game logic loop */
-    func tick(timePassed: TimeInterval) {
-        
+    func tick() {
+        _framesRun = CACurrentMediaTime() - _startTime
     }
     
     func isPaused() -> Bool {

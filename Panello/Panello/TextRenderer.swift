@@ -8,7 +8,7 @@
 
 import GLKit
 
-class TextRenderer {
+final class TextRenderer: NSObject {
     // -------------------------------------------------------------------
     // MARK: - Static members
     // -------------------------------------------------------------------
@@ -16,148 +16,148 @@ class TextRenderer {
     /* Fragment shader coordinates */
     /* Array order is -X +Y -X +Y +X +Y +X -Y */
     // Upper case letters
-    private static let text_A: [Float] = [ (100/256), (58/256), (100/256), (29/256),
-                                           (125/256), (58/256), (125/256), (29/256) ]
-    private static let text_B: [Float] = [ (125/256), (58/256), (125/256), (29/256),
-                                           (150/256), (58/256), (150/256), (29/256) ]
-    private static let text_C: [Float] = [ (150/256), (58/256), (150/256), (29/256),
-                                           (175/256), (58/256), (175/256), (29/256) ]
-    private static let text_D: [Float] = [ (175/256), (58/256), (175/256), (29/256),
-                                           (200/256), (58/256), (200/256), (29/256) ]
-    private static let text_E: [Float] = [ (200/256), (58/256), (200/256), (29/256),
-                                           (225/256), (58/256), (225/256), (29/256) ]
-    private static let text_F: [Float] = [ (225/256), (58/256), (225/256), (29/256),
-                                           (250/256), (58/256), (250/256), (29/256) ]
-    private static let text_G: [Float] = [ (0/256), (87/256), (0/256), (58/256),
-                                           (25/256), (87/256), (25/256), (58/256) ]
-    private static let text_H: [Float] = [ (25/256), (87/256), (25/256), (58/256),
-                                           (50/256), (87/256), (50/256), (58/256) ]
-    private static let text_I: [Float] = [ (50/256), (87/256), (50/256), (58/256),
-                                           (75/256), (87/256), (75/256), (58/256) ]
-    private static let text_J: [Float] = [ (75/256), (87/256), (75/256), (58/256),
-                                           (100/256), (87/256), (105/256), (58/256) ]
-    private static let text_K: [Float] = [ (100/256), (87/256), (100/256), (58/256),
-                                           (125/256), (87/256), (125/256), (58/256) ]
-    private static let text_L: [Float] = [ (125/256), (87/256), (125/256), (58/256),
-                                           (150/256), (87/256), (150/256), (58/256) ]
-    private static let text_M: [Float] = [ (150/256), (87/256), (150/256), (58/256),
-                                           (175/256), (87/256), (175/256), (58/256) ]
-    private static let text_N: [Float] = [ (175/256), (87/256), (175/256), (58/256),
-                                           (200/256), (87/256), (200/256), (58/256) ]
-    private static let text_O: [Float] = [ (200/256), (87/256), (200/256), (58/256),
-                                           (225/256), (87/256), (225/256), (58/256) ]
-    private static let text_P: [Float] = [ (225/256), (87/256), (225/256), (58/256),
-                                           (250/256), (87/256), (250/256), (58/256) ]
-    private static let text_Q: [Float] = [ (0/256), (116/256), (0/256), (87/256),
-                                           (25/256), (116/256), (25/256), (87/256) ]
-    private static let text_R: [Float] = [ (25/256), (116/256), (25/256), (87/256),
-                                           (50/256), (116/256), (50/256), (87/256) ]
-    private static let text_S: [Float] = [ (50/256), (116/256), (50/256), (87/256),
-                                           (75/256), (116/256), (75/256), (87/256) ]
-    private static let text_T: [Float] = [ (75/256), (116/256), (75/256), (87/256),
-                                           (100/256), (116/256), (100/256), (87/256) ]
-    private static let text_U: [Float] = [ (100/256), (116/256), (100/256), (87/256),
-                                           (125/256), (116/256), (125/256), (87/256) ]
-    private static let text_V: [Float] = [ (125/256), (116/256), (125/256), (87/256),
-                                           (150/256), (116/256), (150/256), (87/256) ]
-    private static let text_W: [Float] = [ (150/256), (116/256), (150/256), (87/256),
-                                           (175/256), (116/256), (175/256), (87/256) ]
-    private static let text_X: [Float] = [ (175/256), (116/256), (175/256), (87/256),
-                                           (200/256), (116/256), (200/256), (87/256) ]
-    private static let text_Y: [Float] = [ (200/256), (116/256), (200/256), (87/256),
-                                           (225/256), (116/256), (225/256), (87/256) ]
-    private static let text_Z: [Float] = [ (225/256), (116/256), (225/256), (87/256),
-                                           (250/256), (116/256), (250/256), (87/256) ]
+    private static let text_A: [Float] = [ (100/255), (58/255), (100/255), (29/255),
+                                           (125/255), (58/255), (125/255), (29/255) ]
+    private static let text_B: [Float] = [ (125/255), (58/255), (125/255), (29/255),
+                                           (150/255), (58/255), (150/255), (29/255) ]
+    private static let text_C: [Float] = [ (150/255), (58/255), (150/255), (29/255),
+                                           (175/255), (58/255), (175/255), (29/255) ]
+    private static let text_D: [Float] = [ (175/255), (58/255), (175/255), (29/255),
+                                           (200/255), (58/255), (200/255), (29/255) ]
+    private static let text_E: [Float] = [ (200/255), (58/255), (200/255), (29/255),
+                                           (225/255), (58/255), (225/255), (29/255) ]
+    private static let text_F: [Float] = [ (225/255), (58/255), (225/255), (29/255),
+                                           (250/255), (58/255), (250/255), (29/255) ]
+    private static let text_G: [Float] = [ (0/255), (87/255), (0/255), (58/255),
+                                           (25/255), (87/255), (25/255), (58/255) ]
+    private static let text_H: [Float] = [ (25/255), (87/255), (25/255), (58/255),
+                                           (50/255), (87/255), (50/255), (58/255) ]
+    private static let text_I: [Float] = [ (50/255), (87/255), (50/255), (58/255),
+                                           (75/255), (87/255), (75/255), (58/255) ]
+    private static let text_J: [Float] = [ (75/255), (87/255), (75/255), (58/255),
+                                           (100/255), (87/255), (105/255), (58/255) ]
+    private static let text_K: [Float] = [ (100/255), (87/255), (100/255), (58/255),
+                                           (125/255), (87/255), (125/255), (58/255) ]
+    private static let text_L: [Float] = [ (125/255), (87/255), (125/255), (58/255),
+                                           (150/255), (87/255), (150/255), (58/255) ]
+    private static let text_M: [Float] = [ (150/255), (87/255), (150/255), (58/255),
+                                           (175/255), (87/255), (175/255), (58/255) ]
+    private static let text_N: [Float] = [ (175/255), (87/255), (175/255), (58/255),
+                                           (200/255), (87/255), (200/255), (58/255) ]
+    private static let text_O: [Float] = [ (200/255), (87/255), (200/255), (58/255),
+                                           (225/255), (87/255), (225/255), (58/255) ]
+    private static let text_P: [Float] = [ (225/255), (87/255), (225/255), (58/255),
+                                           (250/255), (87/255), (250/255), (58/255) ]
+    private static let text_Q: [Float] = [ (0/255), (116/255), (0/255), (87/255),
+                                           (25/255), (116/255), (25/255), (87/255) ]
+    private static let text_R: [Float] = [ (25/255), (116/255), (25/255), (87/255),
+                                           (50/255), (116/255), (50/255), (87/255) ]
+    private static let text_S: [Float] = [ (50/255), (116/255), (50/255), (87/255),
+                                           (75/255), (116/255), (75/255), (87/255) ]
+    private static let text_T: [Float] = [ (75/255), (116/255), (75/255), (87/255),
+                                           (100/255), (116/255), (100/255), (87/255) ]
+    private static let text_U: [Float] = [ (100/255), (116/255), (100/255), (87/255),
+                                           (125/255), (116/255), (125/255), (87/255) ]
+    private static let text_V: [Float] = [ (125/255), (116/255), (125/255), (87/255),
+                                           (150/255), (116/255), (150/255), (87/255) ]
+    private static let text_W: [Float] = [ (150/255), (116/255), (150/255), (87/255),
+                                           (175/255), (116/255), (175/255), (87/255) ]
+    private static let text_X: [Float] = [ (175/255), (116/255), (175/255), (87/255),
+                                           (200/255), (116/255), (200/255), (87/255) ]
+    private static let text_Y: [Float] = [ (200/255), (116/255), (200/255), (87/255),
+                                           (225/255), (116/255), (225/255), (87/255) ]
+    private static let text_Z: [Float] = [ (225/255), (116/255), (225/255), (87/255),
+                                           (250/255), (116/255), (250/255), (87/255) ]
     
     // Lower case letters
-    private static let text_a: [Float] = [ (0/256), (145/256), (0/256), (116/256),
-                                           (29/256), (145/256), (29/256), (116/256) ]
-    private static let text_b: [Float] = [ (29/256), (145/256), (29/256), (116/256),
-                                           (54/256), (145/256), (54/256), (116/256) ]
-    private static let text_c: [Float] = [ (54/256), (145/256), (54/256), (116/256),
-                                           (79/256), (145/256), (79/256), (116/256) ]
-    private static let text_d: [Float] = [ (79/256), (145/256), (79/256), (116/256),
-                                           (104/256), (145/256), (104/256), (116/256) ]
-    private static let text_e: [Float] = [ (104/256), (145/256), (104/256), (116/256),
-                                           (129/256), (145/256), (129/256), (116/256) ]
-    private static let text_f: [Float] = [ (129/256), (145/256), (129/256), (116/256),
-                                           (154/256), (145/256), (154/256), (116/256) ]
-    private static let text_g: [Float] = [ (154/256), (145/256), (154/256), (116/256),
-                                           (179/256), (145/256), (179/256), (116/256) ]
-    private static let text_h: [Float] = [ (179/256), (145/256), (179/256), (116/256),
-                                           (204/256), (145/256), (204/256), (116/256) ]
-    private static let text_i: [Float] = [ (204/256), (145/256), (204/256), (116/256),
-                                           (213/256), (145/256), (213/256), (116/256) ]
-    private static let text_j: [Float] = [ (213/256), (149/256), (213/256), (116/256),
-                                           (226/256), (149/256), (226/256), (116/256) ]
-    private static let text_k: [Float] = [ (226/256), (145/256), (226/256), (116/256),
-                                           (251/256), (145/256), (251/256), (116/256),]
-    private static let text_l: [Float] = [ (0/256), (174/256), (0/256), (145/256),
-                                           (9/256), (174/256), (9/256), (145/256) ]
-    private static let text_m: [Float] = [ (9/256), (174/256), (9/256), (145/256),
-                                           (34/256), (174/256), (34/256), (145/256) ]
-    private static let text_n: [Float] = [ (34/256), (174/256), (34/256), (145/256),
-                                           (55/256), (174/256), (55/256), (145/256) ]
-    private static let text_o: [Float] = [ (55/256), (174/256), (55/256), (145/256),
-                                           (80/256), (174/256), (80/256), (145/256) ]
-    private static let text_p: [Float] = [ (80/256), (174/256), (80/256), (145/256),
-                                           (105/256), (174/256), (105/256), (145/256) ]
-    private static let text_q: [Float] = [ (105/256), (174/256), (105/256), (145/256),
-                                           (130/256), (174/256), (130/256), (145/256) ]
-    private static let text_r: [Float] = [ (130/256), (174/256), (130/256), (145/256),
-                                           (151/256), (174/256), (151/256), (145/256) ]
-    private static let text_s: [Float] = [ (151/256), (174/256), (151/256), (145/256),
-                                           (176/256), (174/256), (176/256), (145/256) ]
-    private static let text_t: [Float] = [ (176/256), (174/256), (176/256), (145/256),
-                                           (201/256), (174/256), (201/256), (145/256) ]
-    private static let text_u: [Float] = [ (201/256), (174/256), (201/256), (149/256),
-                                           (226/256), (174/256), (226/256), (149/256) ]
-    private static let text_v: [Float] = [ (226/256), (174/256), (226/256), (145/256),
-                                           (251/256), (174/256), (251/256), (145/256) ]
-    private static let text_w: [Float] = [ (0/256), (203/256), (0/256), (174/256),
-                                           (25/256), (203/256), (25/256), (174/256) ]
-    private static let text_x: [Float] = [ (25/256), (203/256), (25/256), (174/256),
-                                           (50/256), (203/256), (50/256), (174/256) ]
-    private static let text_y: [Float] = [ (50/256), (203/256), (50/256), (174/256),
-                                           (75/256), (203/256), (75/256), (174/256) ]
-    private static let text_z: [Float] = [ (75/256), (203/256), (75/256), (174/256),
-                                           (100/256), (203/256), (100/256), (174/256) ]
+    private static let text_a: [Float] = [ (0/255), (145/255), (0/255), (116/255),
+                                           (29/255), (145/255), (29/255), (116/255) ]
+    private static let text_b: [Float] = [ (29/255), (145/255), (29/255), (116/255),
+                                           (54/255), (145/255), (54/255), (116/255) ]
+    private static let text_c: [Float] = [ (54/255), (145/255), (54/255), (116/255),
+                                           (79/255), (145/255), (79/255), (116/255) ]
+    private static let text_d: [Float] = [ (79/255), (145/255), (79/255), (116/255),
+                                           (104/255), (145/255), (104/255), (116/255) ]
+    private static let text_e: [Float] = [ (104/255), (145/255), (104/255), (116/255),
+                                           (129/255), (145/255), (129/255), (116/255) ]
+    private static let text_f: [Float] = [ (129/255), (145/255), (129/255), (116/255),
+                                           (154/255), (145/255), (154/255), (116/255) ]
+    private static let text_g: [Float] = [ (154/255), (145/255), (154/255), (116/255),
+                                           (179/255), (145/255), (179/255), (116/255) ]
+    private static let text_h: [Float] = [ (179/255), (145/255), (179/255), (116/255),
+                                           (204/255), (145/255), (204/255), (116/255) ]
+    private static let text_i: [Float] = [ (204/255), (145/255), (204/255), (116/255),
+                                           (213/255), (145/255), (213/255), (116/255) ]
+    private static let text_j: [Float] = [ (213/255), (149/255), (213/255), (116/255),
+                                           (226/255), (149/255), (226/255), (116/255) ]
+    private static let text_k: [Float] = [ (226/255), (145/255), (226/255), (116/255),
+                                           (251/255), (145/255), (251/255), (116/255),]
+    private static let text_l: [Float] = [ (0/255), (174/255), (0/255), (145/255),
+                                           (9/255), (174/255), (9/255), (145/255) ]
+    private static let text_m: [Float] = [ (9/255), (174/255), (9/255), (145/255),
+                                           (34/255), (174/255), (34/255), (145/255) ]
+    private static let text_n: [Float] = [ (34/255), (174/255), (34/255), (145/255),
+                                           (55/255), (174/255), (55/255), (145/255) ]
+    private static let text_o: [Float] = [ (55/255), (174/255), (55/255), (145/255),
+                                           (80/255), (174/255), (80/255), (145/255) ]
+    private static let text_p: [Float] = [ (80/255), (174/255), (80/255), (145/255),
+                                           (105/255), (174/255), (105/255), (145/255) ]
+    private static let text_q: [Float] = [ (105/255), (174/255), (105/255), (145/255),
+                                           (130/255), (174/255), (130/255), (145/255) ]
+    private static let text_r: [Float] = [ (130/255), (174/255), (130/255), (145/255),
+                                           (151/255), (174/255), (151/255), (145/255) ]
+    private static let text_s: [Float] = [ (151/255), (174/255), (151/255), (145/255),
+                                           (176/255), (174/255), (176/255), (145/255) ]
+    private static let text_t: [Float] = [ (176/255), (174/255), (176/255), (145/255),
+                                           (201/255), (174/255), (201/255), (145/255) ]
+    private static let text_u: [Float] = [ (201/255), (174/255), (201/255), (149/255),
+                                           (226/255), (174/255), (226/255), (149/255) ]
+    private static let text_v: [Float] = [ (226/255), (174/255), (226/255), (145/255),
+                                           (251/255), (174/255), (251/255), (145/255) ]
+    private static let text_w: [Float] = [ (0/255), (203/255), (0/255), (174/255),
+                                           (25/255), (203/255), (25/255), (174/255) ]
+    private static let text_x: [Float] = [ (25/255), (203/255), (25/255), (174/255),
+                                           (50/255), (203/255), (50/255), (174/255) ]
+    private static let text_y: [Float] = [ (50/255), (203/255), (50/255), (174/255),
+                                           (75/255), (203/255), (75/255), (174/255) ]
+    private static let text_z: [Float] = [ (75/255), (203/255), (75/255), (174/255),
+                                           (100/255), (203/255), (100/255), (174/255) ]
     
     // Numbers
-    private static let text_0: [Float] = [ (82/256), (29/256), (82/256), (0/256),
-                                           (107/256), (29/256), (107/256), (0/256) ]
-    private static let text_1: [Float] = [ (107/256), (29/256), (107/256), (0/256),
-                                           (120/256), (29/256), (120/256), (0/256) ]
-    private static let text_2: [Float] = [ (120/256), (29/256), (120/256), (0/256),
-                                           (145/256), (29/256), (145/256), (0/256) ]
-    private static let text_3: [Float] = [ (145/256), (29/256), (145/256), (0/256),
-                                           (170/256), (29/256), (170/256), (0/256) ]
-    private static let text_4: [Float] = [ (170/256), (29/256), (170/256), (0/256),
-                                           (195/256), (29/256), (195/256), (0/256) ]
-    private static let text_5: [Float] = [ (195/256), (29/256), (195/256), (0/256),
-                                           (220/256), (29/256), (220/256), (0/256) ]
-    private static let text_6: [Float] = [ (220/256), (29/256), (220/256), (0/256),
-                                           (245/256), (29/256), (245/256), (0/256) ]
-    private static let text_7: [Float] = [ (0/256), (58/256), (0/256), (29/256),
-                                           (25/256), (58/256), (25/256), (29/256) ]
-    private static let text_8: [Float] = [ (25/256), (58/256), (25/256), (29/256),
-                                           (50/256), (58/256), (50/256), (29/256) ]
-    private static let text_9: [Float] = [ (50/256), (58/256), (50/256), (29/256),
-                                           (75/256), (58/256), (75/256), (29/256) ]
+    private static let text_0: [Float] = [ (82/255), (29/255), (82/255), (0/255),
+                                           (107/255), (29/255), (107/255), (0/255) ]
+    private static let text_1: [Float] = [ (107/255), (29/255), (107/255), (0/255),
+                                           (120/255), (29/255), (120/255), (0/255) ]
+    private static let text_2: [Float] = [ (120/255), (29/255), (120/255), (0/255),
+                                           (145/255), (29/255), (145/255), (0/255) ]
+    private static let text_3: [Float] = [ (145/255), (29/255), (145/255), (0/255),
+                                           (170/255), (29/255), (170/255), (0/255) ]
+    private static let text_4: [Float] = [ (170/255), (29/255), (170/255), (0/255),
+                                           (195/255), (29/255), (195/255), (0/255) ]
+    private static let text_5: [Float] = [ (195/255), (29/255), (195/255), (0/255),
+                                           (220/255), (29/255), (220/255), (0/255) ]
+    private static let text_6: [Float] = [ (220/255), (29/255), (220/255), (0/255),
+                                           (245/255), (29/255), (245/255), (0/255) ]
+    private static let text_7: [Float] = [ (0/255), (58/255), (0/255), (29/255),
+                                           (25/255), (58/255), (25/255), (29/255) ]
+    private static let text_8: [Float] = [ (25/255), (58/255), (25/255), (29/255),
+                                           (50/255), (58/255), (50/255), (29/255) ]
+    private static let text_9: [Float] = [ (50/255), (58/255), (50/255), (29/255),
+                                           (75/255), (58/255), (75/255), (29/255) ]
     
     // Miscellaneous characters
-    private static let text_lparen: [Float] = [ (39/256), (29/256), (39/256), (0/256),
-                                                (56/256), (29/256), (56/256), (0/256) ]
-    private static let text_rparen: [Float] = [ (56/256), (29/256), (56/256), (0/256),
-                                                (73/256), (29/256), (73/256), (0/256) ]
-    private static let text_period: [Float] = [ (73/256), (29/256), (73/256), (0/256),
-                                                (82/256), (29/256), (82/256), (0/256) ]
-    private static let text_quest: [Float] = [ (75/256), (58/256), (75/256), (29/256),
-                                               (100/256), (58/256), (100/256), (29/256) ]
-    private static let text_exclam: [Float] = [ (0/256), (29/256), (0/256), (0/256),
-                                                (18/256), (29/256), (18/256), (0/256) ]
-    private static let text_octo: [Float] = [ (18/256), (29/256), (18/256), (0/256),
-                                              (39/256), (29/256), (39/256), (0/256) ]
+    private static let text_lparen: [Float] = [ (39/255), (29/255), (39/255), (0/255),
+                                                (56/255), (29/255), (56/255), (0/255) ]
+    private static let text_rparen: [Float] = [ (56/255), (29/255), (56/255), (0/255),
+                                                (73/255), (29/255), (73/255), (0/255) ]
+    private static let text_period: [Float] = [ (73/255), (29/255), (73/255), (0/255),
+                                                (82/255), (29/255), (82/255), (0/255) ]
+    private static let text_quest: [Float] = [ (75/255), (58/255), (75/255), (29/255),
+                                               (100/255), (58/255), (100/255), (29/255) ]
+    private static let text_exclam: [Float] = [ (0/255), (29/255), (0/255), (0/255),
+                                                (18/255), (29/255), (18/255), (0/255) ]
+    private static let text_octo: [Float] = [ (18/255), (29/255), (18/255), (0/255),
+                                              (39/255), (29/255), (39/255), (0/255) ]
     
     // Text bitmap spritesheet
     private static let image: UIImage = UIImage(named: "font.png")!
@@ -179,7 +179,7 @@ class TextRenderer {
         }
         
         // Vertex Shader
-        let textVertexShaderPath: String = Bundle.main.path(forResource: "TextVertex", ofType: "glsl", inDirectory: nil)!
+        let textVertexShaderPath: String = Bundle.main.path(forResource: "RendererVertex", ofType: "glsl", inDirectory: nil)!
         let textVertexShaderSource: NSString = try! NSString(contentsOfFile: textVertexShaderPath, encoding: String.Encoding.utf8.rawValue)
         var textVertexShaderData = textVertexShaderSource.cString(using: String.Encoding.utf8.rawValue)
         
@@ -207,7 +207,7 @@ class TextRenderer {
         
         
         // Fragment Shader
-        let textFragmentShaderPath: String = Bundle.main.path(forResource: "TextFragment", ofType: "glsl", inDirectory: nil)!
+        let textFragmentShaderPath: String = Bundle.main.path(forResource: "RendererFragment", ofType: "glsl", inDirectory: nil)!
         let textFragmentShaderSource: NSString = try! NSString(contentsOfFile: textFragmentShaderPath, encoding: String.Encoding.utf8.rawValue)
         var textFragmentShaderData = textFragmentShaderSource.cString(using: String.Encoding.utf8.rawValue)
         
@@ -260,10 +260,10 @@ class TextRenderer {
     // -------------------------------------------------------------------
     // MARK: - Public instance data
     // -------------------------------------------------------------------
-    public var startPositionX: Float
-    public var startPositionY: Float
-    public var currentPositionX: Float
-    public var currentPositionY: Float
+    public var startPositionX: Float // Anchor X coordinate
+    public var startPositionY: Float // Anchor Y coordinate
+    public var currentPositionX: Float // Offset X coordinate based on last character
+    public var currentPositionY: Float // Offset Y coordinate based on last character
     
     // -------------------------------------------------------------------
     // MARK: - Private instance data
@@ -314,143 +314,143 @@ class TextRenderer {
     private func getWidth(forCharacter character: Character) -> Float {
         switch(character) {
         case "A":
-            return 26/256
+            return 26/255
         case "B":
-            return 26/256
+            return 26/255
         case "C":
-            return 26/256
+            return 26/255
         case "D":
-            return 26/256
+            return 26/255
         case "E":
-            return 26/256
+            return 26/255
         case "F":
-            return 26/256
+            return 26/255
         case "G":
-            return 26/256
+            return 26/255
         case "H":
-            return 26/256
+            return 26/255
         case "I":
-            return 18/256
+            return 18/255
         case "J":
-            return 26/256
+            return 26/255
         case "K":
-            return 26/256
+            return 26/255
         case "L":
-            return 26/256
+            return 26/255
         case "M":
-            return 26/256
+            return 26/255
         case "N":
-            return 26/256
+            return 26/255
         case "O":
-            return 26/256
+            return 26/255
         case "P":
-            return 26/256
+            return 26/255
         case "Q":
-            return 26/256
+            return 26/255
         case "R":
-            return 26/256
+            return 26/255
         case "S":
-            return 26/256
+            return 26/255
         case "T":
-            return 26/256
+            return 26/255
         case "U":
-            return 26/256
+            return 26/255
         case "V":
-            return 26/256
+            return 26/255
         case "W":
-            return 26/256
+            return 26/255
         case "X":
-            return 26/256
+            return 26/255
         case "Y":
-            return 26/256
+            return 26/255
         case "Z":
-            return 26/256
+            return 26/255
         case "a":
-            return 30/256
+            return 30/255
         case "b":
-            return 26/256
+            return 26/255
         case "c":
-            return 26/256
+            return 26/255
         case "d":
-            return 26/256
+            return 26/255
         case "e":
-            return 26/256
+            return 26/255
         case "f":
-            return 26/256
+            return 26/255
         case "g":
-            return 26/256
+            return 26/255
         case "h":
-            return 26/256
+            return 26/255
         case "i":
-            return 10/256
+            return 10/255
         case "j":
-            return 14/256
+            return 14/255
         case "k":
-            return 26/256
+            return 26/255
         case "l":
-            return 10/256
+            return 10/255
         case "m":
-            return 26/256
+            return 26/255
         case "n":
-            return 22/256
+            return 22/255
         case "o":
-            return 26/256
+            return 26/255
         case "p":
-            return 26/256
+            return 26/255
         case "q":
-            return 26/256
+            return 26/255
         case "r":
-            return 22/256
+            return 22/255
         case "s":
-            return 26/256
+            return 26/255
         case "t":
-            return 26/256
+            return 26/255
         case "u":
-            return 26/256
+            return 26/255
         case "v":
-            return 26/256
+            return 26/255
         case "w":
-            return 26/256
+            return 26/255
         case "x":
-            return 26/256
+            return 26/255
         case "y":
-            return 26/256
+            return 26/255
         case "z":
-            return 26/256
+            return 26/255
         case "0":
-            return 26/256
+            return 26/255
         case "1":
-            return 14/256
+            return 14/255
         case "2":
-            return 26/256
+            return 26/255
         case "3":
-            return 26/256
+            return 26/255
         case "4":
-            return 26/256
+            return 26/255
         case "5":
-            return 26/256
+            return 26/255
         case "6":
-            return 26/256
+            return 26/255
         case "7":
-            return 26/256
+            return 26/255
         case "8":
-            return 26/256
+            return 26/255
         case "9":
-            return 26/256
+            return 26/255
         case "(":
-            return 18/256
+            return 18/255
         case ")":
-            return 18/256
+            return 18/255
         case ".":
-            return 10/256
+            return 10/255
         case "?":
-            return 26/256
+            return 26/255
         case "!":
-            return 19/256
+            return 19/255
         case "#":
-            return 22/256
+            return 22/255
         default:
-            return 26/256
+            return 26/255
         }
     }
     

@@ -203,7 +203,7 @@ class Panel {
     // --------------------------------------------------------------------
     // MARK: - Constructors
     // --------------------------------------------------------------------
-    init() {
+    init(){
         _color = Panel.getRandomColor()
         texture = try? GLKTextureLoader.texture(with: Panel.image.cgImage!, options: nil)
         textureCoordinates = Panel.getNormalTexture(forColor: _color)

@@ -8,6 +8,10 @@
 
 import GLKit
 
+protocol TitleViewControllerDelegate {
+    func moveToMainMenu()
+}
+
 class TitleViewController: GLKViewController {
     
     // --------------------------------------------------------------------
@@ -15,15 +19,20 @@ class TitleViewController: GLKViewController {
     // --------------------------------------------------------------------
     // private var translateX: Float = 0.0
     // private var translateY: Float = 0.0
-    private var program: GLuint = 0
+    public var dele: TitleViewControllerDelegate? = nil
+    private var game: Game!
     private var ayy: Panel!
+    private var border: BorderRenderer!
     private var background: Background!
     private var text: TextRenderer!
+    private var text2: TextRenderer!
     private var score: Int = 0
 
     // --------------------------------------------------------------------
     // MARK: - GLKViewController overrides
     // --------------------------------------------------------------------
+    
+    /// Overrides viewDidLoad for TitleViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,11 +43,14 @@ class TitleViewController: GLKViewController {
         glBlendFunc(GLenum(GL_SRC_ALPHA), GLenum(GL_ONE_MINUS_SRC_ALPHA))
         
         ayy = Panel()
+        game = Game()
         background = Background()
+        border = BorderRenderer(startCoordinateX: -1.0, startCoordinateY: 0.7)
         text = TextRenderer(startCoordinateX: 0.0, startCoordinateY: 0.5)
-        let pause: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(pauseGame))
-        pause.numberOfTapsRequired = 2
-        glkView.addGestureRecognizer(pause)
+        text2 = TextRenderer(startCoordinateX: 0.0, startCoordinateY: 0.75)
+//        let mtmm: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(moveToMainMenu))
+//        mtmm.numberOfTapsRequired = 1
+//        glkView.addGestureRecognizer(mtmm)
     }
     
     override func didReceiveMemoryWarning() {
@@ -74,13 +86,16 @@ class TitleViewController: GLKViewController {
         score += 1
         
         background.draw()
+        border.renderBorder(border: 6)
         ayy.draw()
+        game.tick()
         text.renderScore(score: score)
+        text2.renderLine(text: "Hello")
+        //print("\(game.framesRun)")
     }
     
     /* Pause the game */
-    func pauseGame() {
-        //translateX = 0.0
-        //translateY = 0.0
-    }
+//    func moveToMainMenu() {
+//        dele?.moveToMainMenu()
+//    }
 }

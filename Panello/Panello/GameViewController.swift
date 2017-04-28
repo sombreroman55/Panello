@@ -21,6 +21,10 @@ class GameViewController: GLKViewController {
     //private var game: Game
     
     // --------------------------------------------------------------------
+    // MARK: - Child ViewControllers
+    // --------------------------------------------------------------------
+    
+    // --------------------------------------------------------------------
     // MARK: - GLKViewController overrides
     // --------------------------------------------------------------------
     override func viewDidLoad() {
@@ -31,7 +35,7 @@ class GameViewController: GLKViewController {
         glkView.context = context!
         EAGLContext.setCurrent(context)
         
-        ayy = Panel()
+        //ayy = Panel()
         background = Background()
         let pause: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(pauseGame))
         pause.numberOfTapsRequired = 2
@@ -49,7 +53,7 @@ class GameViewController: GLKViewController {
     }
     
     // --------------------------------------------------------------------
-    // MARK: - TitleViewController methods
+    // MARK: - GameViewController methods
     // --------------------------------------------------------------------
     
     /* Display loop */
@@ -64,14 +68,7 @@ class GameViewController: GLKViewController {
         glClearColor(0.0, 1.0, 0.0, 1.0)
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT))
         
-        translateX -= 0.001
-        translateY -= 0.001
-        
-        ayy.positionX = translateX
-        ayy.positionY = translateY
-        
-        background.draw()
-        ayy.draw()
+        //game.draw()
     }
     
     /* Pause the game */
