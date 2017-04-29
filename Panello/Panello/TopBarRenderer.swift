@@ -52,7 +52,7 @@ class TopBarRenderer {
     
     init() {
         _topBarFragmentCoordinates = []
-        BackgroundRenderer.setup()
+        BackgroundEngine.setup()
     }
     
     // --------------------------------------------------------------------
@@ -62,7 +62,7 @@ class TopBarRenderer {
     /* Draw the background */
     func renderTopBar(type: Int) {
         _topBarFragmentCoordinates = getTexture(forGameType: type)
-        glUseProgram(BackgroundRenderer.program)
+        glUseProgram(BackgroundEngine.program)
         glVertexAttribPointer(0, 2, GLenum(GL_FLOAT), GLboolean(GL_FALSE), 0, TopBarRenderer.quad)
         glVertexAttribPointer(1, 4, GLenum(GL_FLOAT), GLboolean(GL_FALSE), 0, _topBarFragmentCoordinates)
         glEnableVertexAttribArray(0)

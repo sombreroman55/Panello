@@ -30,7 +30,7 @@ class TitleViewController: GLKViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController!.isNavigationBarHidden = true;
-        self.preferredFramesPerSecond = 60
+        self.preferredFramesPerSecond = 1
         
         let context = AppDelegate.context
         titleView.context = context
@@ -42,8 +42,8 @@ class TitleViewController: GLKViewController {
         mtmm.numberOfTapsRequired = 1
         titleView.addGestureRecognizer(mtmm)
         
-        panelloTitle = TextRenderer(startCoordinateX: -0.42, startCoordinateY: 0.4, sc: 0.8)
-        pressToStart = TextRenderer(startCoordinateX: -0.51, startCoordinateY: -0.6, sc: 0.3)
+        panelloTitle = TextRenderer(startCoordinateX: -0.35, startCoordinateY: 0.4, scale: 0.5)
+        pressToStart = TextRenderer(startCoordinateX: -0.42, startCoordinateY: -0.6, scale: 0.3)
         titleBackground = BackgroundRenderer()
     }
     

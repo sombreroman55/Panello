@@ -14,9 +14,12 @@ class PuzzleSelectViewController: GLKViewController {
     // MARK: - Instance data
     // --------------------------------------------------------------------
     
-    // --------------------------------------------------------------------
-    // MARK: - Child ViewControllers
-    // --------------------------------------------------------------------
+    /* Graphics */
+    // Menu options
+    private var topTitle: TextRenderer!
+    
+    // Background
+    private var mainMenuBackground: BackgroundRenderer!
     
     // --------------------------------------------------------------------
     // MARK: - GLKViewController overrides
@@ -27,8 +30,8 @@ class PuzzleSelectViewController: GLKViewController {
         self.navigationController!.isNavigationBarHidden = true;
         self.preferredFramesPerSecond = 60
         
-        let context = EAGLContext(api: .openGLES2)
-        puzzleView.context = context!
+        let context = AppDelegate.context
+        puzzleView.context = context
         EAGLContext.setCurrent(context)
         glEnable(GLenum(GL_BLEND))
         glBlendFunc(GLenum(GL_SRC_ALPHA), GLenum(GL_ONE_MINUS_SRC_ALPHA))

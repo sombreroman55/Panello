@@ -28,17 +28,13 @@ class MainMenuViewController: GLKViewController {
     private var mainMenuBackground: BackgroundRenderer!
     
     // --------------------------------------------------------------------
-    // MARK: - Child ViewControllers
-    // --------------------------------------------------------------------
-    
-    // --------------------------------------------------------------------
     // MARK: - GLKViewController overrides
     // --------------------------------------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController!.isNavigationBarHidden = true;
-        self.preferredFramesPerSecond = 60
+        self.preferredFramesPerSecond = 1
         
         let context = AppDelegate.context
         mainMenuView.context = context
@@ -46,13 +42,17 @@ class MainMenuViewController: GLKViewController {
         glEnable(GLenum(GL_BLEND))
         glBlendFunc(GLenum(GL_SRC_ALPHA), GLenum(GL_ONE_MINUS_SRC_ALPHA))
         
-        topTitle = TextRenderer(startCoordinateX: -0.32, startCoordinateY: 0.6, sc: 0.3)
-        endlessOption = TextRenderer(startCoordinateX: -0.32, startCoordinateY: 0.4, sc: 0.3)
-        timeTrialOption = TextRenderer(startCoordinateX: -0.32, startCoordinateY: 0.2, sc: 0.3)
-        stageOption = TextRenderer(startCoordinateX: -0.32, startCoordinateY: 0.0, sc: 0.3)
-        puzzleOption = TextRenderer(startCoordinateX: -0.32, startCoordinateY: -0.2, sc: 0.3)
-        tutorialOption = TextRenderer(startCoordinateX: -0.32, startCoordinateY: -0.4, sc: 0.3)
-        creditsOption = TextRenderer(startCoordinateX: -0.32, startCoordinateY: -0.6, sc: 0.3)
+        let btt = UITapGestureRecognizer(target: self, action: #selector(backToTitle))
+        btt.numberOfTapsRequired = 1
+        mainMenuView.addGestureRecognizer(btt)
+        
+        topTitle = TextRenderer(startCoordinateX: -0.32, startCoordinateY: 0.8, scale: 0.3)
+        endlessOption = TextRenderer(startCoordinateX: -0.32, startCoordinateY: 0.4, scale: 0.3)
+        timeTrialOption = TextRenderer(startCoordinateX: -0.32, startCoordinateY: 0.2, scale: 0.3)
+        stageOption = TextRenderer(startCoordinateX: -0.32, startCoordinateY: 0.0, scale: 0.3)
+        puzzleOption = TextRenderer(startCoordinateX: -0.32, startCoordinateY: -0.2, scale: 0.3)
+        tutorialOption = TextRenderer(startCoordinateX: -0.32, startCoordinateY: -0.4, scale: 0.3)
+        creditsOption = TextRenderer(startCoordinateX: -0.32, startCoordinateY: -0.6, scale: 0.3)
         mainMenuBackground = BackgroundRenderer()
     }
     
@@ -86,11 +86,16 @@ class MainMenuViewController: GLKViewController {
         glViewport(offset, 0, height, height)
         
         mainMenuBackground.renderMenuBackground(menuBackground: 2)
+        topTitle.renderLine(text: "Panello")
         endlessOption.renderLine(text: "Endless")
         timeTrialOption.renderLine(text: "Time Trial")
         stageOption.renderLine(text: "Stage")
         puzzleOption.renderLine(text: "Puzzle")
         tutorialOption.renderLine(text: "Tutorial")
         creditsOption.renderLine(text: "Credits")
+    }
+    
+    func backToTitle() {
+        _ = self.navigationController?.popToRootViewController(animated: true)
     }
 }

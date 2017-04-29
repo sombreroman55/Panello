@@ -8,9 +8,11 @@
 
 import GLKit
 
-class SpriteEngine {
+final class SpriteEngine {
     
     public static var program: GLuint = 0
+    // Text bitmap spritesheet
+    public static let image: UIImage = UIImage(named: "assets.png")!
     
     /* Setup the OpenGL program if necessary. Compiles and links vertex and fragment shaders. */
     public static func setup() {

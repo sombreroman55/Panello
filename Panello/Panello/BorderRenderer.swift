@@ -16,21 +16,19 @@ class BorderRenderer {
     
     /* Fragment shader coordinates */
     /* Array order is -X +Y -X -Y +X +Y +X -Y */
-    private static let border1: [Float] = [ (0/624), (201/201), (0/624), (0/201),
-                                            (104/624), (201/201), (104/624), (0/201) ]
-    private static let border2: [Float] = [ (104/624), (201/201), (104/624), (0/201),
-                                            (208/624), (201/201), (208/624), (0/201) ]
-    private static let border3: [Float] = [ (208/624), (201/201), (208/624), (0/201),
-                                            (312/624), (201/201), (312/624), (0/201) ]
-    private static let border4: [Float] = [ (312/624), (201/201), (312/624), (0/201),
-                                            (416/624), (201/201), (416/624), (0/201) ]
-    private static let border5: [Float] = [ (416/624), (201/201), (416/624), (0/201),
-                                            (520/624), (201/201), (520/624), (0/201) ]
-    private static let border6: [Float] = [ (520/624), (201/201), (520/624), (0/201),
-                                            (624/624), (201/201), (624/624), (0/201) ]
+    private static let border1: [Float] = [ pixel(0), pixel(328), pixel(0), pixel(128),
+                                            pixel(103), pixel(328), pixel(103), pixel(128) ]
+    private static let border2: [Float] = [ pixel(104), pixel(328), pixel(104), pixel(128),
+                                            pixel(207), pixel(328), pixel(207), pixel(128) ]
+    private static let border3: [Float] = [ pixel(208), pixel(328), pixel(208), pixel(128),
+                                            pixel(311), pixel(328), pixel(311), pixel(128) ]
+    private static let border4: [Float] = [ pixel(312), pixel(328), pixel(312), pixel(128),
+                                            pixel(415), pixel(328), pixel(415), pixel(128) ]
+    private static let border5: [Float] = [ pixel(416), pixel(328), pixel(416), pixel(128),
+                                            pixel(519), pixel(328), pixel(519), pixel(128) ]
+    private static let border6: [Float] = [ pixel(520), pixel(328), pixel(520), pixel(128),
+                                            pixel(623), pixel(328), pixel(623), pixel(128) ]
     
-    // Border bitmap spritesheet
-    private static let image: UIImage = UIImage(named: "borders.png")!
     // Vertex coordinates
     private static let quad: [Float] = [ 0.436, -1.7, 0.436, 0.0, 1.564, -1.7, 1.564, 0.0 ]
     
@@ -52,7 +50,7 @@ class BorderRenderer {
     // --------------------------------------------------------------------
     
     init(startCoordinateX: Float, startCoordinateY: Float) {
-        texture = try? GLKTextureLoader.texture(with: BorderRenderer.image.cgImage!, options: nil)
+        texture = try? GLKTextureLoader.texture(with: SpriteEngine.image.cgImage!, options: nil)
         textureCoordinates = []
         startPositionX = startCoordinateX
         startPositionY = startCoordinateY
@@ -94,5 +92,9 @@ class BorderRenderer {
         default:
             return BorderRenderer.border1
         }
+    }
+    
+    private static func pixel(_ pixel: Int) -> Float {
+        return Float(2*pixel + 1)/Float(2048)
     }
 }

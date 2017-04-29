@@ -35,100 +35,12 @@ class Panel {
 
     // Panel spritesheet
     private static let image: UIImage = UIImage(named: "blocks.png")!
-    // OpenGL program
-    private static var program: GLuint = 0
     // Vertex coordinates
     private static let quad: [Float] = [ -0.07, -0.07, -0.07, 0.07, 0.07, -0.07, 0.07, 0.07 ]
     
     // -------------------------------------------------------------------
     // MARK: - Static functions
     // -------------------------------------------------------------------
-    
-    /* Setup the OpenGL program if necessary. Compiles and links vertex and fragment shaders. */
-    private static func setup() {
-        
-        if (program != 0) {
-            return
-        }
-        
-        // Vertex Shader
-        let panelVertexShaderPath: String = Bundle.main.path(forResource: "SpriteVertex", ofType: "glsl", inDirectory: nil)!
-        let panelVertexShaderSource: NSString = try! NSString(contentsOfFile: panelVertexShaderPath, encoding: String.Encoding.utf8.rawValue)
-        var panelVertexShaderData = panelVertexShaderSource.cString(using: String.Encoding.utf8.rawValue)
-        
-        let panelVertexShader: GLuint = glCreateShader(GLenum(GL_VERTEX_SHADER))
-        
-        glShaderSource(panelVertexShader, 1, &panelVertexShaderData, nil)
-        glCompileShader(panelVertexShader)
-        
-        // check if compilation succeeded
-        var panelVertexShaderCompileStatus: GLint = GL_FALSE
-        glGetShaderiv(panelVertexShader, GLenum(GL_COMPILE_STATUS), &panelVertexShaderCompileStatus)
-        if (panelVertexShaderCompileStatus == GL_FALSE) {
-            // TODO: handle error
-            var logLength: GLint = 0
-            let logBuffer = UnsafeMutablePointer<GLchar>.allocate(capacity: Int(logLength))
-            glGetShaderiv(panelVertexShader, GLenum(GL_INFO_LOG_LENGTH), &logLength)
-            glGetShaderInfoLog(panelVertexShader, logLength, nil, logBuffer)
-            let logString: String = String(cString: logBuffer)
-            print(logString)
-            fatalError("Error. Shader compilation failed.")
-        }
-        else {
-            print("Sprite vertex shader compilation successful.")
-        }
-        
-        
-        // Fragment Shader
-        let panelFragmentShaderPath: String = Bundle.main.path(forResource: "SpriteFragment", ofType: "glsl", inDirectory: nil)!
-        let panelFragmentShaderSource: NSString = try! NSString(contentsOfFile: panelFragmentShaderPath, encoding: String.Encoding.utf8.rawValue)
-        var panelFragmentShaderData = panelFragmentShaderSource.cString(using: String.Encoding.utf8.rawValue)
-        
-        let panelFragmentShader: GLuint = glCreateShader(GLenum(GL_FRAGMENT_SHADER))
-        
-        // why is nil allowed??
-        glShaderSource(panelFragmentShader, 1, &panelFragmentShaderData, nil)
-        glCompileShader(panelFragmentShader)
-        
-        // check if compilation succeeded
-        var panelFragmentShaderCompileStatus: GLint = GL_FALSE
-        glGetShaderiv(panelFragmentShader, GLenum(GL_COMPILE_STATUS), &panelFragmentShaderCompileStatus)
-        if (panelFragmentShaderCompileStatus == GL_FALSE) {
-            // TODO: handle error
-            var logLength: GLint = 0
-            let logBuffer = UnsafeMutablePointer<GLchar>.allocate(capacity: Int(logLength))
-            glGetShaderiv(panelFragmentShader, GLenum(GL_INFO_LOG_LENGTH), &logLength)
-            glGetShaderInfoLog(panelFragmentShader, logLength, nil, logBuffer)
-            let logString: String = String(cString: logBuffer)
-            print(logString)
-            fatalError("Error. Shader compilation failed.")
-        }
-        else {
-            print("Sprite fragment shader compilation successful.")
-        }
-        
-        
-        // Compile Program
-        program = glCreateProgram()
-        glAttachShader(program, panelVertexShader)
-        glAttachShader(program, panelFragmentShader)
-        glBindAttribLocation(program, 0, "position")
-        glBindAttribLocation(program, 1, "texture")
-        glLinkProgram(program)
-        
-        
-        var panelProgramLinkStatus: GLint = GL_FALSE
-        glGetProgramiv(program, GLenum(GL_LINK_STATUS), &panelProgramLinkStatus)
-        if (panelProgramLinkStatus == GL_FALSE) {
-            var logLength: GLint = 0
-            let logBuffer = UnsafeMutablePointer<GLchar>.allocate(capacity: Int(logLength))
-            glGetProgramiv(program, GLenum(GL_INFO_LOG_LENGTH), &logLength)
-            glGetProgramInfoLog(program, logLength, nil, logBuffer)
-            let logString: String = String(cString: logBuffer)
-            print(logString)
-            fatalError("Error. Linking failed.")
-        }
-    }
     
     /* Randomly generate a color for a panel */
     class func getRandomColor() -> PanelColor {
@@ -217,7 +129,7 @@ class Panel {
         
         texture = try? GLKTextureLoader.texture(with: Panel.image.cgImage!, options: nil)
         textureCoordinates = Panel.getNormalTexture(forColor: color)
-        Panel.setup()
+        SpriteEngine.setup()
     }
     
     // --------------------------------------------------------------------
@@ -229,10 +141,10 @@ class Panel {
         // Send Geometry (attributes)
         // Send any other info (uniforms)
         // Draw
-        glUseProgram(Panel.program)
+        glUseProgram(SpriteEngine.program)
         glVertexAttribPointer(0, 2, GLenum(GL_FLOAT), GLboolean(GL_FALSE), 0, Panel.quad)
         glVertexAttribPointer(1, 2, GLenum(GL_FLOAT), GLboolean(GL_FALSE), 0, textureCoordinates)
-        glUniform2f(glGetUniformLocation(Panel.program, "translation"), positionX, positionY)
+        glUniform2f(glGetUniformLocation(SpriteEngine.program, "translation"), positionX, positionY)
         glEnableVertexAttribArray(0)
         glEnableVertexAttribArray(1)
         if let tex = texture {

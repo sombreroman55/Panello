@@ -20,17 +20,9 @@ class GameViewController: GLKViewController {
     public var dele: TitleViewControllerDelegate? = nil
     private var time: Double = 0.0
     private var endless: EndlessGame!
-    private var panel1: Panel!
-    private var panel2: Panel!
-    private var panel3: Panel!
-    private var panel4: Panel!
-    private var panel5: Panel!
-    private var panel6: Panel!
     private var border: BorderRenderer!
     private var topBar: TopBarRenderer!
     private var background: BackgroundRenderer!
-    private var text: TextRenderer!
-    private var text2: TextRenderer!
     private var score: Int = 0
     
     // --------------------------------------------------------------------
@@ -43,41 +35,21 @@ class GameViewController: GLKViewController {
         self.navigationController!.isNavigationBarHidden = true;
         self.preferredFramesPerSecond = 60
         
-        let context = EAGLContext(api: .openGLES2)
-        titleView.context = context!
+        let context = AppDelegate.context
+        gameView.context = context
         EAGLContext.setCurrent(context)
         glEnable(GLenum(GL_BLEND))
         glBlendFunc(GLenum(GL_SRC_ALPHA), GLenum(GL_ONE_MINUS_SRC_ALPHA))
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(pause))
         tap.numberOfTapsRequired = 1
-        titleView.addGestureRecognizer(tap)
+        gameView.addGestureRecognizer(tap)
         
         time = CACurrentMediaTime()
-        panel1 = Panel()
-        panel2 = Panel()
-        panel3 = Panel()
-        panel4 = Panel()
-        panel5 = Panel()
-        panel6 = Panel()
-        panel1.positionX = -0.42
-        panel1.positionY = -0.865
-        panel2.positionX = panel1.positionX + 0.14
-        panel2.positionY = panel1.positionY
-        panel3.positionX = panel2.positionX + 0.14
-        panel3.positionY = panel1.positionY
-        panel4.positionX = panel3.positionX + 0.14
-        panel4.positionY = panel1.positionY
-        panel5.positionX = panel4.positionX + 0.14
-        panel5.positionY = panel1.positionY
-        panel6.positionX = panel5.positionX + 0.14
-        panel6.positionY = panel1.positionY
         endless = EndlessGame()
         background = BackgroundRenderer()
         topBar = TopBarRenderer()
         border = BorderRenderer(startCoordinateX: -1.0, startCoordinateY: 0.7)
-        text = TextRenderer(startCoordinateX: 0.0, startCoordinateY: 0.5, sc: 0.5)
-        text2 = TextRenderer(startCoordinateX: 0.0, startCoordinateY: 0.75, sc: 0.5)
     }
     
     override func didReceiveMemoryWarning() {
@@ -86,7 +58,7 @@ class GameViewController: GLKViewController {
     }
     
     
-    private var titleView: GLKView {
+    private var gameView: GLKView {
         return view as! GLKView
     }
     
@@ -108,8 +80,8 @@ class GameViewController: GLKViewController {
         glClearColor(0.0, 1.0, 0.0, 1.0)
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT))
         
-        let height: GLsizei = GLsizei(titleView.bounds.height * titleView.contentScaleFactor)
-        let offset: GLsizei = GLsizei((titleView.bounds.height - titleView.bounds.width) * -0.5 * titleView.contentScaleFactor)
+        let height: GLsizei = GLsizei(gameView.bounds.height * gameView.contentScaleFactor)
+        let offset: GLsizei = GLsizei((gameView.bounds.height - gameView.bounds.width) * -0.5 * gameView.contentScaleFactor)
         glViewport(offset, 0, height, height)
         
         //        if (endless.state == .RUNNING) {
@@ -117,17 +89,9 @@ class GameViewController: GLKViewController {
         //        }
         
         topBar.renderTopBar(type: 4)
-        background.renderGameBackground(gameBackground: 1)
-        border.renderBorder(border: 1)
-        panel1.draw()
-        panel2.draw()
-        panel3.draw()
-        panel4.draw()
-        panel5.draw()
-        panel6.draw()
-        text.renderScore(score: score)
-        text2.renderLine(text: "Hello")
-        print("\(endless.millisecondsRun)\t\(CACurrentMediaTime() - time)")
+        background.renderGameBackground(gameBackground: 6)
+        border.renderBorder(border: 6)
+        //print("\(endless.millisecondsRun)\t\(CACurrentMediaTime() - time)")
     }
     
     func pause() {
@@ -141,19 +105,19 @@ class GameViewController: GLKViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch: UITouch = touches.first!
-        let touchPoint: CGPoint = touch.location(in: titleView)
-        print("\(touchPoint.x/CGFloat(titleView.bounds.width)), \(touchPoint.y/CGFloat(titleView.bounds.height))")
+        let touchPoint: CGPoint = touch.location(in: gameView)
+        print("\(touchPoint.x), \(touchPoint.y)")
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch: UITouch = touches.first!
-        let touchPoint: CGPoint = touch.location(in: titleView)
+        let touchPoint: CGPoint = touch.location(in: gameView)
         print("\(touchPoint.x), \(touchPoint.y)")
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch: UITouch = touches.first!
-        let touchPoint: CGPoint = touch.location(in: titleView)
+        let touchPoint: CGPoint = touch.location(in: gameView)
         print("\(touchPoint.x), \(touchPoint.y)")
     }
 }
