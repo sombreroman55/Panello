@@ -12,12 +12,12 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    public static let context: EAGLContext = EAGLContext(api: .openGLES2)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         window = UIWindow()
-        window?.rootViewController = TitleViewController()
+        window?.rootViewController = UINavigationController(rootViewController: TitleViewController())
         window?.makeKeyAndVisible()
         
         return true

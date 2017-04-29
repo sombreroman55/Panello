@@ -159,10 +159,97 @@ final class TextRenderer: NSObject {
     private static let text_octo: [Float] = [ (18/255), (29/255), (18/255), (0/255),
                                               (39/255), (29/255), (39/255), (0/255) ]
     
+    private static var program: GLuint = 0
     // Text bitmap spritesheet
     private static let image: UIImage = UIImage(named: "font.png")!
     // Vertex coordinates
     private static let quad: [Float] = [ -0.1, -0.1, -0.1, 0.1, 0.1, -0.1, 0.1, 0.1 ]
+    
+    /* Setup the OpenGL program if necessary. Compiles and links vertex and fragment shaders. */
+    private static func setup() {
+        
+        if (program != 0) {
+            return
+        }
+        
+        // Vertex Shader
+        let borderVertexShaderPath: String = Bundle.main.path(forResource: "TextVertex", ofType: "glsl", inDirectory: nil)!
+        let borderVertexShaderSource: NSString = try! NSString(contentsOfFile: borderVertexShaderPath, encoding: String.Encoding.utf8.rawValue)
+        var borderVertexShaderData = borderVertexShaderSource.cString(using: String.Encoding.utf8.rawValue)
+        
+        let borderVertexShader: GLuint = glCreateShader(GLenum(GL_VERTEX_SHADER))
+        
+        glShaderSource(borderVertexShader, 1, &borderVertexShaderData, nil)
+        glCompileShader(borderVertexShader)
+        
+        // check if compilation succeeded
+        var borderVertexShaderCompileStatus: GLint = GL_FALSE
+        glGetShaderiv(borderVertexShader, GLenum(GL_COMPILE_STATUS), &borderVertexShaderCompileStatus)
+        if (borderVertexShaderCompileStatus == GL_FALSE) {
+            // TODO: handle error
+            var logLength: GLint = 0
+            let logBuffer = UnsafeMutablePointer<GLchar>.allocate(capacity: Int(logLength))
+            glGetShaderiv(borderVertexShader, GLenum(GL_INFO_LOG_LENGTH), &logLength)
+            glGetShaderInfoLog(borderVertexShader, logLength, nil, logBuffer)
+            let logString: String = String(cString: logBuffer)
+            print(logString)
+            fatalError("Error. Shader compilation failed.")
+        }
+        else {
+            print("Border vertex shader compilation successful.")
+        }
+        
+        
+        // Fragment Shader
+        let borderFragmentShaderPath: String = Bundle.main.path(forResource: "TextFragment", ofType: "glsl", inDirectory: nil)!
+        let borderFragmentShaderSource: NSString = try! NSString(contentsOfFile: borderFragmentShaderPath, encoding: String.Encoding.utf8.rawValue)
+        var borderFragmentShaderData = borderFragmentShaderSource.cString(using: String.Encoding.utf8.rawValue)
+        
+        let borderFragmentShader: GLuint = glCreateShader(GLenum(GL_FRAGMENT_SHADER))
+        
+        // why is nil allowed??
+        glShaderSource(borderFragmentShader, 1, &borderFragmentShaderData, nil)
+        glCompileShader(borderFragmentShader)
+        
+        // check if compilation succeeded
+        var borderFragmentShaderCompileStatus: GLint = GL_FALSE
+        glGetShaderiv(borderFragmentShader, GLenum(GL_COMPILE_STATUS), &borderFragmentShaderCompileStatus)
+        if (borderFragmentShaderCompileStatus == GL_FALSE) {
+            // TODO: handle error
+            var logLength: GLint = 0
+            let logBuffer = UnsafeMutablePointer<GLchar>.allocate(capacity: Int(logLength))
+            glGetShaderiv(borderFragmentShader, GLenum(GL_INFO_LOG_LENGTH), &logLength)
+            glGetShaderInfoLog(borderFragmentShader, logLength, nil, logBuffer)
+            let logString: String = String(cString: logBuffer)
+            print(logString)
+            fatalError("Error. Shader compilation failed.")
+        }
+        else {
+            print("Border fragment shader compilation successful.")
+        }
+        
+        
+        // Compile Program
+        program = glCreateProgram()
+        glAttachShader(program, borderVertexShader)
+        glAttachShader(program, borderFragmentShader)
+        glBindAttribLocation(program, 0, "position")
+        glBindAttribLocation(program, 1, "texture")
+        glLinkProgram(program)
+        
+        
+        var borderProgramLinkStatus: GLint = GL_FALSE
+        glGetProgramiv(program, GLenum(GL_LINK_STATUS), &borderProgramLinkStatus)
+        if (borderProgramLinkStatus == GL_FALSE) {
+            var logLength: GLint = 0
+            let logBuffer = UnsafeMutablePointer<GLchar>.allocate(capacity: Int(logLength))
+            glGetProgramiv(program, GLenum(GL_INFO_LOG_LENGTH), &logLength)
+            glGetProgramInfoLog(program, logLength, nil, logBuffer)
+            let logString: String = String(cString: logBuffer)
+            print(logString)
+            fatalError("Error. Linking failed.")
+        }
+    }
     
     // -------------------------------------------------------------------
     // MARK: - Public instance data
@@ -171,6 +258,7 @@ final class TextRenderer: NSObject {
     public var startPositionY: Float // Anchor Y coordinate
     public var currentPositionX: Float // Offset X coordinate based on last character
     public var currentPositionY: Float // Offset Y coordinate based on last character
+    public var scale: Float // Scale the letter quad
     
     // -------------------------------------------------------------------
     // MARK: - Private instance data
@@ -184,14 +272,15 @@ final class TextRenderer: NSObject {
     // MARK: - Constructors
     // --------------------------------------------------------------------
     
-    init(startCoordinateX: Float, startCoordinateY: Float) {
+    init(startCoordinateX: Float, startCoordinateY: Float, sc: Float) {
         texture = try? GLKTextureLoader.texture(with: TextRenderer.image.cgImage!, options: nil)
         textureCoordinates = []
         startPositionX = startCoordinateX
         startPositionY = startCoordinateY
         currentPositionX = startPositionX
         currentPositionY = startPositionY
-        SpriteEngine.setup()
+        scale = sc
+        TextRenderer.setup()
     }
     
     // --------------------------------------------------------------------
@@ -202,10 +291,11 @@ final class TextRenderer: NSObject {
         //var charOffset: Float = 0.0
         for char in text.characters {
             textureCoordinates = getTexture(forCharacter: char)
-            glUseProgram(SpriteEngine.program)
+            glUseProgram(TextRenderer.program)
             glVertexAttribPointer(0, 2, GLenum(GL_FLOAT), GLboolean(GL_FALSE), 0, TextRenderer.quad)
             glVertexAttribPointer(1, 2, GLenum(GL_FLOAT), GLboolean(GL_FALSE), 0, textureCoordinates)
-            glUniform2f(glGetUniformLocation(SpriteEngine.program, "translation"), currentPositionX, currentPositionY)
+            glUniform2f(glGetUniformLocation(TextRenderer.program, "translation"), currentPositionX, currentPositionY)
+            glUniform2f(glGetUniformLocation(TextRenderer.program, "scale"), scale, scale)
             glEnableVertexAttribArray(0)
             glEnableVertexAttribArray(1)
             if let tex = texture {
@@ -213,7 +303,7 @@ final class TextRenderer: NSObject {
             }
             glDrawArrays(GLenum(GL_TRIANGLE_STRIP), 0, 4)
             //charOffset = getWidth(forCharacter: char)
-            currentPositionX += 0.2
+            currentPositionX += (0.2 * scale)
         }
         currentPositionX = startPositionX
     }
@@ -499,6 +589,8 @@ final class TextRenderer: NSObject {
             return TextRenderer.text_exclam
         case "#":
             return TextRenderer.text_octo
+        case " ":
+            return []
         default:
             return TextRenderer.text_A
         }
@@ -511,10 +603,11 @@ final class TextRenderer: NSObject {
         while (copy > 0) {
             digit = copy % 10
             textureCoordinates = getTexture(forNumber: digit)
-            glUseProgram(SpriteEngine.program)
+            glUseProgram(TextRenderer.program)
             glVertexAttribPointer(0, 2, GLenum(GL_FLOAT), GLboolean(GL_FALSE), 0, TextRenderer.quad)
             glVertexAttribPointer(1, 2, GLenum(GL_FLOAT), GLboolean(GL_FALSE), 0, textureCoordinates)
-            glUniform2f(glGetUniformLocation(SpriteEngine.program, "translation"), currentPositionX, currentPositionY)
+            glUniform2f(glGetUniformLocation(TextRenderer.program, "translation"), currentPositionX, currentPositionY)
+            glUniform2f(glGetUniformLocation(TextRenderer.program, "scale"), scale, scale)
             glEnableVertexAttribArray(0)
             glEnableVertexAttribArray(1)
             if let tex = texture {
@@ -522,7 +615,7 @@ final class TextRenderer: NSObject {
             }
             glDrawArrays(GLenum(GL_TRIANGLE_STRIP), 0, 4)
             //charOffset = getWidth(forNumber: digit)
-            currentPositionX -= 0.2
+            currentPositionX -= (0.2 * scale)
             copy /= 10
         }
         currentPositionX = startPositionX

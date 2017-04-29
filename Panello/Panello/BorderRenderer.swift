@@ -32,7 +32,7 @@ class BorderRenderer {
     // Border bitmap spritesheet
     private static let image: UIImage = UIImage(named: "borders.png")!
     // Vertex coordinates
-    private static let quad: [Float] = [ 0.0, -1.7, 0.0, 0.0, 2.0, -1.7, 2.0, 0.0 ]
+    private static let quad: [Float] = [ 0.436, -1.7, 0.436, 0.0, 1.564, -1.7, 1.564, 0.0 ]
     
     // -------------------------------------------------------------------
     // MARK: - Public instance data
@@ -58,6 +58,10 @@ class BorderRenderer {
         startPositionY = startCoordinateY
         SpriteEngine.setup()
     }
+    
+    // --------------------------------------------------------------------
+    // MARK: - BorderRenderer methods
+    // --------------------------------------------------------------------
     
     func renderBorder(border: Int) {
         textureCoordinates = getTexture(forBorder: border)

@@ -17,18 +17,11 @@ class TitleViewController: GLKViewController {
     // --------------------------------------------------------------------
     // MARK: - Instance data
     // --------------------------------------------------------------------
-    // private var translateX: Float = 0.0
-    // private var translateY: Float = 0.0
-    public var dele: TitleViewControllerDelegate? = nil
-    private var endless: EndlessGame!
-    private var panel1: Panel!
-    private var panel2: Panel!
-    private var border: BorderRenderer!
-    private var background: Background!
-    private var text: TextRenderer!
-    private var text2: TextRenderer!
-    private var score: Int = 0
 
+    private var panelloTitle: TextRenderer!
+    private var pressToStart: TextRenderer!
+    private var titleBackground: BackgroundRenderer!
+    
     // --------------------------------------------------------------------
     // MARK: - GLKViewController overrides
     // --------------------------------------------------------------------
@@ -36,26 +29,22 @@ class TitleViewController: GLKViewController {
     /// Overrides viewDidLoad for TitleViewController
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController!.isNavigationBarHidden = true;
         self.preferredFramesPerSecond = 60
         
-        let context = EAGLContext(api: .openGLES2)
-        titleView.context = context!
+        let context = AppDelegate.context
+        titleView.context = context
         EAGLContext.setCurrent(context)
         glEnable(GLenum(GL_BLEND))
         glBlendFunc(GLenum(GL_SRC_ALPHA), GLenum(GL_ONE_MINUS_SRC_ALPHA))
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(pause))
-        tap.numberOfTapsRequired = 2
-        titleView.addGestureRecognizer(tap)
+        let mtmm = UITapGestureRecognizer(target: self, action: #selector(moveToMainMenu))
+        mtmm.numberOfTapsRequired = 1
+        titleView.addGestureRecognizer(mtmm)
         
-        panel1 = Panel()
-        panel2 = Panel()
-        panel2.positionX = panel1.positionX + 0.2
-        endless = EndlessGame()
-        background = Background()
-        border = BorderRenderer(startCoordinateX: -1.0, startCoordinateY: 0.7)
-        text = TextRenderer(startCoordinateX: 0.0, startCoordinateY: 0.5)
-        text2 = TextRenderer(startCoordinateX: 0.0, startCoordinateY: 0.75)
+        panelloTitle = TextRenderer(startCoordinateX: -0.42, startCoordinateY: 0.4, sc: 0.8)
+        pressToStart = TextRenderer(startCoordinateX: -0.51, startCoordinateY: -0.6, sc: 0.3)
+        titleBackground = BackgroundRenderer()
     }
     
     override func didReceiveMemoryWarning() {
@@ -75,8 +64,7 @@ class TitleViewController: GLKViewController {
     /* Display loop */
     // Update is the game loop?
     func update() {
-        //self.timeSinceLastUpdate // get time since last display update
-        //time += 0.005
+
     }
     
     /* Draw the view */
@@ -85,47 +73,17 @@ class TitleViewController: GLKViewController {
         glClearColor(0.0, 1.0, 0.0, 1.0)
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT))
         
-        //let aspectRatio: Float = Float(glkView.drawableWidth) / Float(glkView.drawableHeight)
+        let height: GLsizei = GLsizei(titleView.bounds.height * titleView.contentScaleFactor)
+        let offset: GLsizei = GLsizei((titleView.bounds.height - titleView.bounds.width) * -0.5 * titleView.contentScaleFactor)
+        glViewport(offset, 0, height, height)
         
-        //glViewport(0, 0, GLsizei(glkView.drawableWidth), GLsizei(glkView.drawableHeight * aspectRatio))
-        if (endless.state == .RUNNING) {
-            score += 1
-        }
-        
-        endless.update()
-        background.draw()
-        border.renderBorder(border: 1)
-        panel1.draw()
-        panel2.draw()
-        text.renderScore(score: score)
-        text2.renderLine(text: "Hello")
-        //print("\(endless.millisecondsRun)")
+        titleBackground.renderMenuBackground(menuBackground: 1)
+        panelloTitle.renderLine(text: "Panello")
+        pressToStart.renderLine(text: "Touch anywhere")
     }
     
-    func pause() {
-        if (endless.state == .RUNNING) {
-            endless.state = .PAUSED
-        }
-        else if (endless.state == .PAUSED) {
-            endless.state = .RUNNING
-        }
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touch: UITouch = touches.first!
-        let touchPoint: CGPoint = touch.location(in: titleView)
-        print("\(touchPoint.x), \(touchPoint.y)")
-    }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touch: UITouch = touches.first!
-        let touchPoint: CGPoint = touch.location(in: titleView)
-        print("\(touchPoint.x), \(touchPoint.y)")
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touch: UITouch = touches.first!
-        let touchPoint: CGPoint = touch.location(in: titleView)
-        print("\(touchPoint.x), \(touchPoint.y)")
+    func moveToMainMenu() {
+        let mmvc: MainMenuViewController = MainMenuViewController()
+        self.navigationController?.pushViewController(mmvc, animated: true)
     }
 }

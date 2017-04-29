@@ -20,7 +20,7 @@ class SpriteEngine {
         }
         
         // Vertex Shader
-        let borderVertexShaderPath: String = Bundle.main.path(forResource: "RendererVertex", ofType: "glsl", inDirectory: nil)!
+        let borderVertexShaderPath: String = Bundle.main.path(forResource: "SpriteVertex", ofType: "glsl", inDirectory: nil)!
         let borderVertexShaderSource: NSString = try! NSString(contentsOfFile: borderVertexShaderPath, encoding: String.Encoding.utf8.rawValue)
         var borderVertexShaderData = borderVertexShaderSource.cString(using: String.Encoding.utf8.rawValue)
         
@@ -48,7 +48,7 @@ class SpriteEngine {
         
         
         // Fragment Shader
-        let borderFragmentShaderPath: String = Bundle.main.path(forResource: "RendererFragment", ofType: "glsl", inDirectory: nil)!
+        let borderFragmentShaderPath: String = Bundle.main.path(forResource: "SpriteFragment", ofType: "glsl", inDirectory: nil)!
         let borderFragmentShaderSource: NSString = try! NSString(contentsOfFile: borderFragmentShaderPath, encoding: String.Encoding.utf8.rawValue)
         var borderFragmentShaderData = borderFragmentShaderSource.cString(using: String.Encoding.utf8.rawValue)
         

@@ -8,7 +8,7 @@
 
 import GLKit
 
-class MasterViewController: GLKViewController, TitleViewControllerDelegate {
+class MasterViewController: GLKViewController {
     
     private let context = EAGLContext(api: .openGLES2)
     
@@ -33,20 +33,9 @@ class MasterViewController: GLKViewController, TitleViewControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        masterView.context = context!
-        EAGLContext.setCurrent(context)
-        glEnable(GLenum(GL_BLEND))
-        glBlendFunc(GLenum(GL_SRC_ALPHA), GLenum(GL_ONE_MINUS_SRC_ALPHA))
-        
-        // Start the app with TitleScreenViewController
         titleViewController = TitleViewController()
-        titleViewController?.dele = self
-        let titleView: GLKView = GLKView()
-        titleView.context = context!
-        titleViewController?.view = titleView
-        self.addChildViewController(titleViewController!)
-        titleViewController?.didMove(toParentViewController: self)
-        masterView.addSubview(titleView)
+        addChildViewController(titleViewController!)
+        view = titleViewController!.view
     }
     
     override func didReceiveMemoryWarning() {
@@ -67,11 +56,11 @@ class MasterViewController: GLKViewController, TitleViewControllerDelegate {
     func moveToMainMenu() {
         // Change screen to main menu
         mainMenuViewController = MainMenuViewController()
-        let mainMenuView: GLKView = GLKView()
-        mainMenuView.context = context!
-        mainMenuViewController?.view = mainMenuView
+//        let mainMenuView: GLKView = GLKView()
+//        mainMenuView.context = context!
+//        mainMenuViewController?.view = mainMenuView
         self.addChildViewController(mainMenuViewController!)
         mainMenuViewController?.didMove(toParentViewController: self)
-        masterView.addSubview(mainMenuView)
+//        masterView.addSubview(mainMenuView)
     }
 }

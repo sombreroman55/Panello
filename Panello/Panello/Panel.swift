@@ -38,7 +38,7 @@ class Panel {
     // OpenGL program
     private static var program: GLuint = 0
     // Vertex coordinates
-    private static let quad: [Float] = [ -0.1, -0.1, -0.1, 0.1, 0.1, -0.1, 0.1, 0.1 ]
+    private static let quad: [Float] = [ -0.07, -0.07, -0.07, 0.07, 0.07, -0.07, 0.07, 0.07 ]
     
     // -------------------------------------------------------------------
     // MARK: - Static functions
@@ -52,7 +52,7 @@ class Panel {
         }
         
         // Vertex Shader
-        let panelVertexShaderPath: String = Bundle.main.path(forResource: "RendererVertex", ofType: "glsl", inDirectory: nil)!
+        let panelVertexShaderPath: String = Bundle.main.path(forResource: "SpriteVertex", ofType: "glsl", inDirectory: nil)!
         let panelVertexShaderSource: NSString = try! NSString(contentsOfFile: panelVertexShaderPath, encoding: String.Encoding.utf8.rawValue)
         var panelVertexShaderData = panelVertexShaderSource.cString(using: String.Encoding.utf8.rawValue)
         
@@ -80,7 +80,7 @@ class Panel {
         
         
         // Fragment Shader
-        let panelFragmentShaderPath: String = Bundle.main.path(forResource: "RendererFragment", ofType: "glsl", inDirectory: nil)!
+        let panelFragmentShaderPath: String = Bundle.main.path(forResource: "SpriteFragment", ofType: "glsl", inDirectory: nil)!
         let panelFragmentShaderSource: NSString = try! NSString(contentsOfFile: panelFragmentShaderPath, encoding: String.Encoding.utf8.rawValue)
         var panelFragmentShaderData = panelFragmentShaderSource.cString(using: String.Encoding.utf8.rawValue)
         
