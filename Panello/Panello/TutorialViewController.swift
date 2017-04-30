@@ -136,4 +136,17 @@ class TutorialViewController: GLKViewController {
         line17.renderLine(text: "Clear the board in")
         line18.renderLine(text: "the number of moves.")
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch: UITouch = touches.first!
+        let touchPoint: CGPoint = touch.location(in: tutorialView)
+        let glPointX: Float = Float((touchPoint.x/tutorialView.bounds.width) * 2 - 1) * Float(tutorialView.bounds.width/tutorialView.bounds.height)
+        let glPointY: Float = Float((touchPoint.y/tutorialView.bounds.height) * 2 - 1) * -1
+        
+        if (back.touchedInside(x: glPointX, y: glPointY)) {
+            _ = self.navigationController?.popViewController(animated: true)
+        }
+        
+        print("\(glPointX), \(glPointY)")
+    }
 }

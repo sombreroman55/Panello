@@ -19,6 +19,8 @@ final class TextRenderer {
     public var currentPositionX: Float // Offset X coordinate based on last character
     public var currentPositionY: Float // Offset Y coordinate based on last character
     public var scale: Float // Scale the letter quad
+    public var width: Float
+    public var height: Float
     
     // -------------------------------------------------------------------
     // MARK: - Private instance data
@@ -41,6 +43,8 @@ final class TextRenderer {
         currentPositionX = startPositionX
         currentPositionY = startPositionY
         self.scale = scale
+        width = 0.0
+        height = 0.2 * scale
         TextEngine.setup()
     }
     
@@ -48,8 +52,19 @@ final class TextRenderer {
     // MARK: - TextRenderer methods
     // --------------------------------------------------------------------
     
-    func renderLine(text: String) {
+    public func touchedInside(x: Float, y: Float) -> Bool {
+        if (x >= (startPositionX - (0.1 * scale)) &&
+            x <= (startPositionX - (0.1 * scale)) + width &&
+            y >= (startPositionY - height/2) &&
+            y <= (startPositionY + height/2)) {
+            return true
+        }
+        return false
+    }
+    
+    public func renderLine(text: String) {
         var upper: String = text.uppercased()
+        width = (Float(text.characters.count) * 0.2 * scale) + (Float(text.characters.count - 1) * (16/2048))
         for char in upper.characters {
             if (char == "I") {
                 _textVertexCoordinates = [ -0.1, -0.1, -0.1, 0.1, 0.03, -0.1, 0.03, 0.1 ]
@@ -163,7 +178,7 @@ final class TextRenderer {
         }
     }
     
-    func renderNumber(number: Int) {
+    public func renderNumber(number: Int) {
         var copy: Int = number
         var digit: Int = 0
         while (copy > 0) {

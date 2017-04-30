@@ -99,8 +99,39 @@ final class BackgroundEngine {
         }
     }
     
-    public static let menuQuad: [Float] = [ -1.0, -1.0, 1.0, -1.0, -1.0, 1.0, 1.0, 1.0 ]
-    public static let gameQuad: [Float] = [ -1.0, -1.0, 1.0, -1.0, -1.0, 0.7, 1.0, 0.7 ]
+    public static let previewQuad1: [Float] = [ -0.38, 0.28,
+                                                -0.14, 0.28,
+                                                -0.38, 0.52,
+                                                -0.14, 0.52 ]
+    public static let previewQuad2: [Float] = [ 0.24, 0.28,
+                                                0.48, 0.28,
+                                                0.24, 0.52,
+                                                0.48, 0.52 ]
+    public static let previewQuad3: [Float] = [ -0.38, -0.22,
+                                                -0.14, -0.22,
+                                                -0.38, 0.02,
+                                                -0.14, 0.02 ]
+    public static let previewQuad4: [Float] = [ 0.24, -0.22,
+                                                0.48, -0.22,
+                                                0.24, 0.02,
+                                                0.48, 0.02 ]
+    public static let previewQuad5: [Float] = [ -0.38, -0.72,
+                                                -0.14, -0.72,
+                                                -0.38, -0.48,
+                                                -0.14, -0.48 ]
+    public static let previewQuad6: [Float] = [ 0.24, -0.72,
+                                                0.48, -0.72,
+                                                0.24, -0.48,
+                                                0.48, -0.48 ]
+
+    public static let menuQuad: [Float] = [ -1.0, -1.0,
+                                            1.0, -1.0,
+                                            -1.0, 1.0,
+                                            1.0, 1.0 ]
+    public static let gameQuad: [Float] = [ -1.0, -1.0,
+                                            1.0, -1.0,
+                                            -1.0, 0.7,
+                                            1.0, 0.7 ]
     
     /* Menu Background designs */
     

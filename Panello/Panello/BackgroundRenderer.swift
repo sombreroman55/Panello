@@ -15,7 +15,6 @@ class BackgroundRenderer {
     // -------------------------------------------------------------------
     // MARK: - Private instance data
     // -------------------------------------------------------------------
-    private var _backgroundVertexCoordinates: [Float]
     private var _backgroundFragmentCoordinates: [Float]
     
     // --------------------------------------------------------------------
@@ -23,7 +22,6 @@ class BackgroundRenderer {
     // --------------------------------------------------------------------
     
     init() {
-        _backgroundVertexCoordinates = []
         _backgroundFragmentCoordinates = []
         BackgroundEngine.setup()
     }
@@ -95,6 +93,36 @@ class BackgroundRenderer {
             return BackgroundEngine.gameBackground6
         default:
             return BackgroundEngine.gameBackground1
+        }
+    }
+    
+    func renderPreviewBackground(background: Int) {
+        let backVertices = getVertices(forBackground: background)
+        _backgroundFragmentCoordinates = getTexture(forGameBackground: background)
+        glUseProgram(BackgroundEngine.program)
+        glVertexAttribPointer(0, 2, GLenum(GL_FLOAT), GLboolean(GL_FALSE), 0, backVertices)
+        glVertexAttribPointer(1, 4, GLenum(GL_FLOAT), GLboolean(GL_FALSE), 0, _backgroundFragmentCoordinates)
+        glEnableVertexAttribArray(0)
+        glEnableVertexAttribArray(1)
+        glDrawArrays(GLenum(GL_TRIANGLE_STRIP), 0, 4)
+    }
+    
+    func getVertices(forBackground background: Int) -> [Float] {
+        switch (background) {
+        case 1:
+            return BackgroundEngine.previewQuad1
+        case 2:
+            return BackgroundEngine.previewQuad2
+        case 3:
+            return BackgroundEngine.previewQuad3
+        case 4:
+            return BackgroundEngine.previewQuad4
+        case 5:
+            return BackgroundEngine.previewQuad5
+        case 6:
+            return BackgroundEngine.previewQuad6
+        default:
+            return BackgroundEngine.previewQuad1
         }
     }
 }

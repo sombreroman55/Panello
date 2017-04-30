@@ -21,6 +21,7 @@ class MainMenuViewController: GLKViewController {
     private var timeTrialOption: TextRenderer!
     private var stageOption: TextRenderer!
     private var puzzleOption: TextRenderer!
+    private var highScoreOption: TextRenderer!
     private var tutorialOption: TextRenderer!
     private var creditsOption: TextRenderer!
     
@@ -42,17 +43,14 @@ class MainMenuViewController: GLKViewController {
         glEnable(GLenum(GL_BLEND))
         glBlendFunc(GLenum(GL_SRC_ALPHA), GLenum(GL_ONE_MINUS_SRC_ALPHA))
         
-        let btt = UITapGestureRecognizer(target: self, action: #selector(backToTitle))
-        btt.numberOfTapsRequired = 1
-        mainMenuView.addGestureRecognizer(btt)
-        
-        topTitle = TextRenderer(startCoordinateX: -0.32, startCoordinateY: 0.8, scale: 0.3)
-        endlessOption = TextRenderer(startCoordinateX: -0.32, startCoordinateY: 0.4, scale: 0.3)
-        timeTrialOption = TextRenderer(startCoordinateX: -0.32, startCoordinateY: 0.2, scale: 0.3)
-        stageOption = TextRenderer(startCoordinateX: -0.32, startCoordinateY: 0.0, scale: 0.3)
-        puzzleOption = TextRenderer(startCoordinateX: -0.32, startCoordinateY: -0.2, scale: 0.3)
-        tutorialOption = TextRenderer(startCoordinateX: -0.32, startCoordinateY: -0.4, scale: 0.3)
-        creditsOption = TextRenderer(startCoordinateX: -0.32, startCoordinateY: -0.6, scale: 0.3)
+        topTitle = TextRenderer(startCoordinateX: -0.27, startCoordinateY: 0.8, scale: 0.3)
+        endlessOption = TextRenderer(startCoordinateX: -0.38, startCoordinateY: 0.5, scale: 0.3)
+        timeTrialOption = TextRenderer(startCoordinateX: -0.38, startCoordinateY: 0.3, scale: 0.3)
+        stageOption = TextRenderer(startCoordinateX: -0.38, startCoordinateY: 0.1, scale: 0.3)
+        puzzleOption = TextRenderer(startCoordinateX: -0.38, startCoordinateY: -0.1, scale: 0.3)
+        highScoreOption = TextRenderer(startCoordinateX: -0.38, startCoordinateY: -0.3, scale: 0.3)
+        tutorialOption = TextRenderer(startCoordinateX: -0.38, startCoordinateY: -0.5, scale: 0.3)
+        creditsOption = TextRenderer(startCoordinateX: -0.38, startCoordinateY: -0.7, scale: 0.3)
         mainMenuBackground = BackgroundRenderer()
     }
     
@@ -91,11 +89,72 @@ class MainMenuViewController: GLKViewController {
         timeTrialOption.renderLine(text: "Time Trial")
         stageOption.renderLine(text: "Stage")
         puzzleOption.renderLine(text: "Puzzle")
+        highScoreOption.renderLine(text: "High Scores")
         tutorialOption.renderLine(text: "Tutorial")
         creditsOption.renderLine(text: "Credits")
     }
     
-    func backToTitle() {
-        _ = self.navigationController?.popToRootViewController(animated: true)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch: UITouch = touches.first!
+        let touchPoint: CGPoint = touch.location(in: mainMenuView)
+        let glPointX: Float = Float((touchPoint.x/mainMenuView.bounds.width) * 2 - 1) * Float(mainMenuView.bounds.width/mainMenuView.bounds.height)
+        let glPointY: Float = Float((touchPoint.y/mainMenuView.bounds.height) * 2 - 1) * -1
+        
+        if (endlessOption.touchedInside(x: glPointX, y: glPointY)) {
+            endlessSelected()
+        }
+        else if (timeTrialOption.touchedInside(x: glPointX, y: glPointY)) {
+            timeTrialSelected()
+        }
+        else if (stageOption.touchedInside(x: glPointX, y: glPointY)) {
+            stageSelected()
+        }
+        else if (puzzleOption.touchedInside(x: glPointX, y: glPointY)) {
+            puzzleSelected()
+        }
+        else if (highScoreOption.touchedInside(x: glPointX, y: glPointY)) {
+            highScoreSelected()
+        }
+        else if (tutorialOption.touchedInside(x: glPointX, y: glPointY)) {
+            tutorialSelected()
+        }
+        else if (creditsOption.touchedInside(x: glPointX, y: glPointY)) {
+            creditsSelected()
+        }
+        
+        print("\(glPointX), \(glPointY)")
+    }
+    
+    func endlessSelected() {
+        self.navigationController?.pushViewController(BackgroundSelectViewController(), animated: true)
+        print("Endless selected")
+    }
+    
+    func timeTrialSelected() {
+        self.navigationController?.pushViewController(TimeSelectViewController(), animated: true)
+        print("Time trial selected")
+    }
+    
+    func stageSelected() {
+        self.navigationController?.pushViewController(StageSelectViewController(), animated: true)
+        print("Stage selected")
+    }
+    
+    func puzzleSelected() {
+        self.navigationController?.pushViewController(PuzzleSelectViewController(), animated: true)
+        print("Puzzle selected")
+    }
+    
+    func highScoreSelected() {
+        self.navigationController?.pushViewController(HighScoreViewController(), animated: true)
+        print("High score selected")
+    }
+    
+    func tutorialSelected() {
+        self.navigationController?.pushViewController(TutorialViewController(), animated: true)
+    }
+    
+    func creditsSelected() {
+        self.navigationController?.pushViewController(CreditsViewController(), animated: true)
     }
 }

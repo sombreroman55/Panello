@@ -10,36 +10,7 @@ import GLKit
 
 class TopBarRenderer {
     private static let quad: [Float] = [ -1.0, 0.7, 1.0, 0.7, -1.0, 1.0, 1.0, 1.0 ]
-    
-    /* Background designs */
-    
-    /* Game types:
-            1 = Endless
-            2 = Time Trial
-            3 = Stage
-            4 = Puzzle
-    */
-
-    private static let endlessBar: [Float] = [ (226/255), (86/255), (136/255), 1.0,
-                                               (226/255), (86/255), (136/255), 1.0,
-                                               (226/255), (86/255), (136/255), 1.0,
-                                               (226/255), (86/255), (136/255), 1.0, ]
-    
-    private static let timeTrialBar: [Float] = [ (226/255), (152/255), (68/255), 1.0,
-                                                 (226/255), (152/255), (68/255), 1.0,
-                                                 (226/255), (152/255), (68/255), 1.0,
-                                                 (226/255), (152/255), (68/255), 1.0, ]
-    
-    private static let stageBar: [Float] = [ (68/255), (226/255), (70/255), 1.0,
-                                             (68/255), (226/255), (70/255), 1.0,
-                                             (68/255), (226/255), (70/255), 1.0,
-                                             (68/255), (226/255), (70/255), 1.0, ]
-    
-    private static let puzzleBar: [Float] = [ (68/255), (226/255), (192/255), 1.0,
-                                              (68/255), (226/255), (192/255), 1.0,
-                                              (68/255), (226/255), (192/255), 1.0,
-                                              (68/255), (226/255), (192/255), 1.0, ]
-    
+   
     // -------------------------------------------------------------------
     // MARK: - Private instance data
     // -------------------------------------------------------------------
@@ -73,15 +44,15 @@ class TopBarRenderer {
     func getTexture(forGameType type: Int) -> [Float] {
         switch(type) {
         case 1:
-            return TopBarRenderer.endlessBar
+            return BackgroundEngine.menuBackground3
         case 2:
-            return TopBarRenderer.timeTrialBar
+            return BackgroundEngine.menuBackground4
         case 3:
-            return TopBarRenderer.stageBar
+            return BackgroundEngine.menuBackground5
         case 4:
-            return TopBarRenderer.puzzleBar
+            return BackgroundEngine.menuBackground6
         default:
-            return TopBarRenderer.endlessBar
+            return BackgroundEngine.menuBackground3
         }
     }
 }

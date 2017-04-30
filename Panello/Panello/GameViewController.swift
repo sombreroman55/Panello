@@ -17,13 +17,50 @@ class GameViewController: GLKViewController {
     // private var translateY: Float = 0.0
     private let gameLoop: OperationQueue = OperationQueue()
     
-    public var dele: TitleViewControllerDelegate? = nil
     private var time: Double = 0.0
     private var endless: EndlessGame!
     private var border: BorderRenderer!
     private var topBar: TopBarRenderer!
     private var background: BackgroundRenderer!
+    
+    private var endlessGame: Game?
+    private var timeTrialGame: Game?
+    private var stageGame: Game?
+    private var puzzleGame: Game?
     private var score: Int = 0
+    
+    // --------------------------------------------------------------------
+    // MARK: - Constructors
+    // --------------------------------------------------------------------
+    
+    init (game: EndlessGame) {
+        puzzleGame = game
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    init (game: TimeTrialGame) {
+        timeTrialGame = game
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    init (game: StageGame) {
+        stageGame = game
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    init (game: PuzzleGame) {
+        puzzleGame = game
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        fatalError("init(nib:,bundle:) has not been implemented. Use init(game:) instead.")
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented. Use init(game:) instead.")
+    }
     
     // --------------------------------------------------------------------
     // MARK: - GLKViewController overrides
@@ -69,9 +106,7 @@ class GameViewController: GLKViewController {
     /* Display loop */
     // Update is the game loop?
     func update() {
-        gameLoop.addOperation({
-            self.score += 1
-        })
+        self.score += 1
     }
     
     /* Draw the view */
@@ -106,7 +141,9 @@ class GameViewController: GLKViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch: UITouch = touches.first!
         let touchPoint: CGPoint = touch.location(in: gameView)
-        print("\(touchPoint.x), \(touchPoint.y)")
+        let glPointX: Float = Float((touchPoint.x/gameView.bounds.width) * 2 - 1) * Float(gameView.bounds.width/gameView.bounds.height)
+        let glPointY: Float = Float((touchPoint.y/gameView.bounds.height) * 2 - 1) * -1
+        print("\(glPointX), \(glPointY)")
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {

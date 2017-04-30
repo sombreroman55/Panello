@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1E04CB5E1EAAF58F004D4F80 /* blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E04CB5D1EAAF58F004D4F80 /* blocks.png */; };
 		1E04CB601EADC0F0004D4F80 /* EndlessGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E04CB5F1EADC0F0004D4F80 /* EndlessGame.swift */; };
 		1E04CB621EADC0F9004D4F80 /* PuzzleGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E04CB611EADC0F9004D4F80 /* PuzzleGame.swift */; };
 		1E04CB641EADC105004D4F80 /* TimeTrialGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E04CB631EADC105004D4F80 /* TimeTrialGame.swift */; };
@@ -17,7 +16,6 @@
 		1E04CB6C1EADC160004D4F80 /* PuzzleSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E04CB6B1EADC160004D4F80 /* PuzzleSelectViewController.swift */; };
 		1E04CB6E1EADC176004D4F80 /* HighScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E04CB6D1EADC176004D4F80 /* HighScoreViewController.swift */; };
 		1E04CB701EADC343004D4F80 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E04CB6F1EADC343004D4F80 /* MainMenuViewController.swift */; };
-		1E04CB721EB03CBB004D4F80 /* font.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E04CB711EB03CBB004D4F80 /* font.png */; };
 		1E04CB761EB042EB004D4F80 /* SpriteFragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 1E04CB751EB042EB004D4F80 /* SpriteFragment.glsl */; };
 		1E3AB13C1E95B61F00D04C04 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3AB13B1E95B61F00D04C04 /* AppDelegate.swift */; };
 		1E3AB1431E95B61F00D04C04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E3AB1421E95B61F00D04C04 /* Assets.xcassets */; };
@@ -37,7 +35,6 @@
 		1E4AE44C1EA68F1F00691D71 /* BackgroundFragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 1E4AE44B1EA68F1F00691D71 /* BackgroundFragment.glsl */; };
 		1EA911131EB09F5A008FFD7E /* SpriteVertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 1EA911121EB09F5A008FFD7E /* SpriteVertex.glsl */; };
 		1EA911181EB2FE62008FFD7E /* BoardRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA911171EB2FE62008FFD7E /* BoardRenderer.swift */; };
-		1EA9111A1EB30E7A008FFD7E /* borders.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EA911191EB30E7A008FFD7E /* borders.png */; };
 		1EA9111C1EB35FEB008FFD7E /* SpriteEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA9111B1EB35FEB008FFD7E /* SpriteEngine.swift */; };
 		1EA9111E1EB46B52008FFD7E /* TopBarRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA9111D1EB46B52008FFD7E /* TopBarRenderer.swift */; };
 		1EA911201EB47B66008FFD7E /* TextVertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 1EA9111F1EB47B66008FFD7E /* TextVertex.glsl */; };
@@ -49,10 +46,12 @@
 		1EA911311EB5170F008FFD7E /* HighScoreLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA911301EB5170F008FFD7E /* HighScoreLibrary.swift */; };
 		1EA911331EB51721008FFD7E /* PuzzleLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA911321EB51721008FFD7E /* PuzzleLibrary.swift */; };
 		1EA911351EB5172F008FFD7E /* StageLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA911341EB5172F008FFD7E /* StageLibrary.swift */; };
+		1EA911371EB54762008FFD7E /* TimeSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA911361EB54762008FFD7E /* TimeSelectViewController.swift */; };
+		1EA911391EB63022008FFD7E /* PopupRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA911381EB63022008FFD7E /* PopupRenderer.swift */; };
+		1EA9113D1EB64672008FFD7E /* SmallRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA9113C1EB64672008FFD7E /* SmallRenderer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1E04CB5D1EAAF58F004D4F80 /* blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blocks.png; sourceTree = "<group>"; };
 		1E04CB5F1EADC0F0004D4F80 /* EndlessGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndlessGame.swift; sourceTree = "<group>"; };
 		1E04CB611EADC0F9004D4F80 /* PuzzleGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PuzzleGame.swift; sourceTree = "<group>"; };
 		1E04CB631EADC105004D4F80 /* TimeTrialGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTrialGame.swift; sourceTree = "<group>"; };
@@ -62,7 +61,6 @@
 		1E04CB6B1EADC160004D4F80 /* PuzzleSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PuzzleSelectViewController.swift; sourceTree = "<group>"; };
 		1E04CB6D1EADC176004D4F80 /* HighScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScoreViewController.swift; sourceTree = "<group>"; };
 		1E04CB6F1EADC343004D4F80 /* MainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
-		1E04CB711EB03CBB004D4F80 /* font.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = font.png; sourceTree = "<group>"; };
 		1E04CB751EB042EB004D4F80 /* SpriteFragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SpriteFragment.glsl; sourceTree = "<group>"; };
 		1E3AB1381E95B61F00D04C04 /* Panello.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Panello.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E3AB13B1E95B61F00D04C04 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -84,7 +82,6 @@
 		1E4AE44B1EA68F1F00691D71 /* BackgroundFragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BackgroundFragment.glsl; sourceTree = "<group>"; };
 		1EA911121EB09F5A008FFD7E /* SpriteVertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SpriteVertex.glsl; sourceTree = "<group>"; };
 		1EA911171EB2FE62008FFD7E /* BoardRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardRenderer.swift; sourceTree = "<group>"; };
-		1EA911191EB30E7A008FFD7E /* borders.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = borders.png; sourceTree = "<group>"; };
 		1EA9111B1EB35FEB008FFD7E /* SpriteEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteEngine.swift; sourceTree = "<group>"; };
 		1EA9111D1EB46B52008FFD7E /* TopBarRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopBarRenderer.swift; sourceTree = "<group>"; };
 		1EA9111F1EB47B66008FFD7E /* TextVertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TextVertex.glsl; sourceTree = "<group>"; };
@@ -96,6 +93,9 @@
 		1EA911301EB5170F008FFD7E /* HighScoreLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScoreLibrary.swift; sourceTree = "<group>"; };
 		1EA911321EB51721008FFD7E /* PuzzleLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PuzzleLibrary.swift; sourceTree = "<group>"; };
 		1EA911341EB5172F008FFD7E /* StageLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageLibrary.swift; sourceTree = "<group>"; };
+		1EA911361EB54762008FFD7E /* TimeSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSelectViewController.swift; sourceTree = "<group>"; };
+		1EA911381EB63022008FFD7E /* PopupRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupRenderer.swift; sourceTree = "<group>"; };
+		1EA9113C1EB64672008FFD7E /* SmallRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallRenderer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,11 +163,13 @@
 			children = (
 				1E42D5571EA8CD73005C08F0 /* AnimationRenderer.swift */,
 				1E4AE4471EA6398500691D71 /* BackgroundRenderer.swift */,
-				1EA9111D1EB46B52008FFD7E /* TopBarRenderer.swift */,
-				1E42D5531EA82982005C08F0 /* TextRenderer.swift */,
-				1E42D5591EA8CD83005C08F0 /* BorderRenderer.swift */,
 				1EA911171EB2FE62008FFD7E /* BoardRenderer.swift */,
+				1E42D5591EA8CD83005C08F0 /* BorderRenderer.swift */,
 				1EA9112A1EB4EACA008FFD7E /* PanelRenderer.swift */,
+				1EA911381EB63022008FFD7E /* PopupRenderer.swift */,
+				1EA9113C1EB64672008FFD7E /* SmallRenderer.swift */,
+				1E42D5531EA82982005C08F0 /* TextRenderer.swift */,
+				1EA9111D1EB46B52008FFD7E /* TopBarRenderer.swift */,
 			);
 			name = Renderers;
 			sourceTree = "<group>";
@@ -178,6 +180,7 @@
 				1E3AB1581E99F8E700D04C04 /* TitleViewController.swift */,
 				1E04CB6F1EADC343004D4F80 /* MainMenuViewController.swift */,
 				1E04CB671EADC147004D4F80 /* BackgroundSelectViewController.swift */,
+				1EA911361EB54762008FFD7E /* TimeSelectViewController.swift */,
 				1E04CB691EADC152004D4F80 /* StageSelectViewController.swift */,
 				1E04CB6B1EADC160004D4F80 /* PuzzleSelectViewController.swift */,
 				1E42D5551EA8CCAD005C08F0 /* GameViewController.swift */,
@@ -205,9 +208,6 @@
 			isa = PBXGroup;
 			children = (
 				1EA9112D1EB5037B008FFD7E /* assets.png */,
-				1E04CB5D1EAAF58F004D4F80 /* blocks.png */,
-				1EA911191EB30E7A008FFD7E /* borders.png */,
-				1E04CB711EB03CBB004D4F80 /* font.png */,
 			);
 			name = ImageAssets;
 			sourceTree = "<group>";
@@ -301,13 +301,10 @@
 				1EA9112E1EB5037B008FFD7E /* assets.png in Resources */,
 				1E4AE44A1EA68F0A00691D71 /* BackgroundVertex.glsl in Resources */,
 				1E04CB761EB042EB004D4F80 /* SpriteFragment.glsl in Resources */,
-				1EA9111A1EB30E7A008FFD7E /* borders.png in Resources */,
 				1E4AE4421EA3544E00691D71 /* Default-568h@2x.png in Resources */,
-				1E04CB721EB03CBB004D4F80 /* font.png in Resources */,
 				1EA911131EB09F5A008FFD7E /* SpriteVertex.glsl in Resources */,
 				1EA911201EB47B66008FFD7E /* TextVertex.glsl in Resources */,
 				1E3AB1431E95B61F00D04C04 /* Assets.xcassets in Resources */,
-				1E04CB5E1EAAF58F004D4F80 /* blocks.png in Resources */,
 				1EA911221EB47B74008FFD7E /* TextFragment.glsl in Resources */,
 				1E4AE44C1EA68F1F00691D71 /* BackgroundFragment.glsl in Resources */,
 			);
@@ -334,6 +331,7 @@
 				1E3AB1591E99F8E700D04C04 /* TitleViewController.swift in Sources */,
 				1E42D5541EA82982005C08F0 /* TextRenderer.swift in Sources */,
 				1EA911331EB51721008FFD7E /* PuzzleLibrary.swift in Sources */,
+				1EA911371EB54762008FFD7E /* TimeSelectViewController.swift in Sources */,
 				1E04CB661EADC117004D4F80 /* StageGame.swift in Sources */,
 				1E04CB6E1EADC176004D4F80 /* HighScoreViewController.swift in Sources */,
 				1E04CB6C1EADC160004D4F80 /* PuzzleSelectViewController.swift in Sources */,
@@ -344,10 +342,12 @@
 				1EA911181EB2FE62008FFD7E /* BoardRenderer.swift in Sources */,
 				1E04CB621EADC0F9004D4F80 /* PuzzleGame.swift in Sources */,
 				1E3AB1571E99F7C400D04C04 /* Panel.swift in Sources */,
+				1EA911391EB63022008FFD7E /* PopupRenderer.swift in Sources */,
 				1E3AB13C1E95B61F00D04C04 /* AppDelegate.swift in Sources */,
 				1EA911261EB4E0DC008FFD7E /* TextEngine.swift in Sources */,
 				1E04CB701EADC343004D4F80 /* MainMenuViewController.swift in Sources */,
 				1E3AB1531E96694600D04C04 /* Game.swift in Sources */,
+				1EA9113D1EB64672008FFD7E /* SmallRenderer.swift in Sources */,
 				1EA911311EB5170F008FFD7E /* HighScoreLibrary.swift in Sources */,
 				1E4AE4441EA3554100691D71 /* CreditsViewController.swift in Sources */,
 			);

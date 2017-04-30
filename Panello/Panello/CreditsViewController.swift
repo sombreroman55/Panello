@@ -90,4 +90,17 @@ class CreditsViewController: GLKViewController {
         line6.renderLine(text: "Final Project F")
         line7.renderLine(text: "CS 4530 Spring 2017")
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch: UITouch = touches.first!
+        let touchPoint: CGPoint = touch.location(in: creditsView)
+        let glPointX: Float = Float((touchPoint.x/creditsView.bounds.width) * 2 - 1) * Float(creditsView.bounds.width/creditsView.bounds.height)
+        let glPointY: Float = Float((touchPoint.y/creditsView.bounds.height) * 2 - 1) * -1
+        
+        if (back.touchedInside(x: glPointX, y: glPointY)) {
+            _ = self.navigationController?.popViewController(animated: true)
+        }
+        
+        print("\(glPointX), \(glPointY)")
+    }
 }
