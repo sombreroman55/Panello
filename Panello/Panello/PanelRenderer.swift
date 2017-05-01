@@ -6,4 +6,8 @@
 //  Copyright © 2017 Andrew Roberts. All rights reserved.
 //
 
-import Foundation
+import GLKit
+
+class PanelRenderer {
+    
+}

@@ -120,41 +120,34 @@ class MainMenuViewController: GLKViewController {
         }
         else if (creditsOption.touchedInside(x: glPointX, y: glPointY)) {
             creditsSelected()
-        }
-        
-        print("\(glPointX), \(glPointY)")
+        }        
     }
     
     func endlessSelected() {
-        self.navigationController?.pushViewController(BackgroundSelectViewController(), animated: true)
-        print("Endless selected")
+        self.navigationController?.pushViewController(AppDelegate.endless, animated: true)
     }
     
     func timeTrialSelected() {
-        self.navigationController?.pushViewController(TimeSelectViewController(), animated: true)
-        print("Time trial selected")
+        self.navigationController?.pushViewController(AppDelegate.time, animated: true)
     }
     
     func stageSelected() {
-        self.navigationController?.pushViewController(StageSelectViewController(), animated: true)
-        print("Stage selected")
+        self.navigationController?.pushViewController(AppDelegate.stage, animated: true)
     }
     
     func puzzleSelected() {
-        self.navigationController?.pushViewController(PuzzleSelectViewController(), animated: true)
-        print("Puzzle selected")
+        self.navigationController?.pushViewController(AppDelegate.puzzle, animated: true)
     }
     
     func highScoreSelected() {
-        self.navigationController?.pushViewController(HighScoreViewController(), animated: true)
-        print("High score selected")
+        self.navigationController?.pushViewController(AppDelegate.high, animated: true)
     }
     
     func tutorialSelected() {
-        self.navigationController?.pushViewController(TutorialViewController(), animated: true)
+        self.navigationController?.pushViewController(AppDelegate.tutorial, animated: true)
     }
     
     func creditsSelected() {
-        self.navigationController?.pushViewController(CreditsViewController(), animated: true)
+        self.navigationController?.pushViewController(AppDelegate.credits, animated: true)
     }
 }

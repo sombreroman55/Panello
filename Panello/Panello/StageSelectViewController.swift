@@ -161,42 +161,76 @@ class StageSelectViewController: GLKViewController {
         }
         
         if (stage1Block.touchedInsideSmall(x: glPointX, y: glPointY)) {
-            print("stage 1 Selected")
+            stageSelected(st: 1)
         }
         if (stage2Block.touchedInsideSmall(x: glPointX, y: glPointY)) {
-            print("stage 2 Selected")
+            stageSelected(st: 2)
         }
         if (stage3Block.touchedInsideSmall(x: glPointX, y: glPointY)) {
-            print("stage 3 Selected")
+            stageSelected(st: 3)
         }
         if (stage4Block.touchedInsideSmall(x: glPointX, y: glPointY)) {
-            print("stage 4 Selected")
+            stageSelected(st: 4)
         }
         if (stage5Block.touchedInsideSmall(x: glPointX, y: glPointY)) {
-            print("stage 5 Selected")
+            stageSelected(st: 5)
         }
         if (stage6Block.touchedInsideSmall(x: glPointX, y: glPointY)) {
-            print("stage 6 Selected")
+            stageSelected(st: 6)
         }
         if (stage7Block.touchedInsideSmall(x: glPointX, y: glPointY)) {
-            print("stage 7 Selected")
+            stageSelected(st: 7)
         }
         if (stage8Block.touchedInsideSmall(x: glPointX, y: glPointY)) {
-            print("stage 8 Selected")
+            stageSelected(st: 8)
         }
         if (stage9Block.touchedInsideSmall(x: glPointX, y: glPointY)) {
-            print("stage 9 Selected")
+            stageSelected(st: 9)
         }
         if (stage10Block.touchedInsideSmall(x: glPointX, y: glPointY)) {
-            print("stage 10 Selected")
+            stageSelected(st: 10)
         }
         if (stage11Block.touchedInsideSmall(x: glPointX, y: glPointY)) {
-            print("stage 11 Selected")
+            stageSelected(st: 11)
         }
         if (stage12Block.touchedInsideSmall(x: glPointX, y: glPointY)) {
-            print("stage 12 Selected")
+            stageSelected(st: 12)
         }
         
         print("\(glPointX), \(glPointY)")
+    }
+    
+    func stageSelected(st: Int) {
+        let stage = GameViewController()
+        stage.tb = 3
+        switch (st) {
+        case 1:
+            stage.bg = 1
+        case 2:
+            stage.bg = 1
+        case 3:
+            stage.bg = 2
+        case 4:
+            stage.bg = 2
+        case 5:
+            stage.bg = 3
+        case 6:
+            stage.bg = 3
+        case 7:
+            stage.bg = 4
+        case 8:
+            stage.bg = 4
+        case 9:
+            stage.bg = 5
+        case 10:
+            stage.bg = 5
+        case 11:
+            stage.bg = 6
+        case 12:
+            stage.bg = 6
+        default:
+            stage.bg = 1
+        }
+        self.navigationController?.pushViewController(stage, animated: true)
     }
 }

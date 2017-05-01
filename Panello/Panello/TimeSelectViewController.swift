@@ -143,6 +143,6 @@ class TimeSelectViewController: GLKViewController {
     }
     
     func timeSelected(time: Int) {
-        self.navigationController?.pushViewController(BackgroundSelectViewController(), animated: true)
+        self.navigationController?.pushViewController(AppDelegate.endless, animated: true)
     }
 }

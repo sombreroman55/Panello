@@ -127,22 +127,28 @@ class BackgroundSelectViewController: GLKViewController {
         }
         
         if (back1Block.touchedInsideBig(x: glPointX, y: glPointY)) {
-            print("Background 1 Selected")
+            backgroundSelected(bg: 1)
         }
         if (back2Block.touchedInsideBig(x: glPointX, y: glPointY)) {
-            print("Background 2 Selected")
+            backgroundSelected(bg: 2)
         }
         if (back3Block.touchedInsideBig(x: glPointX, y: glPointY)) {
-            print("Background 3 Selected")
+            backgroundSelected(bg: 3)
         }
         if (back4Block.touchedInsideBig(x: glPointX, y: glPointY)) {
-            print("Background 4 Selected")
+            backgroundSelected(bg: 4)
         }
         if (back5Block.touchedInsideBig(x: glPointX, y: glPointY)) {
-            print("Background 5 Selected")
+            backgroundSelected(bg: 5)
         }
         if (back6Block.touchedInsideBig(x: glPointX, y: glPointY)) {
-            print("Background 6 Selected")
+            backgroundSelected(bg: 6)
         }
+    }
+    
+    func backgroundSelected(bg: Int) {
+        let endl = GameViewController()
+        endl.bg = bg
+        self.navigationController?.pushViewController(endl, animated: true)
     }
 }

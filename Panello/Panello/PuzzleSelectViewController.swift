@@ -161,42 +161,88 @@ class PuzzleSelectViewController: GLKViewController {
         }
         
         if (puzzle1Block.touchedInsideSmall(x: glPointX, y: glPointY)) {
+            puzzleSelected(puz: 1)
             print("Puzzle 1 Selected")
         }
         if (puzzle2Block.touchedInsideSmall(x: glPointX, y: glPointY)) {
+            puzzleSelected(puz: 2)
             print("Puzzle 2 Selected")
         }
         if (puzzle3Block.touchedInsideSmall(x: glPointX, y: glPointY)) {
+            puzzleSelected(puz: 3)
             print("Puzzle 3 Selected")
         }
         if (puzzle4Block.touchedInsideSmall(x: glPointX, y: glPointY)) {
+            puzzleSelected(puz: 4)
             print("Puzzle 4 Selected")
         }
         if (puzzle5Block.touchedInsideSmall(x: glPointX, y: glPointY)) {
+            puzzleSelected(puz: 5)
             print("Puzzle 5 Selected")
         }
         if (puzzle6Block.touchedInsideSmall(x: glPointX, y: glPointY)) {
+            puzzleSelected(puz: 6)
             print("Puzzle 6 Selected")
         }
         if (puzzle7Block.touchedInsideSmall(x: glPointX, y: glPointY)) {
+            puzzleSelected(puz: 7)
             print("Puzzle 7 Selected")
         }
         if (puzzle8Block.touchedInsideSmall(x: glPointX, y: glPointY)) {
+            puzzleSelected(puz: 8)
             print("Puzzle 8 Selected")
         }
         if (puzzle9Block.touchedInsideSmall(x: glPointX, y: glPointY)) {
+            puzzleSelected(puz: 9)
             print("Puzzle 9 Selected")
         }
         if (puzzle10Block.touchedInsideSmall(x: glPointX, y: glPointY)) {
+            puzzleSelected(puz: 10)
             print("Puzzle 10 Selected")
         }
         if (puzzle11Block.touchedInsideSmall(x: glPointX, y: glPointY)) {
+            puzzleSelected(puz: 11)
             print("Puzzle 11 Selected")
         }
         if (puzzle12Block.touchedInsideSmall(x: glPointX, y: glPointY)) {
+            puzzleSelected(puz: 12)
             print("Puzzle 12 Selected")
         }
         
         print("\(glPointX), \(glPointY)")
+    }
+    
+    func puzzleSelected(puz: Int) {
+        let puzzle = GameViewController()
+        puzzle.tb = 4
+        switch (puz) {
+        case 1:
+            puzzle.bg = 1
+        case 2:
+            puzzle.bg = 1
+        case 3:
+            puzzle.bg = 2
+        case 4:
+            puzzle.bg = 2
+        case 5:
+            puzzle.bg = 3
+        case 6:
+            puzzle.bg = 3
+        case 7:
+            puzzle.bg = 4
+        case 8:
+            puzzle.bg = 4
+        case 9:
+            puzzle.bg = 5
+        case 10:
+            puzzle.bg = 5
+        case 11:
+            puzzle.bg = 6
+        case 12:
+            puzzle.bg = 6
+        default:
+            puzzle.bg = 1
+        }
+        self.navigationController?.pushViewController(puzzle, animated: true)
     }
 }

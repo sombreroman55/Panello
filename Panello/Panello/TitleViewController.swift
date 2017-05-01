@@ -83,7 +83,6 @@ class TitleViewController: GLKViewController {
     }
     
     func moveToMainMenu() {
-        let mmvc: MainMenuViewController = MainMenuViewController()
-        self.navigationController?.pushViewController(mmvc, animated: true)
+        self.navigationController?.pushViewController(AppDelegate.main, animated: true)
     }
 }

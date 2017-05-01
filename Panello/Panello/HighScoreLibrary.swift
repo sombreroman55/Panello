@@ -20,4 +20,25 @@ class HighScoreLibrary {
     // -------------------------------------------------------------------
     private init() {
     }
+    
+    private var _scores: [Int] = []
+    
+    // -------------------------------------------------------------------
+    // MARK: - Class functions
+    // -------------------------------------------------------------------
+    public func addNewScore(score: Int) {
+        _scores.append(score)
+        _scores.sort { $0 > $1 }
+        while (_scores.count > 10) {
+            _ = _scores.removeLast()
+        }
+    }
+    
+    public func getScore(atIndex index: Int) -> Int {
+        return _scores[index]
+    }
+    
+    // -------------------------------------------------------------------
+    // MARK: - Serialization
+    // -------------------------------------------------------------------
 }

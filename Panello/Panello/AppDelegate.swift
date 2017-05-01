@@ -12,6 +12,16 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    public static let title: TitleViewController = TitleViewController()
+    public static let main: MainMenuViewController = MainMenuViewController()
+    public static let endless: BackgroundSelectViewController = BackgroundSelectViewController()
+    public static let time: TimeSelectViewController = TimeSelectViewController()
+    public static let stage: StageSelectViewController = StageSelectViewController()
+    public static let puzzle: PuzzleSelectViewController = PuzzleSelectViewController()
+    public static let high: HighScoreViewController = HighScoreViewController()
+    public static let tutorial: TutorialViewController = TutorialViewController()
+    public static let credits: CreditsViewController = CreditsViewController()
+
     public static let context: EAGLContext = EAGLContext(api: .openGLES2)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {

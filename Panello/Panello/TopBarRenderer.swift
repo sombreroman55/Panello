@@ -43,13 +43,13 @@ class TopBarRenderer {
     
     func getTexture(forGameType type: Int) -> [Float] {
         switch(type) {
-        case 1:
+        case 1: // Endless
             return BackgroundEngine.menuBackground3
-        case 2:
+        case 2: // Time Trial
             return BackgroundEngine.menuBackground4
-        case 3:
+        case 3: // Stage
             return BackgroundEngine.menuBackground5
-        case 4:
+        case 4: // Puzzle
             return BackgroundEngine.menuBackground6
         default:
             return BackgroundEngine.menuBackground3

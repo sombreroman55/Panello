@@ -33,10 +33,8 @@ class Panel {
         case SWAP_LEFT
     }
 
-    // Panel spritesheet
-    private static let image: UIImage = UIImage(named: "blocks.png")!
     // Vertex coordinates
-    private static let quad: [Float] = [ -0.07, -0.07, -0.07, 0.07, 0.07, -0.07, 0.07, 0.07 ]
+    private static let quad: [Float] = [ -0.088, -0.068, -0.088, 0.068, 0.088, -0.068, 0.088, 0.068 ]
     
     // -------------------------------------------------------------------
     // MARK: - Static functions
@@ -73,23 +71,17 @@ class Panel {
     class func getNormalTexture(forColor color: PanelColor) -> [Float] {
         switch (color) {
         case .PURPLE:
-            return [ (3/116), (19/154), (3/116), (3/154),
-                     (19/116), (19/154), (19/116), (3/154),]
+            return SpriteEngine.purpleBlockNormal
         case .BLUE:
-            return [ (22/116), (19/154), (22/116), (3/154),
-                     (38/116), (19/154), (38/116), (3/154),]
+            return SpriteEngine.blueBlockNormal
         case .RED:
-            return [ (41/116), (19/154), (41/116), (3/154),
-                     (57/116), (19/154), (57/116), (3/154),]
+            return SpriteEngine.redBlockNormal
         case .CYAN:
-            return [ (60/116), (19/154), (60/116), (3/154),
-                     (76/116), (19/154), (76/116), (3/154),]
+            return SpriteEngine.cyanBlockNormal
         case .YELLOW:
-            return [ (79/116), (19/154), (79/116), (3/154),
-                     (95/116), (19/154), (95/116), (3/154),]
+            return SpriteEngine.yellowBlockNormal
         case .GREEN:
-            return [ (98/116), (19/154), (98/116), (3/154),
-                     (114/116), (19/154), (114/116), (3/154),]
+            return SpriteEngine.greenBlockNormal
         }
     }
     
@@ -100,14 +92,6 @@ class Panel {
     public var positionY: Float = 0.0
     public var color: PanelColor // The color of the block
     public var state: PanelState // The state of the block
-    public var falling: Bool // Is this block falling? Cannot match during falling?
-    public var chain: Bool // Can this block be chained
-    public var floatTimer: Int = 0 // Blocks float for a while when swapped
-    public var swapTimer: Int = 0 // Swap animation info
-    public var explosionOrder: Int = 0 // TODO: -if time, do this for sound effects
-    public var explosionMilliseconds: Int = 0 // number of milliseconds block needs to
-    public var explosionAnimationMilliseconds: Int = 0 // number of milliseconds need for animation to complete
-    public var explosionTimer: Int = 0 // increased each millisecond while block is exploding
     
     private var texture: GLKTextureInfo? // The texture of the block
     private var textureCoordinates: [Float] // The coordinates of the texture in the sprite sheet
@@ -118,16 +102,8 @@ class Panel {
     init() {
         color = Panel.getRandomColor()
         state = .NORMAL
-        falling = false
-        chain = false
-        floatTimer = 0
-        swapTimer = 0
-        explosionOrder = 0
-        explosionMilliseconds = 0
-        explosionAnimationMilliseconds = 0
-        explosionTimer = 0
         
-        texture = try? GLKTextureLoader.texture(with: Panel.image.cgImage!, options: nil)
+        texture = try? GLKTextureLoader.texture(with: SpriteEngine.image.cgImage!, options: nil)
         textureCoordinates = Panel.getNormalTexture(forColor: color)
         SpriteEngine.setup()
     }
@@ -151,5 +127,15 @@ class Panel {
             glBindTexture(GLenum(GL_TEXTURE_2D), tex.name)
         }
         glDrawArrays(GLenum(GL_TRIANGLE_STRIP), 0, 4)
+    }
+    
+    public func touchedInside(x: Float, y: Float) -> Bool {
+        if (x >= (positionX - 0.088) &&
+            x <= (positionX + 0.088) &&
+            y >= (positionY - 0.068) &&
+            y <= (positionY + 0.068)) {
+            return true
+        }
+        return false
     }
 }

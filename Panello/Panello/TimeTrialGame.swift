@@ -8,7 +8,7 @@
 
 import GLKit
 
-class TimeTrialGame: Game, GameProtocol {
+class TimeTrialGame {
     
     // --------------------------------------------------------------------
     // MARK: - Private instance data
@@ -28,30 +28,9 @@ class TimeTrialGame: Game, GameProtocol {
     // MARK: - Constructors
     // --------------------------------------------------------------------
     
-    override init() {
+    init() {
         _board = Board()
         _highScore = 0
-        super.init()
-    }
-    
-    // --------------------------------------------------------------------
-    // MARK: - GameProtocol methods
-    // --------------------------------------------------------------------
-    
-    func update() {
-        
-    }
-    
-    func reset() {
-        
-    }
-    
-    func save() {
-        
-    }
-    
-    func load() {
-        
     }
     
     // --------------------------------------------------------------------

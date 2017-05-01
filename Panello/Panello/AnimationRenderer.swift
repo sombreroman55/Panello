@@ -10,6 +10,8 @@ import GLKit
 
 final class AnimationRenderer {
     
+    
+    
     init() {
         
     }
