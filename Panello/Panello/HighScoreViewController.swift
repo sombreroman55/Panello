@@ -123,7 +123,17 @@ class HighScoreViewController: GLKViewController {
         rank8.renderLine(text: "8")
         rank9.renderLine(text: "9")
         rank10.renderLine(text: "10")
-
+        
+        rank1Score.renderNumber(number: HighScoreLibrary.Instance.getScore(atIndex: 0))
+        rank2Score.renderNumber(number: HighScoreLibrary.Instance.getScore(atIndex: 1))
+        rank3Score.renderNumber(number: HighScoreLibrary.Instance.getScore(atIndex: 2))
+        rank4Score.renderNumber(number: HighScoreLibrary.Instance.getScore(atIndex: 3))
+        rank5Score.renderNumber(number: HighScoreLibrary.Instance.getScore(atIndex: 4))
+        rank6Score.renderNumber(number: HighScoreLibrary.Instance.getScore(atIndex: 5))
+        rank7Score.renderNumber(number: HighScoreLibrary.Instance.getScore(atIndex: 6))
+        rank8Score.renderNumber(number: HighScoreLibrary.Instance.getScore(atIndex: 7))
+        rank9Score.renderNumber(number: HighScoreLibrary.Instance.getScore(atIndex: 8))
+        rank10Score.renderNumber(number: HighScoreLibrary.Instance.getScore(atIndex: 9))
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

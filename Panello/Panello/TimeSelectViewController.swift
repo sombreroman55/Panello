@@ -123,26 +123,27 @@ class TimeSelectViewController: GLKViewController {
         }
         
         if (time1Block.touchedInsideBig(x: glPointX, y: glPointY)) {
-            timeSelected(time: 1)
+            timeSelected(time: 60)
         }
         if (time2Block.touchedInsideBig(x: glPointX, y: glPointY)) {
-            timeSelected(time: 2)
+            timeSelected(time: 120)
         }
         if (time3Block.touchedInsideBig(x: glPointX, y: glPointY)) {
-            timeSelected(time: 3)
+            timeSelected(time: 180)
         }
         if (time4Block.touchedInsideBig(x: glPointX, y: glPointY)) {
-            timeSelected(time: 4)
+            timeSelected(time: 240)
         }
         if (time5Block.touchedInsideBig(x: glPointX, y: glPointY)) {
-            timeSelected(time: 5)
+            timeSelected(time: 300)
         }
         if (time6Block.touchedInsideBig(x: glPointX, y: glPointY)) {
-            timeSelected(time: 10)
+            timeSelected(time: 600)
         }
     }
     
     func timeSelected(time: Int) {
+        AppDelegate.endless.time = time
         self.navigationController?.pushViewController(AppDelegate.endless, animated: true)
     }
 }

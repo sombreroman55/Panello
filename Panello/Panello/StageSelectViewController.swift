@@ -201,36 +201,38 @@ class StageSelectViewController: GLKViewController {
     }
     
     func stageSelected(st: Int) {
-        let stage = GameViewController()
-        stage.tb = 3
+        let sgvc: GameViewController = GameViewController()
+        sgvc.gt = 3
         switch (st) {
         case 1:
-            stage.bg = 1
+            sgvc.bg = 1
         case 2:
-            stage.bg = 1
+            sgvc.bg = 1
         case 3:
-            stage.bg = 2
+            sgvc.bg = 2
         case 4:
-            stage.bg = 2
+            sgvc.bg = 2
         case 5:
-            stage.bg = 3
+            sgvc.bg = 3
         case 6:
-            stage.bg = 3
+            sgvc.bg = 3
         case 7:
-            stage.bg = 4
+            sgvc.bg = 4
         case 8:
-            stage.bg = 4
+            sgvc.bg = 4
         case 9:
-            stage.bg = 5
+            sgvc.bg = 5
         case 10:
-            stage.bg = 5
+            sgvc.bg = 5
         case 11:
-            stage.bg = 6
+            sgvc.bg = 6
         case 12:
-            stage.bg = 6
+            sgvc.bg = 6
         default:
-            stage.bg = 1
+            sgvc.bg = 1
         }
-        self.navigationController?.pushViewController(stage, animated: true)
+        let game: StageGame = StageGame(withStage: st)
+        sgvc.stage = game
+        self.navigationController?.pushViewController(sgvc, animated: true)
     }
 }

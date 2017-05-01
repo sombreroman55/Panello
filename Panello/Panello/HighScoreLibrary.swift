@@ -19,9 +19,13 @@ class HighScoreLibrary {
     // MARK: - Constructors
     // -------------------------------------------------------------------
     private init() {
+        _scores.sort { $0 > $1 }
+        while (_scores.count > 10) {
+            _ = _scores.removeLast()
+        }
     }
     
-    private var _scores: [Int] = []
+    private var _scores: [Int] = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
     
     // -------------------------------------------------------------------
     // MARK: - Class functions
@@ -36,6 +40,10 @@ class HighScoreLibrary {
     
     public func getScore(atIndex index: Int) -> Int {
         return _scores[index]
+    }
+    
+    public func getHighScore() -> Int {
+        return _scores.first!
     }
     
     // -------------------------------------------------------------------

@@ -15,14 +15,18 @@ class EndlessGame {
     // -------------------------------------------------------------------
     
     private var _board: Board
+    private var _score: Int
     private var _highScore: Int
+    private var _state: GameState
     
     // -------------------------------------------------------------------
     // MARK: - Public instance data
     // -------------------------------------------------------------------
     
     public var board: Board { return _board }
+    public var score: Int { return _score }
     public var highScore: Int { return _highScore }
+    public var state: GameState { return _state }
     
     // --------------------------------------------------------------------
     // MARK: - Constructors
@@ -30,11 +34,25 @@ class EndlessGame {
     
     init() {
         _board = Board()
-        _highScore = 0
+        _board.fillRandom()
+        _state = .RUN
+        _score = 0
+        _highScore = HighScoreLibrary.Instance.getHighScore()
     }
 
     // --------------------------------------------------------------------
     // MARK: - EndlessGame methods
     // --------------------------------------------------------------------
 
+    func update() {
+        if (_score > _highScore) {
+            _highScore = _score
+        }
+        _score = _board.score
+        _board.update()
+    }
+    
+    func pauseGame() {
+        _state = .PAUSE
+    }
 }

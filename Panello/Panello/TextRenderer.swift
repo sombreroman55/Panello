@@ -181,7 +181,7 @@ final class TextRenderer {
     public func renderNumber(number: Int) {
         var copy: Int = number
         var digit: Int = 0
-        while (copy > 0) {
+        while (copy >= 0) {
             digit = copy % 10
             if (digit == 1) {
                 _textVertexCoordinates = [ -0.1, -0.1, -0.1, 0.1, 0.0, -0.1, 0.0, 0.1 ]
@@ -203,6 +203,9 @@ final class TextRenderer {
             glDrawArrays(GLenum(GL_TRIANGLE_STRIP), 0, 4)
             currentPositionX -= ((_textVertexCoordinates[4] - _textVertexCoordinates[0]) * scale)
             copy /= 10
+            if (copy == 0) {
+                copy -= 1
+            }
         }
         currentPositionX = startPositionX
     }

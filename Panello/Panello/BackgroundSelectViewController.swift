@@ -42,6 +42,8 @@ class BackgroundSelectViewController: GLKViewController {
     // Background
     private var bgSelectBackground: BackgroundRenderer!
     
+    var time: Int = 0
+    
     // --------------------------------------------------------------------
     // MARK: - GLKViewController overrides
     // --------------------------------------------------------------------
@@ -148,7 +150,19 @@ class BackgroundSelectViewController: GLKViewController {
     
     func backgroundSelected(bg: Int) {
         let endl = GameViewController()
-        endl.bg = bg
-        self.navigationController?.pushViewController(endl, animated: true)
+        if (time == 0) {
+            endl.bg = bg
+            endl.gt = 1
+            let game: EndlessGame = EndlessGame()
+            endl.endless = game
+            self.navigationController?.pushViewController(endl, animated: true)
+        }
+        else {
+            endl.bg = bg
+            endl.gt = 2
+            let game: TimeTrialGame = TimeTrialGame(withTime: time)
+            endl.timeTrial = game
+            self.navigationController?.pushViewController(endl, animated: true)
+        }
     }
 }

@@ -43,7 +43,7 @@ class MainMenuViewController: GLKViewController {
         glEnable(GLenum(GL_BLEND))
         glBlendFunc(GLenum(GL_SRC_ALPHA), GLenum(GL_ONE_MINUS_SRC_ALPHA))
         
-        topTitle = TextRenderer(startCoordinateX: -0.27, startCoordinateY: 0.8, scale: 0.3)
+        topTitle = TextRenderer(startCoordinateX: -0.23, startCoordinateY: 0.8, scale: 0.3)
         endlessOption = TextRenderer(startCoordinateX: -0.38, startCoordinateY: 0.5, scale: 0.3)
         timeTrialOption = TextRenderer(startCoordinateX: -0.38, startCoordinateY: 0.3, scale: 0.3)
         stageOption = TextRenderer(startCoordinateX: -0.38, startCoordinateY: 0.1, scale: 0.3)

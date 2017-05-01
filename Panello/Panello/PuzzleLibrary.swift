@@ -56,18 +56,18 @@ class PuzzleLibrary {
     // -------------------------------------------------------------------
     
     public func puzzleCleared(atIndex index: Int) {
-        _clearFlags[index] = true
+        _clearFlags[index-1] = true
     }
     
     public func getPuzzle(atIndex index: Int) -> String {
-        return _puzzles[index]
+        return _puzzles[index-1]
     }
     
     public func getMoves(atIndex index: Int) -> Int {
-        return _movesForPuzzle[index]
+        return _movesForPuzzle[index-1]
     }
     
-    public func getStageCleared(atIndex index: Int) -> Bool {
-        return _clearFlags[index]
+    public func getPuzzleCleared(atIndex index: Int) -> Bool {
+        return _clearFlags[index-1]
     }
 }

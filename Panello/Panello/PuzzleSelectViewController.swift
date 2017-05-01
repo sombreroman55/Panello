@@ -132,18 +132,78 @@ class PuzzleSelectViewController: GLKViewController {
         puzzle11.renderLine(text: "11")
         puzzle12.renderLine(text: "12")
         
-        puzzle1Block.renderUnclear()
-        puzzle2Block.renderUnclear()
-        puzzle3Block.renderUnclear()
-        puzzle4Block.renderUnclear()
-        puzzle5Block.renderUnclear()
-        puzzle6Block.renderUnclear()
-        puzzle7Block.renderUnclear()
-        puzzle8Block.renderUnclear()
-        puzzle9Block.renderUnclear()
-        puzzle10Block.renderUnclear()
-        puzzle11Block.renderUnclear()
-        puzzle12Block.renderUnclear()
+        if (PuzzleLibrary.Instance.getPuzzleCleared(atIndex: 1)) {
+            puzzle1Block.renderClear()
+        }
+        else {
+            puzzle1Block.renderUnclear()
+        }
+        if (PuzzleLibrary.Instance.getPuzzleCleared(atIndex: 2)) {
+            puzzle2Block.renderClear()
+        }
+        else {
+            puzzle2Block.renderUnclear()
+        }
+        if (PuzzleLibrary.Instance.getPuzzleCleared(atIndex: 3)) {
+            puzzle3Block.renderClear()
+        }
+        else {
+            puzzle3Block.renderUnclear()
+        }
+        if (PuzzleLibrary.Instance.getPuzzleCleared(atIndex: 4)) {
+            puzzle4Block.renderClear()
+        }
+        else {
+            puzzle4Block.renderUnclear()
+        }
+        if (PuzzleLibrary.Instance.getPuzzleCleared(atIndex: 5)) {
+            puzzle5Block.renderClear()
+        }
+        else {
+            puzzle5Block.renderUnclear()
+        }
+        if (PuzzleLibrary.Instance.getPuzzleCleared(atIndex: 6)) {
+            puzzle6Block.renderClear()
+        }
+        else {
+            puzzle6Block.renderUnclear()
+        }
+        if (PuzzleLibrary.Instance.getPuzzleCleared(atIndex: 7)) {
+            puzzle7Block.renderClear()
+        }
+        else {
+            puzzle7Block.renderUnclear()
+        }
+        if (PuzzleLibrary.Instance.getPuzzleCleared(atIndex: 8)) {
+            puzzle8Block.renderClear()
+        }
+        else {
+            puzzle8Block.renderUnclear()
+        }
+        if (PuzzleLibrary.Instance.getPuzzleCleared(atIndex: 9)) {
+            puzzle9Block.renderClear()
+        }
+        else {
+            puzzle9Block.renderUnclear()
+        }
+        if (PuzzleLibrary.Instance.getPuzzleCleared(atIndex: 10)) {
+            puzzle10Block.renderClear()
+        }
+        else {
+            puzzle10Block.renderUnclear()
+        }
+        if (PuzzleLibrary.Instance.getPuzzleCleared(atIndex: 11)) {
+            puzzle11Block.renderClear()
+        }
+        else {
+            puzzle11Block.renderUnclear()
+        }
+        if (PuzzleLibrary.Instance.getPuzzleCleared(atIndex: 12)) {
+            puzzle12Block.renderClear()
+        }
+        else {
+            puzzle12Block.renderUnclear()
+        }
     }
     
     private static func pixel(_ pixel: Int) -> Float {
@@ -213,36 +273,38 @@ class PuzzleSelectViewController: GLKViewController {
     }
     
     func puzzleSelected(puz: Int) {
-        let puzzle = GameViewController()
-        puzzle.tb = 4
+        let pgvc: GameViewController = GameViewController()
+        pgvc.gt = 4
         switch (puz) {
         case 1:
-            puzzle.bg = 1
+            pgvc.bg = 1
         case 2:
-            puzzle.bg = 1
+            pgvc.bg = 1
         case 3:
-            puzzle.bg = 2
+            pgvc.bg = 2
         case 4:
-            puzzle.bg = 2
+            pgvc.bg = 2
         case 5:
-            puzzle.bg = 3
+            pgvc.bg = 3
         case 6:
-            puzzle.bg = 3
+            pgvc.bg = 3
         case 7:
-            puzzle.bg = 4
+            pgvc.bg = 4
         case 8:
-            puzzle.bg = 4
+            pgvc.bg = 4
         case 9:
-            puzzle.bg = 5
+            pgvc.bg = 5
         case 10:
-            puzzle.bg = 5
+            pgvc.bg = 5
         case 11:
-            puzzle.bg = 6
+            pgvc.bg = 6
         case 12:
-            puzzle.bg = 6
+            pgvc.bg = 6
         default:
-            puzzle.bg = 1
+            pgvc.bg = 1
         }
-        self.navigationController?.pushViewController(puzzle, animated: true)
+        let game: PuzzleGame = PuzzleGame(withPuzzle: puz)
+        pgvc.puzzle = game
+        self.navigationController?.pushViewController(pgvc, animated: true)
     }
 }

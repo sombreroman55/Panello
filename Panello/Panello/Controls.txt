@@ -1,0 +1,8 @@
+I should have added this in the game, but I forgot and ran out of time.
+
+Controls:
+
+Swap right - In game, touch block and swipe right
+Swap left - In game, touch block and swipe left
+Pause game - In game, triple tap anywhere
+Select menu option - Simply touch the text

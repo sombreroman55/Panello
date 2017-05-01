@@ -34,7 +34,7 @@ class Panel {
     }
 
     // Vertex coordinates
-    private static let quad: [Float] = [ -0.088, -0.068, -0.088, 0.068, 0.088, -0.068, 0.088, 0.068 ]
+    public static let quad: [Float] = [ -0.088, -0.068, -0.088, 0.068, 0.088, -0.068, 0.088, 0.068 ]
     
     // -------------------------------------------------------------------
     // MARK: - Static functions
@@ -61,12 +61,6 @@ class Panel {
         }
     }
     
-    // Texture sheet is 116x154
-    // Sprites are 16x16 with 3px padding on all sides
-    // Format is WxH
-    // X is horizontal, Y is vertical going down
-    // Arrays are |TL, BR| |TL, TR| |BL, BR| |BL, TR|
-    //            |-X  +Y| |-X  -Y| |+X  +Y| |+X  -Y|
     /* Return the coordinates for the given color's sprite on the spritesheet */
     class func getNormalTexture(forColor color: PanelColor) -> [Float] {
         switch (color) {
@@ -88,23 +82,27 @@ class Panel {
     // -------------------------------------------------------------------
     // MARK: - Instance data
     // -------------------------------------------------------------------
-    public var positionX: Float = 0.0
-    public var positionY: Float = 0.0
+    public var positionX: Float
+    public var positionY: Float
     public var color: PanelColor // The color of the block
     public var state: PanelState // The state of the block
+    public var falling: Bool
     
-    private var texture: GLKTextureInfo? // The texture of the block
-    private var textureCoordinates: [Float] // The coordinates of the texture in the sprite sheet
+    public var texture: GLKTextureInfo? // The texture of the block
+    public var textureCoordinates: [Float] // The coordinates of the texture in the sprite sheet
     
     // --------------------------------------------------------------------
     // MARK: - Constructors
     // --------------------------------------------------------------------
-    init() {
+    init(startCoordinateX: Float, startCoordinateY: Float) {
+        positionX = startCoordinateX
+        positionY = startCoordinateY
         color = Panel.getRandomColor()
         state = .NORMAL
+        falling = false
         
         texture = try? GLKTextureLoader.texture(with: SpriteEngine.image.cgImage!, options: nil)
-        textureCoordinates = Panel.getNormalTexture(forColor: color)
+        textureCoordinates = []
         SpriteEngine.setup()
     }
     
@@ -114,9 +112,7 @@ class Panel {
     
     /* Draw the panel */
     func draw() {
-        // Send Geometry (attributes)
-        // Send any other info (uniforms)
-        // Draw
+        textureCoordinates = Panel.getNormalTexture(forColor: color)
         glUseProgram(SpriteEngine.program)
         glVertexAttribPointer(0, 2, GLenum(GL_FLOAT), GLboolean(GL_FALSE), 0, Panel.quad)
         glVertexAttribPointer(1, 2, GLenum(GL_FLOAT), GLboolean(GL_FALSE), 0, textureCoordinates)
@@ -127,15 +123,5 @@ class Panel {
             glBindTexture(GLenum(GL_TEXTURE_2D), tex.name)
         }
         glDrawArrays(GLenum(GL_TRIANGLE_STRIP), 0, 4)
-    }
-    
-    public func touchedInside(x: Float, y: Float) -> Bool {
-        if (x >= (positionX - 0.088) &&
-            x <= (positionX + 0.088) &&
-            y >= (positionY - 0.068) &&
-            y <= (positionY + 0.068)) {
-            return true
-        }
-        return false
     }
 }

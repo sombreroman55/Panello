@@ -28,7 +28,7 @@ class StageLibrary {
                                    90, 100,
                                    110, 120 ]
     
-    private var _clearFlags: [ Bool ] = [ false, false,
+    private var _clearFlags: [Bool] = [ false, false,
                                           false, false,
                                           false, false,
                                           false, false,
@@ -39,14 +39,14 @@ class StageLibrary {
     // MARK: - Class functions
     // -------------------------------------------------------------------
     public func stageCleared(stage: Int) {
-        _clearFlags[stage] = true
+        _clearFlags[stage-1] = true
     }
     
     public func getStage(atIndex index: Int) -> Int {
-        return _stages[index]
+        return _stages[index-1]
     }
     
     public func getStageCleared(atIndex index: Int) -> Bool {
-        return _clearFlags[index]
+        return _clearFlags[index-1]
     }
 }

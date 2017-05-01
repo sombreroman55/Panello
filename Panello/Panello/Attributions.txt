@@ -1,0 +1,6 @@
+Sprite resources taken from:
+
+https://www.spriters-resource.com/snes/tetrisattack/
+https://www.spriters-resource.com/snes/panelpon/
+
+Sprites modified by me.

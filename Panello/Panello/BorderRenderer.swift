@@ -30,7 +30,7 @@ class BorderRenderer {
                                             pixel(623), pixel(328), pixel(623), pixel(128) ]
     
     // Vertex coordinates
-    private static let quad: [Float] = [ 0.436, -1.7, 0.436, 0.0, 1.564, -1.7, 1.564, 0.0 ]
+    public static let quad: [Float] = [ 0.436, -1.7, 0.436, 0.0, 1.564, -1.7, 1.564, 0.0 ]
     
     // -------------------------------------------------------------------
     // MARK: - Public instance data

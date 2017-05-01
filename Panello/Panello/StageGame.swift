@@ -14,26 +14,44 @@ class StageGame {
     // MARK: - Private instance data
     // --------------------------------------------------------------------
     
-    public var _board: Board
-    public var _highScore: Int
+    private var _board: Board
+    private var _stageNumber: Int
+    private var _linesRemaining: Int
+    private var _state: GameState
+
+
     
     // --------------------------------------------------------------------
     // MARK: - Public instance data
     // --------------------------------------------------------------------
     
     public var board: Board { return _board }
-    public var highScore: Int { return _highScore }
+    public var stageNumber: Int { return _stageNumber }
+    public var linesRemaining: Int { return _linesRemaining }
+    public var state: GameState { return _state }
+
     
     // --------------------------------------------------------------------
     // MARK: - Constructors
     // --------------------------------------------------------------------
     
-    init() {
+    init(withStage stage: Int) {
         _board = Board()
-        _highScore = 0
+        _board.fillRandom()
+        _state = .RUN
+        _stageNumber = stage
+        _linesRemaining = StageLibrary.Instance.getStage(atIndex: stage)
     }
     
     // --------------------------------------------------------------------
     // MARK: - StageGame methods
     // --------------------------------------------------------------------
+    
+    func update() {
+        _board.update()
+    }
+    
+    func pauseGame() {
+        _state = .PAUSE
+    }
 }
