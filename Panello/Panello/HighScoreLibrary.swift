@@ -30,7 +30,7 @@ class HighScoreLibrary {
     // -------------------------------------------------------------------
     // MARK: - Class functions
     // -------------------------------------------------------------------
-    public func addNewScore(score: Int) {
+    public func addScore(score: Int) {
         _scores.append(score)
         _scores.sort { $0 > $1 }
         while (_scores.count > 10) {

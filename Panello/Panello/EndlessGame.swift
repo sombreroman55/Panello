@@ -55,4 +55,10 @@ class EndlessGame {
     func pauseGame() {
         _state = .PAUSE
     }
+    
+    func checkGameOver() {
+        if (_board.state == .GAME_OVER) {
+            HighScoreLibrary.Instance.addScore(score: _score)
+        }
+    }
 }

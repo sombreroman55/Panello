@@ -88,6 +88,13 @@ class PuzzleGame {
         }
     }
     
+    func checkWin() {
+        if (_board.blocksOnBoard == 0 && _movesLeft == 0) {
+            _board.state = .WIN
+            _state = .END
+        }
+    }
+    
     func checkGameOver() {
         if (_board.blocksOnBoard != 0 && _movesLeft == 0) {
             _board.state = .GAME_OVER

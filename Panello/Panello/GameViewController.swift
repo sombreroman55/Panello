@@ -147,13 +147,13 @@ class GameViewController: GLKViewController {
         case 1: // endless
             topTitle.renderLine(text: "Endless")
             leftHUD1.renderLine(text: "Score")
-            leftHUD2.renderNumber(number: 0)
+            leftHUD2.renderNumber(number: endless!.score)
             rightHUD1.renderLine(text: "High")
-            rightHUD2.renderNumber(number: 100)
+            rightHUD2.renderNumber(number: endless!.highScore)
         case 2: // time trial
             topTitle.renderLine(text: "Time Trial")
             leftHUD1.renderLine(text: "Score")
-            leftHUD2.renderNumber(number: 0)
+            leftHUD2.renderNumber(number: timeTrial!.score)
             rightHUD1.renderLine(text: "Time")
             rightHUD2.renderNumber(number: timeTrial!.timeRemaining)
         case 3: // stage

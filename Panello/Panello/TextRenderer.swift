@@ -183,12 +183,7 @@ final class TextRenderer {
         var digit: Int = 0
         while (copy >= 0) {
             digit = copy % 10
-            if (digit == 1) {
-                _textVertexCoordinates = [ -0.1, -0.1, -0.1, 0.1, 0.0, -0.1, 0.0, 0.1 ]
-            }
-            else {
-                _textVertexCoordinates = TextEngine.quad
-            }
+            _textVertexCoordinates = TextEngine.quad
             _textTextureCoordinates = getTexture(forNumber: digit)
             glUseProgram(TextEngine.program)
             glVertexAttribPointer(0, 2, GLenum(GL_FLOAT), GLboolean(GL_FALSE), 0, _textVertexCoordinates)

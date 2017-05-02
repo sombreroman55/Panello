@@ -37,6 +37,12 @@ class Board {
     public var score: Int { return _score }
     public var blocksOnBoard: Int { return _blocksOnBoard }
     public var state: BoardState
+    private var offset: Float
+    private var riseRate: Float
+    private var startTime: Double
+    private var _linesRaised: Int
+    public var linesRaised: Int { return _linesRaised }
+    private var isPuzzle: Bool = false
     
     
     static let panicRow: Int = 9
@@ -51,6 +57,7 @@ class Board {
     // MARK: - Private instance data
     // -------------------------------------------------------------------
     
+    private var _buffer: [Block]
     private var _grid: [[Block]]
     
     // -------------------------------------------------------------------
@@ -77,8 +84,13 @@ class Board {
                   [ Block(), Block(), Block(), Block(), Block(), Block() ],  // 10
                   [ Block(), Block(), Block(), Block(), Block(), Block() ] ] // 11
         
+        _buffer = [ Block(), Block(), Block(), Block(), Block(), Block() ]
         state = .RUNNING
         _score = 0
+        _linesRaised = 0
+        offset = 0
+        riseRate = 0.001
+        startTime = CACurrentMediaTime()
     }
     
     // --------------------------------------------------------------------
@@ -89,6 +101,10 @@ class Board {
         _blocksOnBoard = blockCount()
         handleFalling()
         getMatchingHorizontal()
+        getMatchingVertical()
+        if (!isPuzzle) {
+            raiseBoard()
+        }
     }
     
     /* Draw the panel */
@@ -111,7 +127,15 @@ class Board {
         }
     }
     
+    func fillBuffer() {
+        for i: Int in 0 ..< 6 {
+            _buffer[i].panel = Panel(startCoordinateX: (gridMinX + (blockStepWidth * Float(i))), startCoordinateY: gridMinY)
+            _buffer[i].air = false
+        }
+    }
+    
     func buildPuzzleBoard(puzzle: Int) {
+        isPuzzle = true
         buildBoardFromString(string: PuzzleLibrary.Instance.getPuzzle(atIndex: puzzle))
     }
     
@@ -242,7 +266,7 @@ class Board {
             matched = 1
             start = -1
             for j: Int in 0 ..< 5 {
-                if (_grid[i][j].panel?.color == _grid[i][j+1].panel?.color) {
+                if (!(_grid[i][j].air && _grid[i][j+1].air) && (_grid[i][j].panel?.color == _grid[i][j+1].panel?.color)) {
                     if (matched == 1 && start == -1) {
                         matched += 1
                         start = j
@@ -267,29 +291,47 @@ class Board {
     
     func handleMatchingHorizontal(row: Int, column: Int, length: Int) {
         for j in column ..< column + length {
-            _score += 20 * length
             clearBlock(block: &_grid[row][j])
+        }
+        _score += 20 * length
+    }
+    
+    func getMatchingVertical() {
+        var matched: Int = 1
+        var start: Int = -1
+        for j: Int in 0 ..< 6 {
+            matched = 1
+            start = -1
+            for i: Int in 0 ..< 10 {
+                if (!(_grid[i][j].air && _grid[i+1][j].air) && (_grid[i][j].panel?.color == _grid[i+1][j].panel?.color)) {
+                    if (matched == 1 && start == -1) {
+                        matched += 1
+                        start = i
+                    }
+                    else {
+                        matched += 1
+                    }
+                }
+                else {
+                    if (matched >= 3 && start != -1) {
+                        handleMatchingVertical(row: start, column: j, length: matched)
+                    }
+                    matched = 1
+                    start = -1
+                }
+            }
+            if (matched >= 3 && start != -1) {
+                handleMatchingVertical(row: start, column: j, length: matched)
+            }
         }
     }
     
-//    func getMatchingVertical() {
-//        var matched: Int = 0
-//        for i: Int in 0 ..< 12 {
-//            let startColumn: Int = 0
-//            for j: Int in 0 ..< 4 {
-//                startColumn = j
-//                let b: Block = _grid[i][j]
-//                let bplus: Block = _grid[i][j+1]
-//                while (b.panel?.color == bplus.panel?.color && j < 6) {
-//                    matched += 1
-//                    b = bplus
-//                }
-//            }
-//            if (matched >= 3) {
-//                handleMatchingHorizontal(row: i, column: startColumn, length: matched)
-//            }
-//        }
-//    }
+    func handleMatchingVertical(row: Int, column: Int, length: Int) {
+        for i in row ..< row + length {
+            clearBlock(block: &_grid[i][column])
+        }
+        _score += 20 * length
+    }
     
     func writeBoard() {
         for i: Int in 0 ..< 12 {
@@ -325,6 +367,48 @@ class Board {
     }
     
     func gridCoordinateForRow(row: Int) -> Float {
-        return (gridMinY + (blockStepHeight * Float(row)))
+        return (gridMinY + (blockStepHeight * Float(row)) + offset/2)
+    }
+    
+    func raiseBoard() {
+        if (offset >= blockStepHeight) {
+            raiseBlocks()
+            _linesRaised += 1
+            offset = 0
+        }
+        else {
+            if (blocksOnTopRow()) {
+                offset = 0
+            }
+            else {
+                offset += riseRate
+            }
+        }
+    }
+    
+    func blocksOnTopRow() -> Bool {
+        for j: Int in 0 ..< 6 {
+            if (!_grid[11][j].air) {
+                return true
+            }
+        }
+        return false
+    }
+    
+    func raiseBlocks() {
+        if (blocksOnTopRow()) {
+            state = .GAME_OVER
+        }
+        else {
+            for i: Int in (1...11).reversed() {
+                for j: Int in 0 ..< 6 {
+                    if(!blocksOnTopRow()) {
+                        _grid[i][j] = _grid[i-1][j]
+                    }
+                }
+            }
+            _grid[0] = _buffer
+            fillBuffer()
+        }
     }
 }
