@@ -62,11 +62,8 @@ class StageGame {
     
     func checkWin() {
         if (_board.state != .GAME_OVER && _linesRemaining == 0) {
+            StageLibrary.Instance.stageCleared(stage: _stageNumber)
             _board.state = .WIN
         }
-    }
-    
-    func checkGameOver() {
-        
     }
 }

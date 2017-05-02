@@ -187,6 +187,12 @@ class GameViewController: GLKViewController {
             over.renderLine(text: "Game Over")
             quit.renderLine(text: "Quit")
         }
+        
+        if (board.state == .WIN) {
+            menu.renderPauseMenu()
+            over.renderLine(text: "Clear")
+            quit.renderLine(text: "Quit")
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

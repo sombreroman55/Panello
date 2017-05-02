@@ -132,18 +132,78 @@ class StageSelectViewController: GLKViewController {
         stage11.renderLine(text: "11")
         stage12.renderLine(text: "12")
         
-        stage1Block.renderUnclear()
-        stage2Block.renderUnclear()
-        stage3Block.renderUnclear()
-        stage4Block.renderUnclear()
-        stage5Block.renderUnclear()
-        stage6Block.renderUnclear()
-        stage7Block.renderUnclear()
-        stage8Block.renderUnclear()
-        stage9Block.renderUnclear()
-        stage10Block.renderUnclear()
-        stage11Block.renderUnclear()
-        stage12Block.renderUnclear()
+        if (StageLibrary.Instance.getStageCleared(atIndex: 1)) {
+            stage1Block.renderClear()
+        }
+        else {
+            stage1Block.renderUnclear()
+        }
+        if (StageLibrary.Instance.getStageCleared(atIndex: 2)) {
+            stage2Block.renderClear()
+        }
+        else {
+            stage2Block.renderUnclear()
+        }
+        if (StageLibrary.Instance.getStageCleared(atIndex: 3)) {
+            stage3Block.renderClear()
+        }
+        else {
+            stage3Block.renderUnclear()
+        }
+        if (StageLibrary.Instance.getStageCleared(atIndex: 4)) {
+            stage4Block.renderClear()
+        }
+        else {
+            stage4Block.renderUnclear()
+        }
+        if (StageLibrary.Instance.getStageCleared(atIndex: 5)) {
+            stage5Block.renderClear()
+        }
+        else {
+            stage5Block.renderUnclear()
+        }
+        if (StageLibrary.Instance.getStageCleared(atIndex: 6)) {
+            stage6Block.renderClear()
+        }
+        else {
+            stage6Block.renderUnclear()
+        }
+        if (StageLibrary.Instance.getStageCleared(atIndex: 7)) {
+            stage7Block.renderClear()
+        }
+        else {
+            stage7Block.renderUnclear()
+        }
+        if (StageLibrary.Instance.getStageCleared(atIndex: 8)) {
+            stage8Block.renderClear()
+        }
+        else {
+            stage8Block.renderUnclear()
+        }
+        if (StageLibrary.Instance.getStageCleared(atIndex: 9)) {
+            stage9Block.renderClear()
+        }
+        else {
+            stage9Block.renderUnclear()
+        }
+        if (StageLibrary.Instance.getStageCleared(atIndex: 10)) {
+            stage10Block.renderClear()
+        }
+        else {
+            stage10Block.renderUnclear()
+        }
+        if (StageLibrary.Instance.getStageCleared(atIndex: 11)) {
+            stage11Block.renderClear()
+        }
+        else {
+            stage11Block.renderUnclear()
+        }
+        if (StageLibrary.Instance.getStageCleared(atIndex: 12)) {
+            stage12Block.renderClear()
+        }
+        else {
+            stage12Block.renderUnclear()
+        }
     }
     
     private static func pixel(_ pixel: Int) -> Float {

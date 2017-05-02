@@ -18,6 +18,7 @@ class EndlessGame {
     private var _score: Int
     private var _highScore: Int
     private var _state: GameState
+    private var scoreAdded: Bool
     
     // -------------------------------------------------------------------
     // MARK: - Public instance data
@@ -38,6 +39,7 @@ class EndlessGame {
         _state = .RUN
         _score = 0
         _highScore = HighScoreLibrary.Instance.getHighScore()
+        scoreAdded = false
     }
 
     // --------------------------------------------------------------------
@@ -50,6 +52,7 @@ class EndlessGame {
         }
         _score = _board.score
         _board.update()
+        checkGameOver()
     }
     
     func pauseGame() {
@@ -57,8 +60,9 @@ class EndlessGame {
     }
     
     func checkGameOver() {
-        if (_board.state == .GAME_OVER) {
+        if (_board.state == .GAME_OVER && !scoreAdded) {
             HighScoreLibrary.Instance.addScore(score: _score)
+            scoreAdded = true
         }
     }
 }

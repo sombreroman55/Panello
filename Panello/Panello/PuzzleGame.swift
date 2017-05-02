@@ -90,6 +90,7 @@ class PuzzleGame {
     
     func checkWin() {
         if (_board.blocksOnBoard == 0 && _movesLeft == 0) {
+            PuzzleLibrary.Instance.puzzleCleared(puzzle: _puzzleNumber)
             _board.state = .WIN
             _state = .END
         }

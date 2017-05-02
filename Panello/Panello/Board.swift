@@ -43,7 +43,8 @@ class Board {
     private var _linesRaised: Int
     public var linesRaised: Int { return _linesRaised }
     private var isPuzzle: Bool = false
-    
+    private var graceTimer: Float = 0
+    private var timePassed: Double = 0
     
     static let panicRow: Int = 9
     static let warningRow: Int = 10
@@ -91,6 +92,7 @@ class Board {
         offset = 0
         riseRate = 0.001
         startTime = CACurrentMediaTime()
+        timePassed = 0
     }
     
     // --------------------------------------------------------------------
@@ -98,12 +100,16 @@ class Board {
     // --------------------------------------------------------------------
     
     func update() {
-        _blocksOnBoard = blockCount()
-        handleFalling()
-        getMatchingHorizontal()
-        getMatchingVertical()
-        if (!isPuzzle) {
-            raiseBoard()
+        if (state == .RUNNING) {
+            timePassed = CACurrentMediaTime() - startTime
+            increaseSpeed()
+            _blocksOnBoard = blockCount()
+            handleFalling()
+            getMatchingHorizontal()
+            getMatchingVertical()
+            if (!isPuzzle) {
+                raiseBoard()
+            }
         }
     }
     
@@ -378,9 +384,14 @@ class Board {
         }
         else {
             if (blocksOnTopRow()) {
+                graceTimer += 0.003
+                if (graceTimer >= blockStepHeight) {
+                    state = .GAME_OVER
+                }
                 offset = 0
             }
             else {
+                graceTimer = 0
                 offset += riseRate
             }
         }
@@ -409,6 +420,12 @@ class Board {
             }
             _grid[0] = _buffer
             fillBuffer()
+        }
+    }
+    
+    func increaseSpeed() {
+        if (Int(timePassed) % 5 == 0) {
+            riseRate += (riseRate * 0.001)
         }
     }
 }
